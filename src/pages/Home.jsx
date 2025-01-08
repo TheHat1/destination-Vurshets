@@ -1,4 +1,4 @@
-
+//import {ReactComponent as Map} from "/src/assets/destinationVurshets-map.svg"
 import { useEffect, useState } from "react"
 
 
@@ -19,8 +19,8 @@ export default function HomePage(){
     
     return(
         <>
-        <div className="bg-gray-400 w-screen h-screen" onWheel={onUserScroll} >
-            
+        <div className="bg-gray-300 w-screen h-screen overflow-hidden" onWheel={onUserScroll} >
+           
         </div>
         </>
     )
