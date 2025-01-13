@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-slate-900 w-screen h-[110px] flex items-center justify-between fixed top-0">
+      <div className="bg-slate-900 z-50 w-screen h-[110px] flex items-center justify-between fixed top-0">
         <img className="pl-[10px]" src={Logo}/>
       </div>
       <Routes>
