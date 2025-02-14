@@ -23,7 +23,7 @@ export default function Map(){
             minZoom={-3} 
             maxZoom={2} 
             maxBounds={[[0, 0], [4500, 4500]]} 
-            className="h-screen w-[calc(100vw-var(--side-panel-width))] fixed z-0 right-0" style={{ "--side-panel-width": "400px" }}
+            className="h-screen w-[calc(100vw-var(--side-panel-width))] fixed z-0 right-0" style={{ "--side-panel-width": "500px" }}
         >
                 <ImageOverlay url="/src/assets/map.svg" bounds={bounds}/>
         </MapContainer>

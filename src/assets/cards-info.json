@@ -1,0 +1,11 @@
+{
+    "locations":[
+        {
+            "id":"banq",
+            "locationName":"Старата баня",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"starataBanq.jpg"
+        }
+
+    ]
+}
