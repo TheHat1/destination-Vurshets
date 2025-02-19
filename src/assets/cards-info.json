@@ -17,6 +17,60 @@
             "locationName":"Въжен парк Вършец",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
             "imagePath":"vujenPark.jpg"
+        },
+        {
+            "id":"amphitheatar",
+            "locationName":"Ампфитеатър",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"aphiteatur.jpg"
+        },
+        {
+            "id":"carkva",
+            "locationName":"Храм Свети Георги Победоносец",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"curkva.jpg"
+        },
+        {
+            "id":"gorski-park",
+            "locationName":"Горски парк",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"gorski-park.jpg"
+        },
+        {
+            "id":"ivanchova-polqna",
+            "locationName":"Иванчова поляна",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"ivanchova-polqna.jpg"
+        },
+        {
+            "id":"tsarskoto-kazino",
+            "locationName":"Царското казино",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"kazino.jpg"
+        },
+        {
+            "id":"ww2-pametnik",
+            "locationName":"Паметник на загиналите във Втората световна война",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"pametnik-ww2.jpg"
+        },
+        {
+            "id":"vodopad",
+            "locationName":"Райски кът",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"rajski-kat.jpg"
+        },
+        {
+            "id":"sluncheva-gradina",
+            "locationName":"Слънчева градина",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"slancheva-gradina.jpg"
+        },
+        {
+            "id":"stadion",
+            "locationName":"Стадион",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"stadion.jpg"
         }
 
     ]

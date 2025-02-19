@@ -29,8 +29,8 @@ export default function HomePage(){
 
     return(
         <>
-        <div className="bg-white z-10 w-[500px] h-[calc(100vh-var(--navbar-height))] fixed bottom-0 shadow-[5px_0_10px_rgba(0,0,0,0.2)]" style={{ "--navbar-height": "110px" }}>
-          <div className=" w-full h-[50px] border border-gray-900">
+        <div className="bg-white z-10 w-[500px] h-[calc(100vh-var(--navbar-height))] fixed bottom-0 shadow-[5px_0_10px_rgba(0,0,0,0.2)] overflow-y-auto overflow-x-hidden" style={{ "--navbar-height": "110px" }}>
+          <div className=" w-full h-[50px] border border-gray-900 ">
             <input className="border-none w-full h-full" type="text" value={inputValue} onChange={(value1)=>{setInputValue(value1.target.value)}} placeholder="Търсене..."/>
           </div>
           {locationCards}
