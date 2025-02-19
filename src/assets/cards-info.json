@@ -5,6 +5,18 @@
             "locationName":"Старата баня",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
             "imagePath":"starataBanq.jpg"
+        },
+        {
+            "id":"paleopark",
+            "locationName":"Палеопарк",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"paleopark.jpg"
+        },
+        {
+            "id":"vujenpark",
+            "locationName":"Въжен парк Вършец",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"vujenPark.jpg"
         }
 
     ]

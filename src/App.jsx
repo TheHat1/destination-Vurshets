@@ -1,7 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Logo from "./assets/destination-vurshets-logo.png"
 import Home from "./pages/Home.jsx"
-import Map from "./Components/Map.jsx"
 
 function App() {
   const navigate = useNavigate()
@@ -13,7 +12,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/map" element={<Map/>}/>
+        <Route path="/:id" element={<Home/>}/>
       </Routes>
     </>
   )

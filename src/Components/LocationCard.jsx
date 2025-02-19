@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function LocationCard({id, imagePath, locationName, locationDesc}){
     let imgPathConc = imagePath ? "src/assets/imgs/" + imagePath : null
@@ -8,9 +8,9 @@ export default function LocationCard({id, imagePath, locationName, locationDesc}
         <div onClick={()=>{navigate('/' + id)}} className="shadow-lg w-full h-[150px] hover:bg-gray-200 hover:text-gray-600 cursor-pointer">
               <div className="h-[150px] w-[500px] pl-[220px] fixed ">
               <h1 className="pt-[30px] font-oswald truncate text-2xl font-bold text-left overflow-hidden">{locationName}</h1>
-              <p className="font-normal pl-[15px] text-md text-left text-balance truncate text-wrap">{locationDesc}</p>
+              <p className="font-normal pl-[15px] text-md text-left text-balance truncate">{locationDesc}</p>
               </div>
-              <img src={imgPathConc} className="left-0 h-full w-[200px] z-50"/>
+              <img src={imgPathConc} className="left-0 h-full w-[200px]"/>
         </div>
     )
 }
