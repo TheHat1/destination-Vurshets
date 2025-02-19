@@ -17,10 +17,10 @@ export default function LocationViewer(){
 
     return(
         <div className="h-[calc(100vh-var(--navbar-height))]  w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center"  style={{ "--side-panel-width": "500px", "--navbar-height": "110px"}}>
-            <div className="h-full  w-full relative z-0 overflow-auto no-scrollbar"> 
+            <div className="h-full  w-full relative z-0 overflow-y-auto overflow-x-hidden"> 
             <div className="w-full h-[300px] flex items-center shadow-lg bg-gray-100">
                 <img src={imgPathConc} className="w-[450px] h-[300px] absolute right-0"/>
-                <h1 className=" font-oswald truncate text-5xl font-bold text-left overflow-hidden absolute px-5">{locationName}</h1>
+                <h1 className="w-[calc(100vw-var(--img-width))] font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden absolute px-5" style={{ "--img-width": "950px"}}>{locationName}</h1>
             </div>
             <h1 className="p-5 text-xl text-wrap text-center">{locationDesc}</h1>
             <div className="m-5 p-5 h-[600px] bg-gray-500">3D Viewer</div>

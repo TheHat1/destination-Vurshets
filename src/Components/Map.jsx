@@ -10,6 +10,18 @@ export default function Map(){
         iconUrl:"https://cdn-icons-png.flaticon.com/128/684/684908.png",
         iconSize: [35,35]
     })
+    const markerWithCross = new Icon({
+        iconUrl:"/src/assets/pinWithCross.png",
+        iconSize: [35,35]
+    })
+    const footballMarker = new Icon({
+        iconUrl:"/src/assets/footballPin.png",
+        iconSize: [35,35]
+    })
+    const landMark = new Icon({
+        iconUrl:"/src/assets/landMark.png",
+        iconSize: [35,35]
+    })
     const [isMounted, setIsMounted] = useState(false)
     const bounds = new LatLngBounds(
         [0,0],
@@ -41,13 +53,13 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/banq")}}} position={[2135,2400]} icon={myMarker}>
                 <Tooltip direction="top">Старата баня</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/stadion")}}} position={[1420,1960]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/stadion")}}} position={[1420,1960]} icon={footballMarker}>
                 <Tooltip direction="top">Стадион</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/sluncheva-gradina")}}} position={[2152,2280]} icon={myMarker}>
                 <Tooltip direction="top">Слънчева градина</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/vodopad")}}} position={[800,2850]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/vodopad")}}} position={[800,2850]} icon={landMark}>
                 <Tooltip direction="top">Райски кът</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/ww2-pametnik")}}} position={[1780,2073]} icon={myMarker}>
@@ -56,13 +68,13 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/tsarskoto-kazino")}}} position={[2050,2400]} icon={myMarker}>
                 <Tooltip direction="top">Царското казино</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/ivanchova-polqna")}}} position={[1460,2650]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/ivanchova-polqna")}}} position={[1460,2650]} icon={landMark}>
                 <Tooltip direction="top">Иванчова поляна</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/gorski-park")}}} position={[2000,2460]} icon={myMarker}>
                 <Tooltip direction="top">Горски парк</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/carkva")}}} position={[2760,2630]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/carkva")}}} position={[2760,2630]} icon={markerWithCross}>
                 <Tooltip direction="top">Храм Свети Георги Победоносец</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/amphitheatar")}}} position={[1930,2490]} icon={myMarker}>
