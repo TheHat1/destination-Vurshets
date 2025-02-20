@@ -7,12 +7,14 @@ export default function LocationViewer(){
     let imgPathConc = null
     let locationName = null
     let locationDesc = null
+    let locationLink = null
     const foundLocation = cardsInfo.locations.find((location) => location.id == id)
 
     if(id != null){
         imgPathConc = "/src/assets/imgs/" + foundLocation.imagePath
         locationName = foundLocation.locationName
         locationDesc = foundLocation.locationDesc
+        locationLink = foundLocation.link
     }
 
     return(
@@ -25,8 +27,16 @@ export default function LocationViewer(){
             <h1 className="p-5 text-xl text-wrap text-center">{locationDesc}</h1>
             <div className="m-5 p-5 h-[600px] bg-gray-500">3D Viewer</div>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
-                <div onClick={()=>{navigate('/')}} className="w-[100px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5">Назад</div>
-                <div className="w-[100px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5">Отведиме</div>
+                <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                    <img src="/src/assets/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                    Назад
+                </div>
+                <a href={locationLink} target="_blank" rel="noopener noreferrer">
+                    <div className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                        <img src="/src/assets/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                        Отведи ме
+                    </div>
+                </a>
             </div>
         </div>
         </div>

@@ -1,76 +1,88 @@
 {
     "locations":[
         {
-            "id":"banq",
+            "id":"starata-banq",
             "locationName":"Старата баня",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"starataBanq.jpg"
+            "imagePath":"starataBanq.jpg",
+            "link":"https://maps.app.goo.gl/6nkEhTvdGGwybmH88"
         },
         {
             "id":"paleopark",
             "locationName":"Палеопарк",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"paleopark.jpg"
+            "imagePath":"paleopark.jpg",
+            "link":"https://maps.app.goo.gl/oKW6UxXmrjK31Exr6"
         },
         {
             "id":"vujenpark",
             "locationName":"Въжен парк Вършец",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"vujenPark.jpg"
+            "imagePath":"vujenPark.jpg",
+            "link":"https://maps.app.goo.gl/foccZwuFfUeEfbR77"
         },
         {
             "id":"amphitheatar",
-            "locationName":"Ампфитеатър",
+            "locationName":"Амфитеатър",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"aphiteatur.jpg"
+            "imagePath":"aphiteatur.jpg",
+            "link":"https://maps.app.goo.gl/QnB6RL8tYKMMtHuM7"
         },
         {
-            "id":"carkva",
+            "id":"hram",
             "locationName":"Храм Свети Георги Победоносец",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"curkva.jpg"
+            "imagePath":"hram.jpg",
+            "link":"https://maps.app.goo.gl/ne5ATx46z59ZcxSj6"
         },
         {
             "id":"gorski-park",
             "locationName":"Горски парк",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"gorski-park.jpg"
+            "imagePath":"gorski-park.jpg",
+            "link":"https://maps.app.goo.gl/iHabgtjDhM2jJmbF9"
         },
         {
             "id":"ivanchova-polqna",
             "locationName":"Иванчова поляна",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"ivanchova-polqna.jpg"
+            "imagePath":"ivanchova-polqna.jpg",
+            "link":"https://maps.app.goo.gl/y5tMysWLPF4eoeTp8"
         },
         {
             "id":"tsarskoto-kazino",
             "locationName":"Царското казино",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"kazino.jpg"
+            "imagePath":"kazino.jpg",
+            "link":"https://maps.app.goo.gl/2uAkGWL9eXNaawTe7"
         },
         {
-            "id":"ww2-pametnik",
+            "id":"pametnik-na-zagianlite",
             "locationName":"Паметник на загиналите във Втората световна война",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"pametnik-ww2.jpg"
+            "imagePath":"pametnik-vtora-svetovana.jpg",
+            "link":"https://maps.app.goo.gl/ucTzT9M28VE19Lki9"
         },
         {
             "id":"vodopad",
             "locationName":"Райски кът",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"rajski-kat.jpg"
+            "imagePath":"rajski-kat.jpg",
+            "link":"https://maps.app.goo.gl/vHXvPPpoyTL43j7c8"
         },
         {
             "id":"sluncheva-gradina",
             "locationName":"Слънчева градина",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"slancheva-gradina.jpg"
+            "imagePath":"slancheva-gradina.jpg",
+            "link":"https://maps.app.goo.gl/zEgDBjPkCRL154Tt7"
         },
         {
             "id":"stadion",
             "locationName":"Стадион",
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"stadion.jpg"
+            "imagePath":"stadion.jpg",
+            "link":"https://maps.app.goo.gl/1c439TzfKGK2UFmp7"
         }
 
     ]

@@ -7,19 +7,19 @@ import { useNavigate } from "react-router-dom"
 export default function Map(){
     const navigate = useNavigate()
     const myMarker = new Icon({
-        iconUrl:"https://cdn-icons-png.flaticon.com/128/684/684908.png",
+        iconUrl:"/src/assets/pins/normalPin.png",
         iconSize: [35,35]
     })
     const markerWithCross = new Icon({
-        iconUrl:"/src/assets/pinWithCross.png",
+        iconUrl:"/src/assets/pins/pinWithCross.png",
         iconSize: [35,35]
     })
     const footballMarker = new Icon({
-        iconUrl:"/src/assets/footballPin.png",
+        iconUrl:"/src/assets/pins/footballPin.png",
         iconSize: [35,35]
     })
     const landMark = new Icon({
-        iconUrl:"/src/assets/landMark.png",
+        iconUrl:"/src/assets/pins/landMark.png",
         iconSize: [35,35]
     })
     const [isMounted, setIsMounted] = useState(false)
@@ -78,7 +78,7 @@ export default function Map(){
                 <Tooltip direction="top">Храм Свети Георги Победоносец</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/amphitheatar")}}} position={[1930,2490]} icon={myMarker}>
-                <Tooltip direction="top">Ампфитеатър</Tooltip>
+                <Tooltip direction="top">Амфитеатър</Tooltip>
             </Marker>
         </MapContainer>
     );
