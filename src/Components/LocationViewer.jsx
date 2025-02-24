@@ -11,7 +11,7 @@ export default function LocationViewer(){
     const foundLocation = cardsInfo.locations.find((location) => location.id == id)
 
     if(id != null){
-        imgPathConc = "/src/assets/imgs/" + foundLocation.imagePath
+        imgPathConc = "/assets/imgs/" + foundLocation.imagePath
         locationName = foundLocation.locationName
         locationDesc = foundLocation.locationDesc
         locationLink = foundLocation.link
@@ -28,12 +28,12 @@ export default function LocationViewer(){
             <div className="m-5 p-5 h-[600px] bg-gray-500">3D Viewer</div>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
                 <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                    <img src="/src/assets/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                    <img src="/assets/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
                     Назад
                 </div>
                 <a href={locationLink} target="_blank" rel="noopener noreferrer">
                     <div className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                        <img src="/src/assets/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                        <img src="/assets/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
                         Отведи ме
                     </div>
                 </a>

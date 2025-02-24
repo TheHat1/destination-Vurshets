@@ -7,19 +7,19 @@ import { useNavigate } from "react-router-dom"
 export default function Map(){
     const navigate = useNavigate()
     const myMarker = new Icon({
-        iconUrl:"/src/assets/pins/normalPin.png",
+        iconUrl:"/assets/pins/normalPin.png",
         iconSize: [35,35]
     })
     const markerWithCross = new Icon({
-        iconUrl:"/src/assets/pins/pinWithCross.png",
+        iconUrl:"/assets/pins/pinWithCross.png",
         iconSize: [35,35]
     })
     const footballMarker = new Icon({
-        iconUrl:"/src/assets/pins/footballPin.png",
+        iconUrl:"/assets/pins/footballPin.png",
         iconSize: [35,35]
     })
     const landMark = new Icon({
-        iconUrl:"/src/assets/pins/landMark.png",
+        iconUrl:"/assets/pins/landMark.png",
         iconSize: [35,35]
     })
     const [isMounted, setIsMounted] = useState(false)
@@ -43,7 +43,7 @@ export default function Map(){
             maxBounds={[[0, 0], [4500, 4500]]} 
             className="h-screen w-[calc(100vw-var(--side-panel-width))] fixed z-0 right-0" style={{ "--side-panel-width": "500px" }}
         >
-            <ImageOverlay url="/src/assets/map.svg" bounds={bounds}/>
+            <ImageOverlay url="/assets/map.svg" bounds={bounds}/>
             <Marker eventHandlers={{click:()=>{navigate("/paleopark")}}} position={[2070,2456]} icon={myMarker}>
                 <Tooltip direction="top">Палеопарк</Tooltip>
             </Marker>
@@ -79,6 +79,12 @@ export default function Map(){
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/amphitheatar")}}} position={[1930,2490]} icon={myMarker}>
                 <Tooltip direction="top">Амфитеатър</Tooltip>
+            </Marker>
+            <Marker eventHandlers={{click:()=>{navigate("/rimski-stulbi")}}} position={[1775,2350]} icon={myMarker}>
+                <Tooltip direction="top">Римски стълби</Tooltip>
+            </Marker>
+            <Marker eventHandlers={{click:()=>{navigate("/muzei")}}} position={[2360,2370]} icon={myMarker}>
+                <Tooltip direction="top">Общински музей</Tooltip>
             </Marker>
         </MapContainer>
     );

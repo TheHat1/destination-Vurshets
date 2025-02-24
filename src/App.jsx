@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
-import Logo from "./assets/destination-vurshets-logo.png"
+import Logo from "/assets/destination-vurshets-logo.png"
 import Home from "./pages/Home.jsx"
 
 function App() {

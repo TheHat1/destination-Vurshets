@@ -17,7 +17,7 @@
         {
             "id":"vujenpark",
             "locationName":"Въжен парк Вършец",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "locationDesc":"Въженият парк",
             "imagePath":"vujenPark.jpg",
             "link":"https://maps.app.goo.gl/foccZwuFfUeEfbR77"
         },
@@ -31,21 +31,21 @@
         {
             "id":"hram",
             "locationName":"Храм Свети Георги Победоносец",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "locationDesc":"Храмът представлява кръстокуполна базилика. Неговото строителство започва на 23.04.1903г, и завършва в 1906г. Ценност представляват четирите полилея, произведени в Йерусалим и Цариград. Те са дарени от местни заможни хора за освещаването на храма.",
             "imagePath":"hram.jpg",
             "link":"https://maps.app.goo.gl/ne5ATx46z59ZcxSj6"
         },
         {
             "id":"gorski-park",
             "locationName":"Горски парк",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "locationDesc":"Градският лесопарк е създаден през 1911-1912 г. По това време е втория по големина изкуствен парк в България след Борисовата градина  Основните дървесни видове в парка са бял и черен бор, ела, смърч, тис, ваймутов бор, кедър и гордостта на града – секвоя гигантея. Широколистните видове са основно чинар, кестен, дъб, габър, бук, липа. Голям интерес будят дървесните видове гинко билоба, магнолия, лирово дърво, райска ябълка. Изградени са площадки за тенис, волейбол, баскетбол, футболно игрище, фитнес салон и въжен парк, които предоставят възможност за активно спортуване сред зеленината и свежестта на боровия парк",
             "imagePath":"gorski-park.jpg",
             "link":"https://maps.app.goo.gl/iHabgtjDhM2jJmbF9"
         },
         {
             "id":"ivanchova-polqna",
             "locationName":"Иванчова поляна",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "locationDesc":"Иванчова поляна е отвореното пространство на горският парк. Голяма зелена площ с бесетки за отдих и идеалното място за прекарване на ден в игра на открито. Домашните любимци са позволени, но естествено трябва да взимате грижи след тях.",
             "imagePath":"ivanchova-polqna.jpg",
             "link":"https://maps.app.goo.gl/y5tMysWLPF4eoeTp8"
         },
@@ -83,7 +83,20 @@
             "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
             "imagePath":"stadion.jpg",
             "link":"https://maps.app.goo.gl/1c439TzfKGK2UFmp7"
+        },
+        {
+            "id":"rimski-stulbi",
+            "locationName":"Римски стълби",
+            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
+            "imagePath":"rimski-stulbi.jpg",
+            "link":"https://maps.app.goo.gl/uAPn46meDYS9VLaf9"
+        },
+        {
+            "id":"muzei",
+            "locationName":"Общински музей",
+            "locationDesc":"Историческият музей в гр. Вършец е основан през 1999 г. Сградата, в която се помещава, е построена през 30-те години на ХХ в. като частен дом с уникална архитектура. Музеят има четири раздела: „Античен”, „Археологически находки и монетна колекция\", „Балнеология\" и „Етнография\".",
+            "imagePath":"muzei.jpg",
+            "link":"https://maps.app.goo.gl/zxa3H7donmskbxtXA"
         }
-
     ]
 }
