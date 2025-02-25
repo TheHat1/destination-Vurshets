@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Map from "src/Components/Map.jsx"
 import cardsInfo from "src/assets/cards-info.json"
+import nearLocations from "src/assets/locations-near.json"
 import LocationCard from "../Components/LocationCard"
 import LocationViewer from "../Components/LocationViewer"
 import { useParams } from "react-router-dom"
@@ -8,8 +9,16 @@ import { useParams } from "react-router-dom"
 
 export default function HomePage(){
   const locations = cardsInfo.locations
-  const [locationCards, setLocationCards] = useState([
+  const locationsNear = nearLocations.locations
+  const [inTownLocationCards, setInTownLocationCards] = useState([
     locations.map((locations)=>{
+      return(
+        <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+      )
+    })
+  ])
+  const [outsideTownLocations, setOutsideTownLocations] = useState([
+    locationsNear.map((locations)=>{
       return(
         <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
       )
@@ -30,10 +39,19 @@ export default function HomePage(){
 
     useEffect(()=>{
       let searchInput = inputValue.toString().toLowerCase().replaceAll(' ','')
-      let searchResult
+      let searchResultTown
+      let serchResultOutsideTown
       if(inputValue != ""){
-        searchResult = locations.filter((e)=>{return e.locationName.toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
-        setLocationCards(searchResult.map(
+        searchResultTown = locations.filter((e)=>{return e.locationName.toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
+        serchResultOutsideTown = locationsNear.filter((e)=>{return e.locationName.toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
+        setInTownLocationCards(searchResultTown.map(
+          (locations)=>{
+            return(
+              <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+            )
+          })
+        )
+        setOutsideTownLocations(serchResultOutsideTown.map(
           (locations)=>{
             return(
               <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
@@ -41,7 +59,8 @@ export default function HomePage(){
           })
         )
       }else{
-        searchResult = locations
+        searchResultTown = locations
+        serchResultOutsideTown = locationsNear
         setInputValue(" ")
       }
 
@@ -53,8 +72,10 @@ export default function HomePage(){
            <input className="border-none w-full h-full" type="text"  onChange={value1=>{setInputValue(value1.target.value)}} placeholder="Търсене..."/>
         </div>
         <div className="bg-white z-10 w-[500px] h-[calc(100vh-var(--navbar-height))] fixed bottom-0 shadow-[5px_0_10px_rgba(0,0,0,0.2)] overflow-y-auto overflow-x-hidden" style={{ "--navbar-height": "160px" }}>
-
-          {locationCards}
+          <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">Локации в града</div>
+          {inTownLocationCards}
+          <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">Локации извън града</div>
+          {outsideTownLocations}
         </div>
         {isLoadedLocation ? <LocationViewer/> : <Map/>}
         </>
