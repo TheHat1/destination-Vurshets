@@ -62,7 +62,7 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/vodopad")}}} position={[800,2850]} icon={landMark}>
                 <Tooltip direction="top">Райски кът</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/ww2-pametnik")}}} position={[1780,2073]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/pametnik-na-zagianlite")}}} position={[1780,2073]} icon={myMarker}>
                 <Tooltip direction="top">Паметник на загиналите във Втората световна война</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/tsarskoto-kazino")}}} position={[2050,2400]} icon={myMarker}>
@@ -74,7 +74,7 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/gorski-park")}}} position={[2000,2460]} icon={myMarker}>
                 <Tooltip direction="top">Горски парк</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/carkva")}}} position={[2760,2630]} icon={markerWithCross}>
+            <Marker eventHandlers={{click:()=>{navigate("/hram")}}} position={[2760,2630]} icon={markerWithCross}>
                 <Tooltip direction="top">Храм Свети Георги Победоносец</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/amphitheatar")}}} position={[1930,2490]} icon={myMarker}>
