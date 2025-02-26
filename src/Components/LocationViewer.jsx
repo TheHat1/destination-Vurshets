@@ -24,7 +24,7 @@ export default function LocationViewer(){
                 <img src={imgPathConc} className="w-[450px] h-[300px] absolute right-0"/>
                 <h1 className="w-[calc(100vw-var(--img-width))] font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden absolute px-5" style={{ "--img-width": "950px"}}>{locationName}</h1>
             </div>
-            <h1 className="p-5 text-xl text-wrap text-center">{locationDesc}</h1>
+            <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{locationDesc}</h1>
             <div className="m-5 p-5 h-[600px] bg-gray-500">3D Viewer</div>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
                 <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
@@ -38,7 +38,18 @@ export default function LocationViewer(){
                     </div>
                 </a>
             </div>
-        </div>
+            <div className="bg-slate-900 w-full h-[110px] bottom-0 flex items-center pl-7 text-gray-400 text-md">
+                <h1>
+                    Създадено от Роберто Николов
+                </h1>
+                <a href="https://github.com/TheHat1?tab=overview&from=2025-02-01&to=2025-02-26" target="_blank" rel="noopener noreferrer">
+                    <div className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
+                        <img src="/assets/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                        TheHat1
+                    </div>
+                </a>
+            </div>
+            </div>
         </div>
     )
 }
