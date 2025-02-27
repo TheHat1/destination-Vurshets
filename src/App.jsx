@@ -1,6 +1,7 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Logo from "/assets/destination-vurshets-logo.png"
 import Home from "./pages/Home.jsx"
+import Error from "./pages/Error.jsx"
 import LocationCard from "./Components/LocationCard.jsx"
 import locationsNear from "./assets/locations-near.json"
 import { useState } from "react"
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/:id" element={<Home/>}/>
+        <Route path="/error" element={<Error/>}/>
       </Routes>
     </>
   )

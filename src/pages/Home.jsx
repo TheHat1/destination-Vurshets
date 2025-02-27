@@ -19,6 +19,11 @@ export default function HomePage(){
 
     //checks if the screen is below 1024px and updates the isDesktopFormat state
     useEffect(()=>{
+      if(window.innerWidth >= 1024){
+        setIsDesktopFormat(true)
+      }else{
+        setIsDesktopFormat(false)
+      }
       function handleResize(){
         if(window.innerWidth >= 1024){
           setIsDesktopFormat(true)
