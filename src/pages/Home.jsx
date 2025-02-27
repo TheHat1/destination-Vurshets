@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom"
 export default function HomePage(){
   const locations = cardsInfo.locations
   const locationsNear = nearLocations.locations
-  const [isDesktopFormat, setIsDesktopFormat] = useState(true)
+  const [isDesktopFormat, setIsDesktopFormat] = useState(window.innerHeight >= 1024)
   const [inTownLocationCards, setInTownLocationCards] = useState([])
   const [outsideTownLocations, setOutsideTownLocations] = useState([])
   const [inputValue, setInputValue] = useState("")
