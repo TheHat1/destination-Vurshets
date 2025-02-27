@@ -1,46 +1,11 @@
 {
     "locations":[
         {
-            "id":"starata-banq",
-            "locationName":"Старата баня",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"starataBanq.jpg",
-            "link":"https://maps.app.goo.gl/6nkEhTvdGGwybmH88"
-        },
-        {
-            "id":"paleopark",
-            "locationName":"Палеопарк",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"paleopark.jpg",
-            "link":"https://maps.app.goo.gl/oKW6UxXmrjK31Exr6"
-        },
-        {
-            "id":"vujenpark",
-            "locationName":"Въжен парк Вършец",
-            "locationDesc":"Въженият парк",
-            "imagePath":"vujenPark.jpg",
-            "link":"https://maps.app.goo.gl/foccZwuFfUeEfbR77"
-        },
-        {
-            "id":"amphitheatar",
-            "locationName":"Амфитеатър",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"aphiteatur.jpg",
-            "link":"https://maps.app.goo.gl/QnB6RL8tYKMMtHuM7"
-        },
-        {
-            "id":"hram",
-            "locationName":"Храм Свети Георги Победоносец",
-            "locationDesc":"Храмът представлява кръстокуполна базилика. Неговото строителство започва на 23.04.1903г, и завършва в 1906г. Ценност представляват четирите полилея, произведени в Йерусалим и Цариград. Те са дарени от местни заможни хора за освещаването на храма.",
-            "imagePath":"hram.jpg",
-            "link":"https://maps.app.goo.gl/ne5ATx46z59ZcxSj6"
-        },
-        {
-            "id":"gorski-park",
-            "locationName":"Горски парк",
-            "locationDesc":"Градският лесопарк е създаден през 1911-1912 г. По това време е втория по големина изкуствен парк в България след Борисовата градина  Основните дървесни видове в парка са бял и черен бор, ела, смърч, тис, ваймутов бор, кедър и гордостта на града – секвоя гигантея. Широколистните видове са основно чинар, кестен, дъб, габър, бук, липа. Голям интерес будят дървесните видове гинко билоба, магнолия, лирово дърво, райска ябълка. Изградени са площадки за тенис, волейбол, баскетбол, футболно игрище, фитнес салон и въжен парк, които предоставят възможност за активно спортуване сред зеленината и свежестта на боровия парк",
-            "imagePath":"gorski-park.jpg",
-            "link":"https://maps.app.goo.gl/iHabgtjDhM2jJmbF9"
+            "id":"vodopad",
+            "locationName":"Райски кът",
+            "locationDesc":"Красив природен парк, създаден от местните жители. Това е място, което предлага невероятни гледки към околния пейзаж, заобиколен от зеленина и спокойствие, и е любимо място за разходки и отдих сред природата. В „Райския кът“ има добре поддържани алеи, места за отдих и почивка, както и възможности за пикници на открито. Мястото е подходящо за семейни изгледи, разходки с приятели или просто за усамотение в тишината на природата. Този парк е и чудесно място за наблюдение на местната флора и фауна.",
+            "imagePath":"rajski-kat.jpg",
+            "link":"https://maps.app.goo.gl/vHXvPPpoyTL43j7c8"
         },
         {
             "id":"ivanchova-polqna",
@@ -50,53 +15,39 @@
             "link":"https://maps.app.goo.gl/y5tMysWLPF4eoeTp8"
         },
         {
-            "id":"tsarskoto-kazino",
-            "locationName":"Царското казино",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"kazino.jpg",
-            "link":"https://maps.app.goo.gl/2uAkGWL9eXNaawTe7"
+            "id":"manastir",
+            "locationName":"Клисурски манастир",
+            "locationDesc":"Четвъртият по големина манастир в България, той е разположен в подножието на връх Тодорини кукли, на около 12 км от Вършец. Манастирският комплекс предлага спокойствие и красива природна обстановка. В двора на манастира се намират църква с богати стенописи, жилищни сгради, красиви градини и аязмо със светена вода.",
+            "imagePath":"manastir.jpg",
+            "link":"https://maps.app.goo.gl/7tTFemPrZ7Kr2fhWA"
         },
         {
-            "id":"pametnik-na-zagianlite",
-            "locationName":"Паметник на загиналите във Втората световна война",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"pametnik-vtora-svetovna.jpg",
-            "link":"https://maps.app.goo.gl/ucTzT9M28VE19Lki9"
+            "id":"mestnost-vodopada",
+            "locationName":"Местност \"Водопада\"",
+            "locationDesc":"Местността се намира на около 3км от Вършец и е едно от най-живописните кътчета в района. Разположена сред красивата природа на Стара планина, тя предлага свеж въздух, спокойствие и възможност за разходки и отдих. Основната атракция на местността е малък, но красив водопад, чиито прохладни води създават приятно усещане за свежест през топлите месеци. Пътеката до водопада е леснодостъпна и подходяща за пешеходен туризъм, като преминава през зелени гори и живописни поляни.",
+            "imagePath":"mestnost-vodopada.jpg",
+            "link":"https://maps.app.goo.gl/oNugffg2xYfX1xsm6"
         },
         {
-            "id":"vodopad",
-            "locationName":"Райски кът",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"rajski-kat.jpg",
-            "link":"https://maps.app.goo.gl/vHXvPPpoyTL43j7c8"
+            "id":"todorini-kukli",
+            "locationName":"Връх \"Тодорини кукли\"",
+            "locationDesc":"Връх в западната част на Стара планина, разположен на около 11км източно от Вършец. Със своите 1785 м надморска височина, той е един от най-забележителните върхове в този дял на планината и предлага панорамни гледки към Вършец, Берковица и околните хълмове. Името му идва от легендата за девойката Тодора, която, за да избегне насилствен брак, се хвърлила от върха. Отличава се със своите няколко заоблени върха, наподобяващи кукли, откъдето идва и наименованието му.",
+            "imagePath":"todorini-kukli.jpg",
+            "link":"https://maps.app.goo.gl/P1ohVAibdbX6rqg98"
         },
         {
-            "id":"sluncheva-gradina",
-            "locationName":"Слънчева градина",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"slancheva-gradina.jpg",
-            "link":"https://maps.app.goo.gl/zEgDBjPkCRL154Tt7"
+            "id":"kom",
+            "locationName":"Връх \"Ком\"",
+            "locationDesc":"Със свойте 2016м надморска височина Ком е третият по височина връх в Стара планина, след Ботев и Вихрен, и е популярна дестинация за любителите на планинските преходи. Намира се на около 20 км от Вършец. Връх Ком предлага невероятни панорамни гледки към Дунавската равнина на север и вътрешността на Стара планина на юг. Маршрутът до върха започва от хижа Ком, която се намира на 1506 м надморска височина. Изкачването е умерено трудно и отнема около 2-3 часа в зависимост от темпото. Ком е символично начало на пешеходния маршрут „Ком-Емине“, който е най-дългият туристически маршрут в България, прекосяващ Стара планина от запад на изток.",
+            "imagePath":"kom.jpg",
+            "link":"https://maps.app.goo.gl/qNTUCXmisiirAZsn9"
         },
         {
-            "id":"stadion",
-            "locationName":"Стадион",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"stadion.jpg",
-            "link":"https://maps.app.goo.gl/1c439TzfKGK2UFmp7"
-        },
-        {
-            "id":"rimski-stulbi",
-            "locationName":"Римски стълби",
-            "locationDesc":"blah blah blah blah balh abalhlahlla halhla ha halh a ",
-            "imagePath":"rimski-stulbi.jpg",
-            "link":"https://maps.app.goo.gl/uAPn46meDYS9VLaf9"
-        },
-        {
-            "id":"muzei",
-            "locationName":"Общински музей",
-            "locationDesc":"Историческият музей в гр. Вършец е основан през 1999 г. Сградата, в която се помещава, е построена през 30-те години на ХХ в. като частен дом с уникална архитектура. Музеят има четири раздела: „Античен”, „Археологически находки и монетна колекция\", „Балнеология\" и „Етнография\".",
-            "imagePath":"muzei.jpg",
-            "link":"https://maps.app.goo.gl/zxa3H7donmskbxtXA"
+            "id":"srechenska-bara",
+            "locationName":"Язовир \"Среченска Бара\"",
+            "locationDesc":"Намира се в западната част на Стара планина, на около 15 км южно от Вършец. Той е основен водоизточник за региона, като осигурява питейна вода за Враца и околните населени места. Разположен сред красива планинска природа, язовирът е заобиколен от гъсти гори и живописни хълмове, което го прави чудесно място за отдих и разходки. Достъпът до него е ограничен поради предназначението му като водоизточник, но в района има екопътеки и гледки, от които посетителите могат да се насладят на спокойствието и красотата на природата.",
+            "imagePath":"srechenska-bara.jpg",
+            "link":"https://maps.app.goo.gl/HJKXKV9G39NbdATT8"
         }
     ]
 }
