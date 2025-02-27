@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import cardsInfo from "src/assets/cards-info.json"
+import locationsNear from "src/assets/locations-near.json"
 
 export default function LocationViewer(){
     const {id} = useParams()
@@ -8,7 +9,10 @@ export default function LocationViewer(){
     let locationName = null
     let locationDesc = null
     let locationLink = null
-    const foundLocation = cardsInfo.locations.find((location) => location.id == id)
+    let foundLocation = cardsInfo.locations.find((location) => location.id == id)
+    if(foundLocation == null){
+        foundLocation = locationsNear.locations.find((location) => location.id == id)
+    }
 
     if(id != null){
         imgPathConc = "/assets/imgs/" + foundLocation.imagePath
