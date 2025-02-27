@@ -41,7 +41,7 @@ export default function Map(){
             minZoom={-3} 
             maxZoom={2} 
             maxBounds={[[0, 0], [4500, 4500]]} 
-            className="h-screen w-[calc(100vw-var(--side-panel-width))] fixed z-0 right-0" style={{ "--side-panel-width": "500px" }}
+            className="h-screen w-full lg:w-[calc(100vw-var(--side-panel-width))] fixed -z-50 right-0" style={{ "--side-panel-width": "500px" }}
         >
             <ImageOverlay url="/assets/map.svg" bounds={bounds}/>
             <Marker eventHandlers={{click:()=>{navigate("/paleopark")}}} position={[2070,2456]} icon={myMarker}>
