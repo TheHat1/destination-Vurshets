@@ -22,6 +22,14 @@ export default function Map(){
         iconUrl:"/assets/pins/landMark.png",
         iconSize: [35,35]
     })
+    const waterPin = new Icon({
+        iconUrl:"/assets/pins/water-pin.png",
+        iconSize: [35,35]
+    })
+    const fountainPin = new Icon({
+        iconUrl:"/assets/pins/fountain-pin.png",
+        iconSize: [35,35]
+    })
     const [isMounted, setIsMounted] = useState(false)
     const bounds = new LatLngBounds(
         [0,0],
@@ -50,7 +58,7 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/vujenpark")}}} position={[1915,2420]} icon={myMarker}>
                 <Tooltip direction="top">Въжен парк</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/banq")}}} position={[2135,2400]} icon={myMarker}>
+            <Marker eventHandlers={{click:()=>{navigate("/starata-banq")}}} position={[2135,2400]} icon={myMarker}>
                 <Tooltip direction="top">Старата баня</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/stadion")}}} position={[1420,1960]} icon={footballMarker}>
@@ -85,6 +93,15 @@ export default function Map(){
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/muzei")}}} position={[2360,2370]} icon={myMarker}>
                 <Tooltip direction="top">Общински музей</Tooltip>
+            </Marker>
+            <Marker eventHandlers={{click:()=>{navigate("/mineralna-voda")}}} position={[2225,2455]} icon={waterPin}>
+                <Tooltip direction="top">Минерална чешма</Tooltip>
+            </Marker>
+            <Marker eventHandlers={{click:()=>{navigate("/mineralna-voda2")}}} position={[2295,2355]} icon={waterPin}>
+                <Tooltip direction="top">Минерална чешма</Tooltip>
+            </Marker>
+            <Marker eventHandlers={{click:()=>{navigate("/")}}} position={[2230,2290]} icon={fountainPin}>
+                <Tooltip direction="top">Фонтан</Tooltip>
             </Marker>
         </MapContainer>
     );

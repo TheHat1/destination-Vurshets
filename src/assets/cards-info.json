@@ -83,6 +83,20 @@
             "locationDesc":"Историческият музей в гр. Вършец е основан през 1999 г. Сградата, в която се помещава, е построена през 30-те години на ХХ в. като частен дом с уникална архитектура. Музеят има четири раздела: „Античен”, „Археологически находки и монетна колекция\", „Балнеология\" и „Етнография\".",
             "imagePath":"muzei.jpg",
             "link":"https://maps.app.goo.gl/zxa3H7donmskbxtXA"
+        },
+        {
+            "id":"mineralna-voda",
+            "locationName":"Минерална чешма",
+            "locationDesc":"",
+            "imagePath":"cheshma1.jpg",
+            "link":"https://maps.app.goo.gl/s3V3u1NNd1yehwaj7"
+        },
+        {
+            "id":"mineralna-voda2",
+            "locationName":"Минерална чешма",
+            "locationDesc":"",
+            "imagePath":"cheshma2.jpg",
+            "link":"https://maps.app.goo.gl/p26bhjaTK5dAPUBV8"
         }
     ]
 }
