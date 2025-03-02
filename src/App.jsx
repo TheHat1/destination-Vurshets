@@ -4,10 +4,11 @@ import Home from "./pages/Home.jsx"
 import Error from "./pages/Error.jsx"
 import LocationCard from "./Components/LocationCard.jsx"
 import locationsNear from "./assets/locations-near.json"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 function App() {
   const navigate = useNavigate()
+  const divRef = useRef()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const locations = locationsNear.locations
   const [locationCards, setLocationCards] = useState([
@@ -18,6 +19,14 @@ function App() {
     })
   ])
 
+  function handleClickOutsideList(e){
+    if(divRef.current && !divRef.current.contains(e.target)){
+      setIsMenuOpen(false)
+    }
+  }
+
+  document.addEventListener('mousedown', handleClickOutsideList)
+
   return (
     <>
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex items-center justify-between fixed top-0">
@@ -27,7 +36,7 @@ function App() {
           <p className="text-white text-lg text-right sm:text-opacity-100 text-opacity-0">В близост</p>
         </div>
       </div>
-      <div className={`absolute overflow-hidden overflow-y-scroll right-0 top-0 w-[500px] h-[600px] bg-white z-30 transition-transform duration-300 ease-out ${
+      <div ref={divRef} onClick={()=>{setIsMenuOpen(false)}} className={`absolute overflow-hidden overflow-y-scroll right-0 top-0 w-[500px] h-[600px] bg-white z-30 transition-transform duration-300 ease-out ${
           isMenuOpen ? "translate-y-[160px] lg:translate-y-[110px]" : "-translate-y-[600px] pointer-events-none"}`}
       >
         {locationCards}
