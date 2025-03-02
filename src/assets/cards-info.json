@@ -5,98 +5,112 @@
             "locationName":"Старата баня",
             "locationDesc":"Банята е построена в началото на 20-ти век (1910 г.), и е една от най-старите минерални бани в България. Разположена в центъра на курортния град, тя е известна със своята красива архитектура, вдъхновена от римските терми, с големи сводове, мраморни басейни и впечатляващ интериор. Минералната вода на Вършец, използвана в банята, е слабо минерализирана, безцветна, топла и подходяща за лечение на нервни и ставни заболявания.",
             "imagePath":"starataBanq.jpg",
-            "link":"https://maps.app.goo.gl/6nkEhTvdGGwybmH88"
+            "link":"https://maps.app.goo.gl/6nkEhTvdGGwybmH88",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"paleopark",
             "locationName":"Палеопарк",
             "locationDesc":"Атрактивен музей на открито, посветен на праисторията и еволюцията на живота. Той представя реалистични реплики на древни животни и сцени от живота на първобитните хора. Паркът е създаден с образователна цел и предлага на посетителите си възможност да научат повече за геоложката история на региона, фосилите и еволюцията на видовете. Разположен сред красива природа, той е подходящ както за деца, така и за възрастни, които искат да се потопят в света на древността.",
             "imagePath":"paleopark.jpg",
-            "link":"https://maps.app.goo.gl/oKW6UxXmrjK31Exr6"
+            "link":"https://maps.app.goo.gl/oKW6UxXmrjK31Exr6",
+            "panoramicPath":"paleopark-panoramic.jpg"
         },
         {
             "id":"vujenpark",
             "locationName":"Въжен парк Вършец",
             "locationDesc":"Паркът е атракция за любителите на приключения и активния отдих сред природата. Разположен в красивя горски парк, той предлага различни нива на трудност. Паркът включва разнообразни въжени препятствия, дървени платформи, люлеещи се мостове и зип линии, които предоставят вълнуващо преживяване за посетителите.",
             "imagePath":"vujenPark.jpg",
-            "link":"https://maps.app.goo.gl/foccZwuFfUeEfbR77"
+            "link":"https://maps.app.goo.gl/foccZwuFfUeEfbR77",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"amphitheatar",
             "locationName":"Амфитеатър",
             "locationDesc":"Амфитеатърът представлява открита сцена, разположена в градския парк, която служи като културно средище за различни събития и фестивали. Със своята полукръгла форма и стъпаловидни седалки, той осигурява уютна атмосфера за концерти, театрални представления, кинопрожекции и други артистични изяви.",
             "imagePath":"aphiteatur.jpg",
-            "link":"https://maps.app.goo.gl/QnB6RL8tYKMMtHuM7"
+            "link":"https://maps.app.goo.gl/QnB6RL8tYKMMtHuM7",
+            "panoramicPath":"amphitetur-panoramic.jpg"
         },
         {
             "id":"hram",
             "locationName":"Храм Свети Георги Победоносец",
             "locationDesc":"Храмът представлява кръстокуполна базилика. Неговото строителство започва на 23.04.1903 г. и завършва в 1906 г. Ценност представляват четирите полилея, произведени в Йерусалим и Цариград. Те са дарени от местни заможни хора за освещаването на храма.",
             "imagePath":"hram.jpg",
-            "link":"https://maps.app.goo.gl/ne5ATx46z59ZcxSj6"
+            "link":"https://maps.app.goo.gl/ne5ATx46z59ZcxSj6",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"gorski-park",
             "locationName":"Горски парк",
             "locationDesc":"Градският лесопарк е създаден през 1911-1912 г. По това време е втория по големина изкуствен парк в България след Борисовата градина  Основните дървесни видове в парка са бял и черен бор, ела, смърч, тис, ваймутов бор, кедър и гордостта на града – секвоя гигантея. Широколистните видове са основно чинар, кестен, дъб, габър, бук, липа. Голям интерес будят дървесните видове гинко билоба, магнолия, лирово дърво, райска ябълка. Изградени са площадки за тенис, волейбол, баскетбол, футболно игрище, фитнес салон и въжен парк, които предоставят възможност за активно спортуване сред зеленината и свежестта на боровия парк",
             "imagePath":"gorski-park.jpg",
-            "link":"https://maps.app.goo.gl/iHabgtjDhM2jJmbF9"
+            "link":"https://maps.app.goo.gl/iHabgtjDhM2jJmbF9",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"tsarskoto-kazino",
             "locationName":"Царското казино",
             "locationDesc":"Построено през 20-те години на 20-ти век, то е било едно от първите казина в България и е допринесло за превръщането на Вършец в престижен балнеоложки курорт, посещаван от елита на обществото, включително политици, аристократи и интелектуалци. Сградата впечатлява със своята елегантна архитектура в стил неокласицизъм. В миналото казиното е било място за развлечения, балове и социални събития.",
             "imagePath":"kazino.jpg",
-            "link":"https://maps.app.goo.gl/2uAkGWL9eXNaawTe7"
+            "link":"https://maps.app.goo.gl/2uAkGWL9eXNaawTe7",
+            "panoramicPath":"kazino-panoramic.jpg"
         },
         {
             "id":"pametnik-na-zagianlite",
             "locationName":"Паметник на загиналите във Втората световна война",
             "locationDesc":"Паметникът е издигнат в чест на местните жители, които са дали живота си по време на военните действия. Той се намира в централната част на града. Монументът е символ на признателността към героите и напомня за жертвите, дадени в името на свободата.",
             "imagePath":"pametnik-vtora-svetovna.jpg",
-            "link":"https://maps.app.goo.gl/ucTzT9M28VE19Lki9"
+            "link":"https://maps.app.goo.gl/ucTzT9M28VE19Lki9",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"sluncheva-gradina",
             "locationName":"Слънчева градина",
             "locationDesc":"Малък, но красив, паркът е известен със своето спокойствие и зелени площи. Разположен в сърцето на Вършец, този парк се отличава със своята добре поддържана растителност и интересни алеи. „Слъчевата градина“ е популярна сред местните жители и туристите заради своята уединеност и приятна атмосфера. Тя е идеална за кратки разходки, медитация или просто за отмора сред природата. Мястото е добре осветено и предлага множество пейки за почивка, а също така често се използва за различни културни събития и концерти през летния сезон.",
             "imagePath":"slancheva-gradina.jpg",
-            "link":"https://maps.app.goo.gl/zEgDBjPkCRL154Tt7"
+            "link":"https://maps.app.goo.gl/zEgDBjPkCRL154Tt7",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"stadion",
             "locationName":"Стадион",
             "locationDesc":"Спортен комплекс, използван от местните жители като място за тренировки и спортни събития, както и за социални и културни активности. Той е основно използван за футболни мачове, както и за други спортни дисциплини, които се провеждат в града.",
             "imagePath":"stadion.jpg",
-            "link":"https://maps.app.goo.gl/1c439TzfKGK2UFmp7"
+            "link":"https://maps.app.goo.gl/1c439TzfKGK2UFmp7",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"rimski-stulbi",
             "locationName":"Римски стълби",
             "locationDesc":"Те са част от древната инфраструктура, свързана с римската епоха, когато районът е бил използван за своите минерални извори. Стълбите, изградени от камък, са част от старинна римска пътека, която водела към минералните бани и водоизточници. Те са не само историческа следа от римската цивилизация в региона, но и архитектурен елемент, който придава допълнителен чар на Вършец.",
             "imagePath":"rimski-stulbi.jpg",
-            "link":"https://maps.app.goo.gl/uAPn46meDYS9VLaf9"
+            "link":"https://maps.app.goo.gl/uAPn46meDYS9VLaf9",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"muzei",
             "locationName":"Общински музей",
             "locationDesc":"Историческият музей в гр. Вършец е основан през 1999 г. Сградата, в която се помещава, е построена през 30-те години на ХХ в. като частен дом с уникална архитектура. Музеят има четири раздела: „Античен”, „Археологически находки и монетна колекция\", „Балнеология\" и „Етнография\".",
             "imagePath":"muzei.jpg",
-            "link":"https://maps.app.goo.gl/zxa3H7donmskbxtXA"
+            "link":"https://maps.app.goo.gl/zxa3H7donmskbxtXA",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"mineralna-voda",
             "locationName":"Минерална чешма",
             "locationDesc":"",
             "imagePath":"cheshma1.jpg",
-            "link":"https://maps.app.goo.gl/s3V3u1NNd1yehwaj7"
+            "link":"https://maps.app.goo.gl/s3V3u1NNd1yehwaj7",
+            "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
             "id":"mineralna-voda2",
             "locationName":"Минерална чешма",
             "locationDesc":"",
             "imagePath":"cheshma2.jpg",
-            "link":"https://maps.app.goo.gl/p26bhjaTK5dAPUBV8"
+            "link":"https://maps.app.goo.gl/p26bhjaTK5dAPUBV8",
+            "panoramicPath":"mineralna-cheshma2-panoramic.jpg"
         }
     ]
 }

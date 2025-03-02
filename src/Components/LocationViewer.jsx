@@ -1,6 +1,38 @@
 import { useNavigate, useParams } from "react-router-dom"
 import cardsInfo from "src/assets/cards-info.json"
 import locationsNear from "src/assets/locations-near.json"
+import { Canvas, useLoader } from "@react-three/fiber"
+import { BackSide, RepeatWrapping, TextureLoader } from "three"
+import { OrbitControls } from "@react-three/drei"
+import { Suspense, useEffect, useState } from "react"
+
+function PanoramicViewer({texture}){
+    const [loadedTexture, setLoadedTexture] = useState(null)
+
+    useEffect(()=>{
+        const loadTexture = new Image()
+        loadTexture.src = texture
+        loadTexture.onload = () => {
+            const newTexture = new TextureLoader().load(loadTexture.src)
+            setLoadedTexture(newTexture)
+        }
+    },[texture])
+
+    if(!loadedTexture){return null}
+
+    return(
+        <mesh rotation={[0, Math.PI, 0]}>
+            <cylinderGeometry args={[10, 10, 10, 50, 1, true]} />
+            <meshBasicMaterial map={loadedTexture} side={BackSide} />
+        </mesh>
+    )
+}
+
+function PanoramicSkeleton(){
+    return(
+        <div className="bg-gray-500 animate-pulse h-[600px] w-screen"></div>
+    )
+}
 
 export default function LocationViewer(){
     const {id} = useParams()
@@ -9,7 +41,9 @@ export default function LocationViewer(){
     let locationName = null
     let locationDesc = null
     let locationLink = null
+    let texturePath = null
     let foundLocation = cardsInfo.locations.find((location) => location.id == id)
+    
     if(foundLocation == null){
         foundLocation = locationsNear.locations.find((location) => location.id == id)
     }
@@ -19,6 +53,7 @@ export default function LocationViewer(){
         locationName = foundLocation.locationName
         locationDesc = foundLocation.locationDesc
         locationLink = foundLocation.link
+        texturePath = "/assets/panoramicImgs/" + foundLocation.panoramicPath
     }
 
     return(
@@ -29,7 +64,14 @@ export default function LocationViewer(){
                 <img src={imgPathConc} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0"/>
             </div>
             <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{locationDesc}</h1>
-            <div className="m-5 p-5 h-[600px] bg-gray-500">3D Viewer</div>
+            <Suspense fallback={PanoramicSkeleton}>
+                <div className="m-5 h-[600px] bg-gray-400">
+                    <Canvas camera={{position: [0, 0, 0.1], fov: 45}}>
+                        <OrbitControls reverseHorizontalOrbit reverseVerticalOrbit rotateSpeed={0.25} minPolarAngle={Math.PI / 2.095} maxPolarAngle={Math.PI / 1.915} enableZoom={false}/>
+                        <PanoramicViewer texture={texturePath}/>
+                    </Canvas>
+                </div>
+            </Suspense>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
                 <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
                     <img src="/assets/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
