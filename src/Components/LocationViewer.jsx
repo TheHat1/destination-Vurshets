@@ -37,6 +37,7 @@ function PanoramicSkeleton(){
 export default function LocationViewer(){
     const {id} = useParams()
     const ref = useRef(null)
+    const [isUserTried3D, setIsUserTried3D] = useState(false)
     const navigate = useNavigate()
     let imgPathConc = null
     let locationName = null
@@ -70,7 +71,19 @@ export default function LocationViewer(){
             </div>
             <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{locationDesc}</h1>
             <Suspense fallback={PanoramicSkeleton}>
-                <div className="m-5 h-[600px] bg-gray-400">
+                <div className="m-5 h-[600px] bg-gray-400 relative">
+                    <div onClick={()=>{setIsUserTried3D(true)}} className={`text-white text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${
+                    isUserTried3D ? "-z-50" : "z-50"}`}>
+                        <div className="flex flex-row space-x-3 justify-center">
+                            <img src="/assets/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]"/>
+                            <h1>3D</h1>
+                            <img src="/assets/double-small-arrow.png" className="w-[35px] h-[35px]"/>
+                        </div>
+                        <div className="w-full mt-[25px] absolute text-center">
+                            <h1 className="text-lg text-gray-400">Натиснете</h1>                   
+                        </div>
+
+                    </div>
                     <Canvas camera={{position: [0, 0, 0.1], fov: 45}}>
                         <OrbitControls reverseHorizontalOrbit reverseVerticalOrbit rotateSpeed={0.25} minPolarAngle={Math.PI / 2.095} maxPolarAngle={Math.PI / 1.915} enableZoom={false}/>
                         <PanoramicViewer texture={texturePath}/>
