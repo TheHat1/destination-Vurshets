@@ -11,7 +11,7 @@ export default function LocationCard({id, imagePath, locationName, locationDesc}
               <h1 className="pt-[30px] font-oswald truncate text-2xl font-bold text-left overflow-hidden">{locationName}</h1>
               <p className="font-robotoMono px-[15px] text-md text-left text-balance truncate line-clamp-2">{locationDesc}</p>
               </div>
-              <img src={imgPathConc} className="left-0 h-full w-[200px] z-30 absolute"/>
+              <img loading="lazy" src={imgPathConc} className="left-0 h-full w-[200px] z-30 absolute"/>
         </div>
     )
 }

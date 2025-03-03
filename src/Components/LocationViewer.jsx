@@ -72,6 +72,7 @@ export default function LocationViewer(){
             <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{locationDesc}</h1>
             <Suspense fallback={PanoramicSkeleton}>
                 <div className="m-5 h-[600px] bg-gray-400 relative">
+                    
                     <div onClick={()=>{setIsUserTried3D(true)}} className={`text-white text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${
                     isUserTried3D ? "-z-50" : "z-50"}`}>
                         <div className="flex flex-row space-x-3 justify-center">
@@ -84,10 +85,12 @@ export default function LocationViewer(){
                         </div>
 
                     </div>
+
                     <Canvas camera={{position: [0, 0, 0.1], fov: 45}}>
                         <OrbitControls reverseHorizontalOrbit reverseVerticalOrbit rotateSpeed={0.25} minPolarAngle={Math.PI / 2.095} maxPolarAngle={Math.PI / 1.915} enableZoom={false}/>
                         <PanoramicViewer texture={texturePath}/>
                     </Canvas>
+                    
                 </div>
             </Suspense>
             <div className="h-fit flex items-center justify-center gap-5 p-10">

@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react"
 function App() {
   const navigate = useNavigate()
   const divRef = useRef()
+  const buttonRef = useRef()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const locations = locationsNear.locations
   const [locationCards, setLocationCards] = useState([
@@ -20,7 +21,7 @@ function App() {
   ])
 
   function handleClickOutsideList(e){
-    if(divRef.current && !divRef.current.contains(e.target)){
+    if(divRef.current && !divRef.current.contains(e.target) && !buttonRef.current.contains(e.target)){
       setIsMenuOpen(false)
     }
   }
@@ -31,7 +32,7 @@ function App() {
     <>
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex items-center justify-between fixed top-0">
         <img onClick={()=>{navigate('/')}} className="lg:pl-[10px] cursor-pointer  scale-75 sm:scale-100" src={Logo}/>
-        <div className="w-[110px] h-[25px] right-0 sm:mr-14 cursor-pointer hover:brightness-50" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
+        <div ref={buttonRef} className="w-[110px] h-[25px] right-0 sm:mr-14 cursor-pointer hover:brightness-50" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
           <img src="/assets/down-arrow.png" className={`w-[25px] h-[25px] scale-150 sm:scale-100 fixed transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
           <p className="text-white text-lg text-right sm:text-opacity-100 text-opacity-0">В близост</p>
         </div>
