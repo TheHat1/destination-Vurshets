@@ -1,5 +1,4 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
-import Logo from "/assets/destination-vurshets-logo.png"
 import Home from "./pages/Home.jsx"
 import Error from "./pages/Error.jsx"
 import LocationCard from "./Components/LocationCard.jsx"
@@ -12,6 +11,7 @@ function App() {
   const divRef = useRef()
   const buttonRef = useRef()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [logo, setLogo] = useState("/assets/destination-vurshets-logo.png")
   const locations = locationsNear.locations
   const {t, i18n} = useTranslation()
   const [isLangBG, setIsLangBG] = useState(true)
@@ -45,9 +45,11 @@ function App() {
     if(i18n.language == "bg"){
       i18n.changeLanguage("en")
       setIsLangBG(false)
+      setLogo("/assets/destination-vurshets-en.png")
     }else{
       i18n.changeLanguage("bg")
       setIsLangBG(true)
+      setLogo("/assets/destination-vurshets-logo.png")
     }
   }
 
@@ -63,7 +65,7 @@ function App() {
     <>
     {isMobile ? 
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex space-x-5  items-center justify-end fixed top-0">
-        <img onClick={()=>{navigate('/')}} className="-left-5 cursor-pointer absolute scale-75" src={Logo}/>
+        <img onClick={()=>{navigate('/')}} className="-left-5 cursor-pointer absolute scale-75" src={logo}/>
         <div onClick={handleChangeLang} className="text-white text-xl cursor-pointer">
           {isLangBG ? "BG" : "EN"}
         </div>
@@ -73,7 +75,7 @@ function App() {
       </div>
       :
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex space-x-2  items-center justify-end fixed top-0">
-        <img onClick={()=>{navigate('/')}} className="pl-[10px] cursor-pointer absolute left-0" src={Logo}/>
+        <img onClick={()=>{navigate('/')}} className="pl-[10px] cursor-pointer absolute left-0" src={logo}/>
         <div onClick={handleChangeLang} className="text-white text-xl cursor-pointer">
           {isLangBG ? "BG" : "EN"}
         </div>

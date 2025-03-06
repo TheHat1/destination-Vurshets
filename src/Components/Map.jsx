@@ -3,9 +3,11 @@ import 'leaflet/dist/leaflet.css'
 import { useEffect, useState } from "react"
 import { LatLngBounds, CRS, Icon } from "leaflet"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 export default function Map(){
     const navigate = useNavigate()
+    const {t} = useTranslation()
     const myMarker = new Icon({
         iconUrl:"/assets/pins/normalPin.png",
         iconSize: [35,35]
@@ -53,55 +55,55 @@ export default function Map(){
         >
             <ImageOverlay url="/assets/map.svg" bounds={bounds}/>
             <Marker eventHandlers={{click:()=>{navigate("/paleopark")}}} position={[2070,2456]} icon={myMarker}>
-                <Tooltip direction="top">Палеопарк</Tooltip>
+                <Tooltip direction="top">{t('locationNames.paleopark')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/vujenpark")}}} position={[1915,2420]} icon={myMarker}>
-                <Tooltip direction="top">Въжен парк</Tooltip>
+                <Tooltip direction="top">{t('locationNames.vujenpark')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/starata-banq")}}} position={[2135,2400]} icon={myMarker}>
-                <Tooltip direction="top">Старата баня</Tooltip>
+                <Tooltip direction="top">{t('locationNames.staratabanq')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/stadion")}}} position={[1420,1960]} icon={footballMarker}>
-                <Tooltip direction="top">Стадион</Tooltip>
+                <Tooltip direction="top">{t('locationNames.stadion')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/sluncheva-gradina")}}} position={[2152,2280]} icon={myMarker}>
-                <Tooltip direction="top">Слънчева градина</Tooltip>
+                <Tooltip direction="top">{t('locationNames.slunchevaGradina')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/vodopad")}}} position={[800,2850]} icon={landMark}>
-                <Tooltip direction="top">Райски кът</Tooltip>
+                <Tooltip direction="top">{t('locationNames.rajskiKat')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/pametnik-na-zagianlite")}}} position={[1780,2073]} icon={myMarker}>
-                <Tooltip direction="top">Паметник на загиналите във Втората световна война</Tooltip>
+                <Tooltip direction="top">{t('locationNames.pametnik')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/tsarskoto-kazino")}}} position={[2050,2400]} icon={myMarker}>
-                <Tooltip direction="top">Царското казино</Tooltip>
+                <Tooltip direction="top">{t('locationNames.kazino')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/ivanchova-polqna")}}} position={[1460,2650]} icon={landMark}>
-                <Tooltip direction="top">Иванчова поляна</Tooltip>
+                <Tooltip direction="top">{t('locationNames.ivanchovaPolqna')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/gorski-park")}}} position={[2000,2460]} icon={myMarker}>
-                <Tooltip direction="top">Горски парк</Tooltip>
+                <Tooltip direction="top">{t('locationNames.gorskiPark')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/hram")}}} position={[2760,2630]} icon={markerWithCross}>
-                <Tooltip direction="top">Храм Свети Георги Победоносец</Tooltip>
+                <Tooltip direction="top">{t('locationNames.hram')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/amphitheatar")}}} position={[1930,2490]} icon={myMarker}>
-                <Tooltip direction="top">Амфитеатър</Tooltip>
+                <Tooltip direction="top">{t('locationNames.amphiteatur')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/rimski-stulbi")}}} position={[1775,2350]} icon={myMarker}>
-                <Tooltip direction="top">Римски стълби</Tooltip>
+                <Tooltip direction="top">{t('locationNames.rimskiStulbi')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/muzei")}}} position={[2360,2370]} icon={myMarker}>
-                <Tooltip direction="top">Общински музей</Tooltip>
+                <Tooltip direction="top">{t('locationNames.muzei')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/mineralna-voda")}}} position={[2225,2455]} icon={waterPin}>
-                <Tooltip direction="top">Минерална чешма</Tooltip>
+                <Tooltip direction="top">{t('locationNames.cheshma')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/mineralna-voda2")}}} position={[2295,2355]} icon={waterPin}>
-                <Tooltip direction="top">Минерална чешма</Tooltip>
+                <Tooltip direction="top">{t('locationNames.cheshma')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/")}}} position={[2230,2290]} icon={fountainPin}>
-                <Tooltip direction="top">Фонтан</Tooltip>
+                <Tooltip direction="top">{t('locationNames.fontan')}</Tooltip>
             </Marker>
         </MapContainer>
     );
