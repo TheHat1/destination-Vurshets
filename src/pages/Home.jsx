@@ -5,6 +5,7 @@ import nearLocations from "src/assets/locations-near.json"
 import LocationCard from "../Components/LocationCard"
 import LocationViewer from "../Components/LocationViewer"
 import { useParams } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 
 export default function HomePage(){
@@ -16,6 +17,7 @@ export default function HomePage(){
   const [inputValue, setInputValue] = useState("")
   const [isLoadedLocation, setIsLoadedLocation] = useState(false)
   const {id} = useParams()
+  const {t, i18n} = useTranslation()
 
     //checks if the screen is below 1024px and updates the isDesktopFormat state
     useEffect(()=>{
@@ -40,14 +42,14 @@ export default function HomePage(){
       setInTownLocationCards([
         locations.map((locations)=>{
           return(
-            <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+            <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc}/>
           )
         })
       ])
       setOutsideTownLocations([
         locationsNear.map((locations)=>{
           return(
-            <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+            <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc}/>
           )
         })
       ])
@@ -69,19 +71,19 @@ export default function HomePage(){
       let searchResultTown
       let serchResultOutsideTown
       if(inputValue != ""){
-        searchResultTown = locations.filter((e)=>{return e.locationName.toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
-        serchResultOutsideTown = locationsNear.filter((e)=>{return e.locationName.toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
+        searchResultTown = locations.filter((e)=>{return t('locationNames.' + e.locationNameAndDesc).toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
+        serchResultOutsideTown = locationsNear.filter((e)=>{return t('locationNames.' + e.locationNameAndDesc).toString().toLowerCase().replaceAll(' ','').includes(searchInput)})
         setInTownLocationCards(searchResultTown.map(
           (locations)=>{
             return(
-              <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+              <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc}/>
             )
           })
         )
         setOutsideTownLocations(serchResultOutsideTown.map(
           (locations)=>{
             return(
-              <LocationCard id={locations.id} imagePath={locations.imagePath} locationName={locations.locationName} locationDesc={locations.locationDesc}/>
+              <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc}/>
             )
           })
         )
@@ -96,13 +98,13 @@ export default function HomePage(){
     return(
         <>
         <div className="mt-[110px] w-screen lg:w-[500px] h-[50px] border border-gray-900 fixed z-50 ">
-           <input className="border-none w-full h-full" type="text"  onChange={value1=>{setInputValue(value1.target.value)}} placeholder="Търсене..."/>
+           <input className="border-none w-full h-full" type="text"  onChange={value1=>{setInputValue(value1.target.value)}} placeholder={t('ui.search')}/>
         </div>
        {isDesktopFormat ? 
         <div className="bg-white z-10 w-[500px] h-[calc(100vh-var(--navbar-height))] fixed bottom-0 shadow-[5px_0_10px_rgba(0,0,0,0.2)] overflow-y-auto overflow-x-hidden" style={{ "--navbar-height": "160px" }}>
-            <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">Локации в града</div>
+            <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">{t('ui.list')}</div>
               {inTownLocationCards}
-            <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">Локации извън града</div>
+            <div className="w-full h-[25px] bg-slate-900 text-white sticky top-0 z-40 pl-4 font-bold shadow-lg">{t('ui.listNear')}</div>
               {outsideTownLocations}
         </div>
        :
