@@ -15,6 +15,7 @@ export default function HomePage(){
   const [inTownLocationCards, setInTownLocationCards] = useState([])
   const [outsideTownLocations, setOutsideTownLocations] = useState([])
   const [inputValue, setInputValue] = useState("")
+  const [debouncedIV, setDebouncedIV] = useState("")
   const [isLoadedLocation, setIsLoadedLocation] = useState(false)
   const {id} = useParams()
   const {t, i18n} = useTranslation()
@@ -66,6 +67,13 @@ export default function HomePage(){
     },[id])
 
     //search logic and card update after the jsons are filtered
+      //debouncing the input value to lower api calls
+    useEffect(()=>{
+      const timer = setTimeout(()=>{
+        setDebouncedIV(inputValue)
+      }, 300)
+    },[inputValue])
+
     useEffect(()=>{
       let searchInput = inputValue.toString().toLowerCase().replaceAll(' ','')
       let searchResultTown
@@ -93,7 +101,7 @@ export default function HomePage(){
         setInputValue(" ")
       }
 
-    }, [inputValue])
+    }, [debouncedIV])
 
     return(
         <>
