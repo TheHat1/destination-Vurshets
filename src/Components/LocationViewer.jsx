@@ -6,6 +6,7 @@ import { BackSide, TextureLoader } from "three"
 import { OrbitControls } from "@react-three/drei"
 import { Suspense, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
+import supabase from "../backend/supabase"
 
 function PanoramicViewer({texture}){
     const [loadedTexture, setLoadedTexture] = useState(null)
@@ -53,15 +54,44 @@ export default function LocationViewer(){
     }
 
     if(id != null){
-        imgPathConc = "/assets/imgs/" + foundLocation.imagePath
+        imgPathConc = "imgs/" + foundLocation.imagePath
         locationName = 'locationNames.' + foundLocation.locationNameAndDesc
         locationDesc = 'locationDesc.' + foundLocation.locationNameAndDesc
         locationLink = foundLocation.link
         texturePath = "/assets/panoramicImgs/" + foundLocation.panoramicPath
     }
 
+    const [img, setImg] = useState()
+    
+    async function fetchImg() {
+        const cacheData = localStorage.getItem("img_cache_" + foundLocation.imagePath)
+        
+        if(cacheData){
+            const {url, expiry} = JSON.parse(cacheData)
+            if(Date.now() < expiry){
+                setImg(url)
+                return
+            }
+        }
+            const {data, error} = await supabase.storage.from('destination-vurshets-bucket').createSignedUrl(imgPathConc, 60 * 60 * 24)
+            
+            if(error){
+            console.log("hmmm there was an error fetching img")
+            }
+
+            localStorage.setItem("img_cache_" + foundLocation.imagePath, JSON.stringify({
+                url: data.signedUrl,
+                expiry: Date.now() + 60 * 60 * 24 * 1000
+            }))
+
+            setImg(data.signedUrl)
+    }
+
     useEffect(()=>{
         ref.current.scrollTop = 0
+        if(id != null){
+            fetchImg()
+        }
     },[id])
 
     return(
@@ -69,7 +99,7 @@ export default function LocationViewer(){
             <div ref={ref} className="h-full w-full z-0 overflow-y-auto overflow-x-hidden relative"> 
             <div className="w-full min-h-[300px] flex flex-col space-y-5 md:space-y-0 lg:flex-col lg:space-y-5 xl:flex-row xl:space-y-0 md:flex-row items-center shadow-lg bg-gray-100">
                 <h1 className="w-full mt-[55px] md:mt-0 md:w-[calc(100vw-450px)] lg:w-full xl:w-[calc(100vw-var(--img-width))] line-clamp-4 font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden px-5" style={{ "--img-width": "950px"}}>{t(locationName)}</h1>
-                <img src={imgPathConc} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0"/>
+                <img src={img} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0"/>
             </div>
             <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{t(locationDesc)}</h1>
             <Suspense fallback={PanoramicSkeleton}>

@@ -7,7 +7,6 @@ import LocationViewer from "../Components/LocationViewer"
 import { useParams } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
-
 export default function HomePage(){
   const locations = cardsInfo.locations
   const locationsNear = nearLocations.locations
@@ -15,7 +14,7 @@ export default function HomePage(){
   const [inTownLocationCards, setInTownLocationCards] = useState([])
   const [outsideTownLocations, setOutsideTownLocations] = useState([])
   const [inputValue, setInputValue] = useState("")
-  const [debouncedIV, setDebouncedIV] = useState("")
+  const [debouncedInputValue, setDebouncedInputValue] = useState("")
   const [isLoadedLocation, setIsLoadedLocation] = useState(false)
   const {id} = useParams()
   const {t, i18n} = useTranslation()
@@ -70,7 +69,7 @@ export default function HomePage(){
       //debouncing the input value to lower api calls
     useEffect(()=>{
       const timer = setTimeout(()=>{
-        setDebouncedIV(inputValue)
+        setDebouncedInputValue(inputValue)
       }, 300)
     },[inputValue])
 
@@ -101,7 +100,7 @@ export default function HomePage(){
         setInputValue(" ")
       }
 
-    }, [debouncedIV])
+    }, [debouncedInputValue])
 
     return(
         <>

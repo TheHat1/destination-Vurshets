@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^10.0.3",
     "@react-three/fiber": "^9.0.4",
+    "@supabase/supabase-js": "^2.49.1",
     "@types/three": "^0.174.0",
     "i18next": "^24.2.2",
     "leaflet": "^1.9.4",
