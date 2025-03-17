@@ -67,7 +67,7 @@ function App() {
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex space-x-5  items-center justify-end fixed top-0">
         <img onClick={()=>{navigate('/')}} className="-left-5 cursor-pointer absolute scale-75" src={logo}/>
         <div onClick={handleChangeLang} className="text-white text-xl cursor-pointer">
-          {isLangBG ? "BG" : "EN"}
+        {isLangBG ? <img className="w-[30px] h-[30px] hover:brightness-75" src="/assets/misc/united-kingdom.png"/> : <img className="w-[34px] h-[34px] hover:brightness-75" src="/assets/misc/bulgaria.png"/>}
         </div>
         <div ref={buttonRef} className="w-[50px] h-[25px] right-0 mr-14 cursor-pointer hover:brightness-50 pr-6 relative scale-150" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
           <img src="/assets/misc/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
@@ -77,12 +77,13 @@ function App() {
       <div className="bg-slate-900 z-50 w-screen h-[110px] flex space-x-2  items-center justify-end fixed top-0">
         <img onClick={()=>{navigate('/')}} className="pl-[10px] cursor-pointer absolute left-0" src={logo}/>
         <div onClick={handleChangeLang} className="text-white text-xl cursor-pointer">
-          {isLangBG ? "BG" : "EN"}
+          {isLangBG ? <img className="w-[30px] h-[30px] hover:brightness-50" src="/assets/misc/united-kingdom.png"/> : <img className="w-[34px] h-[34px] hover:brightness-50" src="/assets/misc/bulgaria.png"/>}
         </div>
         <div ref={buttonRef} className="w-[130px] h-[25px] right-0 mr-14 cursor-pointer hover:brightness-50 pr-6 relative" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
           <img src="/assets/misc/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
           <p className="text-white text-lg indent-[30px] absolute">{t('ui.near')}</p>
         </div>
+        
       </div>
     }
 

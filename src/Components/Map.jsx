@@ -1,36 +1,72 @@
 import { MapContainer, Marker, ImageOverlay, Tooltip } from "react-leaflet"
 import 'leaflet/dist/leaflet.css'
 import { useEffect, useState } from "react"
-import { LatLngBounds, CRS, Icon } from "leaflet"
+import { LatLngBounds, CRS, DivIcon } from "leaflet"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 export default function Map(){
     const navigate = useNavigate()
     const {t} = useTranslation()
-    const myMarker = new Icon({
-        iconUrl:"/assets/pins/normalPin.png",
-        iconSize: [35,35]
+    const myMarker = new DivIcon({
+        iconSize: [35, 35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/normalPin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
-    const markerWithCross = new Icon({
-        iconUrl:"/assets/pins/pinWithCross.png",
-        iconSize: [35,35]
+    const markerWithCross = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/pinWithCross.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
-    const footballMarker = new Icon({
-        iconUrl:"/assets/pins/footballPin.png",
-        iconSize: [35,35]
+    const footballMarker = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/footballPin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
-    const landMark = new Icon({
-        iconUrl:"/assets/pins/landMark.png",
-        iconSize: [35,35]
+    const landMark = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/landMark.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
-    const waterPin = new Icon({
-        iconUrl:"/assets/pins/water-pin.png",
-        iconSize: [35,35]
+    const waterPin = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/water-pin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
-    const fountainPin = new Icon({
-        iconUrl:"/assets/pins/fountain-pin.png",
-        iconSize: [35,35]
+    const fountainPin = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/fountain-pin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `,
     })
     const [isMounted, setIsMounted] = useState(false)
     const bounds = new LatLngBounds(
@@ -54,7 +90,7 @@ export default function Map(){
             className="h-screen w-full lg:w-[calc(100vw-var(--side-panel-width))] fixed -z-50 right-0" style={{ "--side-panel-width": "500px" }}
         >
             <ImageOverlay url="/assets/map.svg" bounds={bounds}/>
-            <Marker eventHandlers={{click:()=>{navigate("/paleopark")}}} position={[2070,2456]} icon={myMarker}>
+            <Marker  eventHandlers={{click:()=>{navigate("/paleopark")}}} position={[2070,2456]} icon={myMarker}>
                 <Tooltip direction="top">{t('locationNames.paleopark')}</Tooltip>
             </Marker>
             <Marker eventHandlers={{click:()=>{navigate("/vujenpark")}}} position={[1915,2420]} icon={myMarker}>
