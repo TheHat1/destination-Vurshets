@@ -68,6 +68,27 @@ export default function Map(){
         </div>
       `,
     })
+    const busMarker = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/busPin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `, 
+    })
+    const houseMarker = new DivIcon({
+        iconSize: [35,35],
+        className: "group",
+        html: `
+        <div class="relative">
+          <img src="/assets/pins/oldHousePin.png" 
+            class="w-[35px] h-[35px] transition-transform ease-out duration-150 group-hover:scale-150" />
+        </div>
+      `, 
+    })
+
     const [isMounted, setIsMounted] = useState(false)
     const bounds = new LatLngBounds(
         [0,0],
@@ -138,8 +159,17 @@ export default function Map(){
             <Marker eventHandlers={{click:()=>{navigate("/mineralna-voda2")}}} position={[2295,2355]} icon={waterPin}>
                 <Tooltip direction="top">{t('locationNames.cheshma')}</Tooltip>
             </Marker>
-            <Marker eventHandlers={{click:()=>{navigate("/")}}} position={[2230,2290]} icon={fountainPin}>
+            <Marker position={[2230,2290]} icon={fountainPin}>
                 <Tooltip direction="top">{t('locationNames.fontan')}</Tooltip>
+            </Marker>
+            <Marker position={[2470,2570]} icon={busMarker}>
+                <Tooltip direction="top">{t('locationNames.avtogara')}</Tooltip>
+            </Marker>
+            <Marker position={[2302,2176]} icon={houseMarker}>
+                <Tooltip direction="top">{t('locationNames.staraKushta')}</Tooltip>
+            </Marker>
+            <Marker position={[2000,2170]} icon={houseMarker}>
+                <Tooltip direction="top">{t('locationNames.staraKushta')}</Tooltip>
             </Marker>
         </MapContainer>
     );
