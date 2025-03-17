@@ -108,9 +108,9 @@ export default function LocationViewer(){
                     <div onClick={()=>{setIsUserTried3D(true)}} className={`text-white text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${
                     isUserTried3D ? "-z-50" : "z-50"}`}>
                         <div className="flex flex-row space-x-3 justify-center">
-                            <img src="/assets/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]"/>
+                            <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]"/>
                             <h1>3D</h1>
-                            <img src="/assets/double-small-arrow.png" className="w-[35px] h-[35px]"/>
+                            <img src="/assets/misc/double-small-arrow.png" className="w-[35px] h-[35px]"/>
                         </div>
                         <div className="w-full mt-[25px] absolute text-center">
                             <h1 className="text-lg text-gray-400">{t('ui.pressMe')}</h1>                   
@@ -127,12 +127,12 @@ export default function LocationViewer(){
             </Suspense>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
                 <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                    <img src="/assets/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                    <img src="/assets/misc/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
                     {t('ui.homePg')}
                 </div>
                 <a href={locationLink} target="_blank" rel="noopener noreferrer">
                     <div className="min-w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                        <img src="/assets/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                        <img src="/assets/misc/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
                         {t('ui.takeMeThere')}
                     </div>
                 </a>
@@ -143,7 +143,7 @@ export default function LocationViewer(){
                 </h1>
                 <a href="https://github.com/TheHat1?tab=overview&from=2025-02-01&to=2025-02-26" target="_blank" rel="noopener noreferrer">
                     <div className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
-                        <img src="/assets/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]"/>
+                        <img src="/assets/misc/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]"/>
                         TheHat1
                     </div>
                 </a>

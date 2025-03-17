@@ -11,7 +11,7 @@ function App() {
   const divRef = useRef()
   const buttonRef = useRef()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [logo, setLogo] = useState("/assets/destination-vurshets-logo.png")
+  const [logo, setLogo] = useState("/assets/misc/destination-vurshets-logo.png")
   const locations = locationsNear.locations
   const {t, i18n} = useTranslation()
   const [isLangBG, setIsLangBG] = useState(true)
@@ -45,11 +45,11 @@ function App() {
     if(i18n.language == "bg"){
       i18n.changeLanguage("en")
       setIsLangBG(false)
-      setLogo("/assets/destination-vurshets-en.png")
+      setLogo("/assets/misc/destination-vurshets-en.png")
     }else{
       i18n.changeLanguage("bg")
       setIsLangBG(true)
-      setLogo("/assets/destination-vurshets-logo.png")
+      setLogo("/assets/misc/destination-vurshets-logo.png")
     }
   }
 
@@ -70,7 +70,7 @@ function App() {
           {isLangBG ? "BG" : "EN"}
         </div>
         <div ref={buttonRef} className="w-[50px] h-[25px] right-0 mr-14 cursor-pointer hover:brightness-50 pr-6 relative scale-150" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
-          <img src="/assets/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
+          <img src="/assets/misc/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
         </div>
       </div>
       :
@@ -80,7 +80,7 @@ function App() {
           {isLangBG ? "BG" : "EN"}
         </div>
         <div ref={buttonRef} className="w-[130px] h-[25px] right-0 mr-14 cursor-pointer hover:brightness-50 pr-6 relative" onClick={()=>{setIsMenuOpen(!isMenuOpen)}}>
-          <img src="/assets/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
+          <img src="/assets/misc/down-arrow.png" className={`absolute w-[25px] h-[25px] scale-100 left-0 transition-transform ease-out duration-200 ${isMenuOpen ? "rotate-180":"rotate-0"}`}/>
           <p className="text-white text-lg indent-[30px] absolute">{t('ui.near')}</p>
         </div>
       </div>
