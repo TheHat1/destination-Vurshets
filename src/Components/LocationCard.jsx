@@ -37,7 +37,7 @@ export default function LocationCard({id, imagePath, locationNameAndDesc}){
 
     useEffect(()=>{
         fetchImg()
-    },[])
+    },[imagePath])
     
     return(
         <div key={id} onClick={()=>{navigate('/' + id)}} className="shadow-lg w-[500px] h-[150px] flex-shrink-0 hover:bg-gray-200 hover:text-gray-600 cursor-pointer relative">
