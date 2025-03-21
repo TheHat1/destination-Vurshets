@@ -1,6 +1,7 @@
 {
     "locations":[
         {
+            "imgAuthor":"https://audiotravelguide.ro/wp-content/uploads/2122_feat.jpg",
             "id":"starata-banq",
             "locationNameAndDesc":"staratabanq",
             "imagePath":"starataBanq.jpg",
@@ -8,6 +9,7 @@
             "panoramicPath":"starata-banq-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://static.bnr.bg/gallery/cr/medium/321bc1468c5d3902115fce48ac84fb8b.jpg",
             "id":"paleopark",
             "locationNameAndDesc":"paleopark",
             "imagePath":"paleopark.jpg",
@@ -15,6 +17,7 @@
             "panoramicPath":"paleopark-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://scontent.fsof10-1.fna.fbcdn.net/v/t1.6435-9/106499613_3224850504239624_422212903350550495_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=TWwH2EsLA-gQ7kNvgHyQwJD&_nc_oc=Adk18-R82QH3C0UqerASpO4WAyik84WLoqoidI33XSCcTZYpZBCxQLeUwBFBu69Fkg6-7mXhvit_PW4j3Tcb-AXQ&_nc_zt=23&_nc_ht=scontent.fsof10-1.fna&_nc_gid=2vYYO73wwsM8KHtje9dB_A&oh=00_AYFVxGPfEUBvRitX8B1S3Q6WZIIFlPC8jZ91-L795IWYSg&oe=68056BE7",
             "id":"vujenpark",
             "locationNameAndDesc":"vujenpark",
             "imagePath":"vujenPark.jpg",
@@ -22,6 +25,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlR-aB-3bccfndnACr5ZCyv7eTr0-Qu3d7jw&s",
             "id":"amphitheatar",
             "locationNameAndDesc":"amphiteatur",
             "imagePath":"aphiteatur.jpg",
@@ -29,6 +33,7 @@
             "panoramicPath":"amphitetur-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://www.weddingday.bg/files/sv.georgi3.jpg",
             "id":"hram",
             "locationNameAndDesc":"hram",
             "imagePath":"hram.jpg",
@@ -36,6 +41,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://imgrabo.com/pics/guide/20171113151138_77877.jpg",
             "id":"gorski-park",
             "locationNameAndDesc":"gorskiPark",
             "imagePath":"gorski-park.jpg",
@@ -43,6 +49,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWXAli61sJl45VRYzaG-2U1mW_pEHzkazJLg&s",
             "id":"tsarskoto-kazino",
             "locationNameAndDesc":"kazino",
             "imagePath":"kazino.jpg",
@@ -50,6 +57,7 @@
             "panoramicPath":"kazino-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://imgrabo.com/pics/guide/900x600/20171117165307_80812.jpeg",
             "id":"pametnik-na-zagianlite",
             "locationNameAndDesc":"pametnik",
             "imagePath":"pametnik-vtora-svetovna.jpg",
@@ -57,6 +65,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjKoGTeh-MpQM7Mpz6Py9llj3R-1_0Q4X7Bw&s",
             "id":"sluncheva-gradina",
             "locationNameAndDesc":"slunchevaGradina",
             "imagePath":"slancheva-gradina.jpg",
@@ -64,6 +73,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://audiotravelguide.ro/wp-content/uploads/2202_feat.jpg",
             "id":"stadion",
             "locationNameAndDesc":"stadion",
             "imagePath":"stadion.jpg",
@@ -71,6 +81,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://i.ytimg.com/vi/UJpgOpyqMS4/maxresdefault.jpg",
             "id":"rimski-stulbi",
             "locationNameAndDesc":"rimskiStulbi",
             "imagePath":"rimski-stulbi.jpg",
@@ -78,6 +89,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://www.tourism.government.bg/sites/tourism.government.bg/files/317001istoricehskimuzejvyrshec_1.jpg",
             "id":"muzei",
             "locationNameAndDesc":"muzei",
             "imagePath":"muzei.jpg",
@@ -85,6 +97,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGiAGYxm6rx40GbAm-W-pQ0fuFAumY-rnmhw&s",
             "id":"mineralna-voda",
             "locationNameAndDesc":"cheshma",
             "imagePath":"cheshma1.jpg",
@@ -92,6 +105,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAuthor":"",
             "id":"mineralna-voda2",
             "locationNameAndDesc":"cheshma",
             "imagePath":"cheshma2.jpg",

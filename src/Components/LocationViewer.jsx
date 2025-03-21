@@ -147,6 +147,9 @@ export default function LocationViewer(){
                         TheHat1
                     </div>
                 </a>
+                <a href={foundLocation.imgAuthor} target="_blank" rel="noopener noreferrer">
+                    Линк към автор на снимката
+                </a>
             </div>
             </div>
         </div>
