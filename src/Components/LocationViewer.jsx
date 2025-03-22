@@ -47,6 +47,7 @@ export default function LocationViewer(){
     let locationDesc = null
     let locationLink = null
     let texturePath = null
+    let authLink = null
     let foundLocation = cardsInfo.locations.find((location) => location.id == id)
     
     if(foundLocation == null){
@@ -59,6 +60,7 @@ export default function LocationViewer(){
         locationDesc = 'locationDesc.' + foundLocation.locationNameAndDesc
         locationLink = foundLocation.link
         texturePath = "/assets/panoramicImgs/" + foundLocation.panoramicPath
+        authLink = foundLocation.imgAuthor
     }
 
     const [img, setImg] = useState()
@@ -147,7 +149,7 @@ export default function LocationViewer(){
                         TheHat1
                     </div>
                 </a>
-                <a href={foundLocation.imgAuthor} target="_blank" rel="noopener noreferrer">
+                <a href={authLink} target="_blank" rel="noopener noreferrer">
                     Линк към автор на снимката
                 </a>
             </div>
