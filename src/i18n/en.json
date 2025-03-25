@@ -51,9 +51,21 @@
         "homePg": "Home",
         "takeMeThere": "Take me there",
         "pressMe": "Press here",
-        "search": "Search...",
+        "search": "  Search...",
         "list": "Locations in town",
         "listNear": "Locations outside town",
         "createdBy": "Created by Roberto Nikolov"
+    },
+    "profile": {
+        "register":"Sign up",
+        "vlezVprofil":"Sign in",
+        "vecheImaAccount":"Already have an account?",
+        "vlez":"Sign in here.",
+        "noProfile":"Don't have an account? ",
+        "registerHere":"Sign up.",
+        "ime":"   Name",
+        "parola":"   Password",
+        "notConfirmed":"E-mail not confirmed.",
+        "wrongCrd":"Invalid e-mail or password."
     }
 }

@@ -51,9 +51,21 @@
         "homePg":"Начало",
         "takeMeThere":"Отведи ме",
         "pressMe":"Натиснете",
-        "search":"Търсене...",
+        "search":"  Търсене...",
         "list":"Локации в града",
         "listNear":"Локации извън града",
         "createdBy":"Създадено от Роберто Николов"
+    },
+    "profile": {
+        "register":"Регистрирай се",
+        "vlezVprofil":"Влезни",
+        "vecheImaAccount":"Вече имаш акaунт? ",
+        "vlez":"Влез тук.",
+        "noProfile":"Нямаш профил? ",
+        "registerHere":"Регистрирай се.",
+        "ime":"   Име",
+        "parola":"  Парола",
+        "notConfirmed":"E-mail не е потвърден.",
+        "wrongCrd":"Невалиден e-mail или парола."
     }
 }

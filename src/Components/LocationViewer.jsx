@@ -126,12 +126,12 @@ export default function LocationViewer(){
                 </div>
             </Suspense>
             <div className="h-fit flex items-center justify-center gap-5 p-10">
-                <div onClick={()=>{navigate('/')}} className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                <div onClick={()=>{navigate('/')}} className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
                     <img src="/assets/misc/home.png" className="w-[25px] h-[25px] mx-[8px]"/>
                     {t('ui.homePg')}
                 </div>
                 <a href={locationLink} target="_blank" rel="noopener noreferrer">
-                    <div className="min-w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                    <div className="transition-transform ease-out duration-150 hover:scale-105 min-w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
                         <img src="/assets/misc/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]"/>
                         {t('ui.takeMeThere')}
                     </div>
@@ -142,7 +142,7 @@ export default function LocationViewer(){
                     {t('ui.createdBy')}
                 </h1>
                 <a href="https://github.com/TheHat1?tab=overview&from=2025-02-01&to=2025-02-26" target="_blank" rel="noopener noreferrer">
-                    <div className="w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
+                    <div className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
                         <img src="/assets/misc/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]"/>
                         TheHat1
                     </div>

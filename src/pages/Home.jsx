@@ -104,7 +104,7 @@ export default function HomePage(){
 
     return(
         <>
-        <div className="mt-[110px] w-screen lg:w-[500px] h-[50px] border border-gray-900 fixed z-50 ">
+        <div className="mt-[110px] w-screen lg:w-[500px] h-[50px] border border-gray-900 fixed z-50">
            <input className="border-none w-full h-full" type="text"  onChange={value1=>{setInputValue(value1.target.value)}} placeholder={t('ui.search')}/>
         </div>
        {isDesktopFormat ? 
