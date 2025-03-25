@@ -81,7 +81,7 @@ export default function Signin(){
                 
                 <button type="submit" className="flex flex-col space-y-4 justify-center items-center" onClick={SignIn}>
                     <p className="text-lg">{t('profile.noProfile')} <a className="text-slate-700 font-bold hover:text-gray-500" href="/signup">{t('profile.registerHere')}</a></p>
-                    <div className="w-[160px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
+                    <div className="w-[160px] h-[45px] text-xl cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
                 </button>
 
             </div>

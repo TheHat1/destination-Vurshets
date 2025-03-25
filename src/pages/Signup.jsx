@@ -9,34 +9,42 @@ export default function Login(){
     const [password, setPassword] = useState()
     const navigate = useNavigate()
     const {t} = useTranslation()
+    const [errorSignUp, setErrorSignUp] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function signUp(){
-        if(email != null && userName != null && password != null){
-            const {errorSignUp} = await supabase.auth.signUp(
-                {
+        if(email != null && password != null && userName != null){
+            if(emailRegex.test(email)){
+                
+                const {data, error} = await supabase.auth.signUp({
                     email: email,
                     password: password
                 }
             )
 
-            const {data, error} = await supabase.from('users').insert([
-                {
-                    email: email,
-                    user_name: userName
-                }
-            ])
+            console.log(error)
 
-            navigate('/signin')
+            }else{
+                setErrorSignUp(true)
+                setErrorMsg(t('profile.notValidEmail'))
+            }
 
-        }else {
-            console.log("empty fields")
+        }else{
+            setErrorSignUp(true)
+            setErrorMsg(t('profile.emptyFields'))
         }
-
     }
 
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[350px] w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[500px] w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            
+            <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
+                errorSignUp ? "w-[400px] h-[50px]": "w-[450px] border-slate-900"}`}>
+                {errorMsg}
+            </div>
+
                 <input 
                 className="border border-gray-900 w-[400px] h-[50px] rounded-md" 
                 type="text"
@@ -59,8 +67,8 @@ export default function Login(){
                 />
                 
                 <div onClick={signUp} className="flex flex-col space-y-4 justify-center items-center">
-                    <p className="text-lg">{t('profile.vecheImaAccount')} <a className="text-slate-700 font-bold hover:text-gray-500" href="/signin">{t('profile.vlez')}</a></p>
-                    <div className="w-[160px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">{t('profile.register')}</div>
+                    <p className="text-lg">{t('profile.vecheImaAccount')} <a className="text-slate-700 font-bold pl-1 hover:text-gray-500" href="/signin">{t('profile.vlez')}</a></p>
+                    <div className="w-[160px] h-[45px] text-xl cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.register')}</div>
                 </div>
             </div>
         </div>
