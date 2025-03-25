@@ -1,6 +1,7 @@
 {
     "locations":[
         {
+            "imgAutor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW5_ppDjLroP7e7IsKi64er_A8BO3MCZzIUA&s",
             "id":"vodopad",
             "locationNameAndDesc":"rajskiKat",
             "imagePath":"rajski-kat.jpg",
@@ -8,6 +9,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://tushevi.bg/wp-content/uploads/2022/01/besedka-ivanchova-polyana.jpg",
             "id":"ivanchova-polqna",
             "locationNameAndDesc":"ivanchovaPolqna",
             "imagePath":"ivanchova-polqna.jpg",
@@ -15,6 +17,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://preotkrii.bg/wp-content/uploads/2023/04/279705161_563350918546789_1650206475471141416_n-1024x576.jpg",
             "id":"manastir",
             "locationNameAndDesc":"manastir",
             "imagePath":"manastir.jpg",
@@ -22,6 +25,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg_V11f4zmwERTOGPv5fe98N29yktKQETu-A&s",
             "id":"mestnost-vodopada",
             "locationNameAndDesc":"vodopada",
             "imagePath":"mestnost-vodopada.jpg",
@@ -29,6 +33,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpSgDgl-BMxV91IFu5EOcHFMQO2A67XPcfHw&s",
             "id":"todorini-kukli",
             "locationNameAndDesc":"todoriniKukli",
             "imagePath":"todorini-kukli.jpg",
@@ -36,6 +41,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Kom_stara_planina_IMG_8147.jpg/1200px-Kom_stara_planina_IMG_8147.jpg",
             "id":"kom",
             "locationNameAndDesc":"kom",
             "imagePath":"kom.jpg",
@@ -43,6 +49,7 @@
             "panoramicPath":"no-img-panoramic.jpg"
         },
         {
+            "imgAutor":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6gX2O_BxTps1A50ubwzxGhfbPa15j8HMeSw&s",
             "id":"srechenska-bara",
             "locationNameAndDesc":"srechenskaBara",
             "imagePath":"srechenska-bara.jpg",
