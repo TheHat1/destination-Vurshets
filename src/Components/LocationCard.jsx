@@ -45,7 +45,7 @@ export default function LocationCard({id, imagePath, locationNameAndDesc}){
               <h1 className="pt-[30px] font-oswald truncate text-2xl font-bold text-left overflow-hidden">{t(name)}</h1>
               <p className="font-robotoMono px-[15px] text-md text-left text-balance truncate line-clamp-2">{t(desc)}</p>
               </div>
-              <img loading="lazy" src={img} className="left-0 h-full w-[200px] z-30 absolute"/>
+              <img loading="lazy" src={img} className="left-0 h-full w-[200px] -z-10 absolute"/>
         </div>
     )
 }

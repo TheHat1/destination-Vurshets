@@ -66,6 +66,9 @@
         "ime":"   Име",
         "parola":"  Парола",
         "notConfirmed":"E-mail не е потвърден.",
-        "wrongCrd":"Невалиден e-mail или парола."
+        "wrongCrd":"Грешен e-mail или парола.",
+        "notValidEmail":"Невалиден e-mail адрес.",
+        "emptyFields":"Има празни полета.",
+        "resend":"Изпрати отново."
     }
 }

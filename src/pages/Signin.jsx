@@ -3,13 +3,15 @@ import supabase from "../backend/supabase"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
-export default function Login(){
+export default function Signin(){
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const navigate = useNavigate()
     const {t} = useTranslation()
     const [errorSignIn, setErrorSignIn] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const [resendEmail, setResndEmail] = useState(false)
 
     async function SignIn(){
         const {data, error} = await supabase.auth.signInWithPassword({
@@ -17,30 +19,51 @@ export default function Login(){
             password: password
         })
 
-        if(error.message.includes("Email not confirmed")){
-            setErrorSignIn(true)
-            setErrorMsg(t('profile.notConfirmed'))
+        if(data.user != null){
+            navigate('/')
+            return
         }
 
-        if(error.message.includes("Invalid login credentials")){
-            setErrorSignIn(true)
-            setErrorMsg(t('profile.wrongCrd'))
-        }
-
-        if(data){
-            console.log(data)
-        }
-
+        if(email != null && password != null){
+            if(emailRegex.test(email)){
+                
+                if(error.message.includes("Email not confirmed")){
+                    setErrorSignIn(true)
+                    setErrorMsg(t('profile.notConfirmed'))
+                    setResndEmail(true)
+                    return
+                }
         
+                if(error.message.includes("Invalid login credentials")){
+                    setErrorSignIn(true)
+                    setErrorMsg(t('profile.wrongCrd'))
+                    setResndEmail(false)
+                    return
+                }
+            }else{
+                setErrorSignIn(true)
+                setErrorMsg(t('profile.notValidEmail'))
+                setResndEmail(false)
+                return
+            }
+    
+        }else{
+            setErrorSignIn(true)
+            setErrorMsg(t('profile.emptyFields'))
+            setResndEmail(false)
+            return
+        }
     }
 
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[350px] w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[400px] w-[570px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
             
-            {errorSignIn ? <div className="text-lg font-semibold text-red-800 w-[400px] h-[50px] bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md">
+            <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
+                errorSignIn ? "w-[400px] h-[50px]": "w-[450px] border-slate-900"}`}>
                 {errorMsg}
-            </div> : null}
+                {resendEmail ? <p onClick={()=>{supabase.auth.resend({type: "signup", email})}} className="w-max h-min pl-1 underline cursor-pointer hover:text-red-600">{t('profile.resend')}</p> : null}
+            </div>
 
                 <input 
                 className="border border-gray-900 w-[400px] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105" 

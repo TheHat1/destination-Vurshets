@@ -66,6 +66,9 @@
         "ime":"   Name",
         "parola":"   Password",
         "notConfirmed":"E-mail not confirmed.",
-        "wrongCrd":"Invalid e-mail or password."
+        "wrongCrd":"Wrong e-mail or password.",
+        "notValidEmail":"Invalid e-mail address.",
+        "emptyFields":"There are empty fields.",
+        "resend":"Resend."
     }
 }
