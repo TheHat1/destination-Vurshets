@@ -23,7 +23,9 @@ export default function Login(){
                 }
             )
 
-            console.log(error)
+            const {dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
+
+            navigate('/signin')
 
             }else{
                 setErrorSignUp(true)
@@ -38,7 +40,7 @@ export default function Login(){
 
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[500px] w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[500px] max-w-[600px] w-full mx-5 fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
             
             <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
                 errorSignUp ? "w-[400px] h-[50px]": "w-[450px] border-slate-900"}`}>

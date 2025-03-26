@@ -57,10 +57,10 @@ export default function Signin(){
 
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[400px] w-[570px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[400px] max-w-[570px] w-full mx-5 fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
             
             <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
-                errorSignIn ? "w-[400px] h-[50px]": "w-[450px] border-slate-900"}`}>
+                errorSignIn ? "max-w-[400px] w-full h-[50px]": "max-w-[450px] w-full border-slate-900"}`}>
                 {errorMsg}
                 {resendEmail ? <p onClick={()=>{supabase.auth.resend({type: "signup", email})}} className="w-max h-min pl-1 underline cursor-pointer hover:text-red-600">{t('profile.resend')}</p> : null}
             </div>
@@ -79,10 +79,10 @@ export default function Signin(){
                 onChange={(e)=>{setPassword(e.target.value)}}
                 />
                 
-                <button type="submit" className="flex flex-col space-y-4 justify-center items-center" onClick={SignIn}>
+                <div className="flex flex-col space-y-4 justify-center items-center" onClick={SignIn}>
                     <p className="text-lg">{t('profile.noProfile')} <a className="text-slate-700 font-bold hover:text-gray-500" href="/signup">{t('profile.registerHere')}</a></p>
                     <div className="w-[160px] h-[45px] text-xl cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
-                </button>
+                </div>
 
             </div>
         </div>

@@ -70,5 +70,9 @@
         "notValidEmail":"Invalid e-mail address.",
         "emptyFields":"There are empty fields.",
         "resend":"Resend."
+    },
+    "profilePage": {
+        "signout":"Sign out",
+        "createdAt":"Created at: "
     }
 }

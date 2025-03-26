@@ -70,5 +70,9 @@
         "notValidEmail":"Невалиден e-mail адрес.",
         "emptyFields":"Има празни полета.",
         "resend":"Изпрати отново."
+    },
+    "profilePage": {
+        "signout":"Излез",
+        "createdAt":"Създаден на: "
     }
 }
