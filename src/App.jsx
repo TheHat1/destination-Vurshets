@@ -3,6 +3,7 @@ import Home from "./pages/Home.jsx"
 import Error from "./pages/Error.jsx"
 import Signup from "./pages/Signup.jsx"
 import Signin from "./pages/Signin.jsx"
+import ResetPassword from "./pages/ResetPassword.jsx"
 import ProfilePage from "./pages/ProfilePage.jsx"
 import LocationCard from "./Components/LocationCard.jsx"
 import locationsNear from "./assets/locations-near.json"
@@ -119,6 +120,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
+        <Route path="/resetpassword" element={<ResetPassword/>}/>
       </Routes>
     </>
   )

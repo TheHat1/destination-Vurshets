@@ -69,7 +69,8 @@
         "wrongCrd":"Wrong e-mail or password.",
         "notValidEmail":"Invalid e-mail address.",
         "emptyFields":"There are empty fields.",
-        "resend":"Resend."
+        "resend":"Resend.",
+        "send":"Send"
     },
     "profilePage": {
         "signout":"Sign out",

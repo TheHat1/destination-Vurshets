@@ -69,7 +69,10 @@
         "wrongCrd":"Грешен e-mail или парола.",
         "notValidEmail":"Невалиден e-mail адрес.",
         "emptyFields":"Има празни полета.",
-        "resend":"Изпрати отново."
+        "resend":"Изпрати отново.",
+        "forgotenPassword":"Забравена парола? ",
+        "reset":"Промени я.",
+        "send":"Изпрати"
     },
     "profilePage": {
         "signout":"Излез",

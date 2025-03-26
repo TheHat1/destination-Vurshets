@@ -11,7 +11,7 @@ export default function Signin(){
     const [errorSignIn, setErrorSignIn] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const [resendEmail, setResndEmail] = useState(false)
+    const [resendEmail, setResendEmail] = useState(false)
 
     async function SignIn(){
         const {data, error} = await supabase.auth.signInWithPassword({
@@ -30,34 +30,34 @@ export default function Signin(){
                 if(error.message.includes("Email not confirmed")){
                     setErrorSignIn(true)
                     setErrorMsg(t('profile.notConfirmed'))
-                    setResndEmail(true)
+                    setResendEmail(true)
                     return
                 }
         
                 if(error.message.includes("Invalid login credentials")){
                     setErrorSignIn(true)
                     setErrorMsg(t('profile.wrongCrd'))
-                    setResndEmail(false)
+                    setResendEmail(false)
                     return
                 }
             }else{
                 setErrorSignIn(true)
                 setErrorMsg(t('profile.notValidEmail'))
-                setResndEmail(false)
+                setResendEmail(false)
                 return
             }
     
         }else{
             setErrorSignIn(true)
             setErrorMsg(t('profile.emptyFields'))
-            setResndEmail(false)
+            setResendEmail(false)
             return
         }
     }
 
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[400px] max-w-[570px] w-full mx-5 fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[450px] max-w-[570px] w-full mx-5 fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
             
             <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
                 errorSignIn ? "max-w-[400px] w-full h-[50px]": "max-w-[450px] w-full border-slate-900"}`}>
@@ -79,9 +79,12 @@ export default function Signin(){
                 onChange={(e)=>{setPassword(e.target.value)}}
                 />
                 
-                <div className="flex flex-col space-y-4 justify-center items-center" onClick={SignIn}>
-                    <p className="text-lg">{t('profile.noProfile')} <a className="text-slate-700 font-bold hover:text-gray-500" href="/signup">{t('profile.registerHere')}</a></p>
-                    <div className="w-[160px] h-[45px] text-xl cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
+                <div className="flex flex-col space-y-4 justify-center items-center">
+                    <div className="flex items-center justify-center flex-col">
+                    <p className="text-md">{t('profile.noProfile')} <a className="text-slate-700 font-bold hover:text-gray-500" href="/signup">{t('profile.registerHere')}</a></p>
+                    <p className="text-lg">{t('profile.forgotenPassword')} <a href="/resetpassword" className="text-slate-700 font-bold hover:text-gray-500">{t('profile.reset')}</a></p>   
+                    </div>
+                    <div onClick={SignIn} className="w-[160px] h-[45px] text-xl cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 hover:bg-slate-700 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
                 </div>
 
             </div>
