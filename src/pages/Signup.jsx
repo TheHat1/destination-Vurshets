@@ -16,16 +16,20 @@ export default function Login(){
     async function signUp(){
         if(email != null && password != null && userName != null){
             if(emailRegex.test(email)){
-                
-                const {data, error} = await supabase.auth.signUp({
-                    email: email,
-                    password: password
+                if(password.lenght > 7){
+                    const {data, error} = await supabase.auth.signUp({
+                        email: email,
+                        password: password
+                        }
+                    )
+
+                    const {dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
+
+                    navigate('/signin')
+                }else{
+                    setErrorSignUp(true)
+                    setErrorMsg(t('profile.short'))
                 }
-            )
-
-            const {dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
-
-            navigate('/signin')
 
             }else{
                 setErrorSignUp(true)

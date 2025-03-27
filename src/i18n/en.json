@@ -64,7 +64,7 @@
         "noProfile":"Don't have an account? ",
         "registerHere":"Sign up.",
         "ime":"   Name",
-        "parola":"   Password",
+        "parola":"   Password. At least 8 characters.",
         "parola2":"  Confirm password",
         "notConfirmed":"E-mail not confirmed.",
         "wrongCrd":"Wrong e-mail or password.",
@@ -76,7 +76,8 @@
         "reset2":"Change",
         "send":"Send",
         "errorReseting":"There was an error!",
-        "notMatching":"Missmatching passwords."
+        "notMatching":"Missmatching passwords.",
+        "short":"The password is too short."
     },
     "profilePage": {
         "signout":"Sign out",
