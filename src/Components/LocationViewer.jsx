@@ -97,7 +97,7 @@ export default function LocationViewer(){
     },[id])
 
     return(
-        <div className="w-screen pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10"  style={{ "--side-panel-width": "500px", "--navbar-height": "110px"}}>
+        <div className="w-screen bg-white pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10"  style={{ "--side-panel-width": "500px", "--navbar-height": "110px"}}>
             <div ref={ref} className="h-full w-full z-0 overflow-y-auto overflow-x-hidden relative"> 
             <div className="w-full min-h-[300px] flex flex-col space-y-5 md:space-y-0 lg:flex-col lg:space-y-5 xl:flex-row xl:space-y-0 md:flex-row items-center shadow-lg bg-gray-100">
                 <h1 className="w-full mt-[55px] md:mt-0 md:w-[calc(100vw-450px)] lg:w-full xl:w-[calc(100vw-var(--img-width))] line-clamp-4 font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden px-5" style={{ "--img-width": "950px"}}>{t(locationName)}</h1>

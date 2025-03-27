@@ -8,6 +8,10 @@
     @apply select-none
   }
 
+  :root{
+    background-color: oklch(0.872 0.01 258.338);
+  }
+
   ::-webkit-scrollbar{
     width: 6px;
   }
