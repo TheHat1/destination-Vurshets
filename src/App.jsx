@@ -4,6 +4,7 @@ import Error from "./pages/Error.jsx"
 import Signup from "./pages/Signup.jsx"
 import Signin from "./pages/Signin.jsx"
 import ResetPassword from "./pages/ResetPassword.jsx"
+import ResetPasswordStep2 from "./pages/ResetPasswordStep2.jsx"
 import ProfilePage from "./pages/ProfilePage.jsx"
 import LocationCard from "./Components/LocationCard.jsx"
 import locationsNear from "./assets/locations-near.json"
@@ -121,6 +122,7 @@ function App() {
         <Route path="/signin" element={<Signin/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/resetpassword" element={<ResetPassword/>}/>
+        <Route path="/resetpasswordstep2" element={<ResetPasswordStep2/>}/>
       </Routes>
     </>
   )

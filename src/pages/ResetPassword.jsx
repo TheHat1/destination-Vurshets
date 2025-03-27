@@ -14,9 +14,10 @@ export default function resetPassword(){
     async function resetPassword(){
         if(email != null){
             if(emailRegex.test(email)){
-                const {data, error} = await supabase.auth.resetPasswordForEmail(email)
+                const {data, error} = await supabase.auth.resetPasswordForEmail(email, {redirectTo: "https://destination-vurshets.netlify.app/resetpasswordstep2"})
                 isSuccsess = true
                 setError(false)
+                setErrorMsg("E-mail изпратен")
             }else{
                 setError(true)
                 setErrorMsg(t('profile.notValidEmail'))
@@ -31,8 +32,8 @@ export default function resetPassword(){
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
             <div className="h-[300px] max-w-[570px] w-full mx-5 fixed mt-40 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
 
-            <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
-                error ? "max-w-[400px] w-full h-[50px]": "max-w-[450px] w-full border-slate-900"} ${isSuccsess ? "max-w-[400px] w-full h-[50px] border-slate-900 bg-slate-300":""}`}>
+            <div className={`text-lg font-semibold flex items-center pl-[10px] border rounded-md transition-all duration-300 ease-out ${
+                error ? "max-w-[400px] w-full h-[50px] border-red-950 text-red-800 bg-red-200": "max-w-[450px] w-full border-slate-900"} ${isSuccsess ? "max-w-[400px] w-full h-[50px] border-slate-900 bg-slate-300 ":""}`}>
                 {errorMsg}
             </div>
 

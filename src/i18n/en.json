@@ -19,7 +19,7 @@
         "vodopada": "The Waterfall Area",
         "todoriniKukli": "Todorini Kukli Peak",
         "kom": "Kom Peak",
-        "srechenskaBara": "Srechenska Bara Reservoir",
+        "srechenskaBara": "Srechenska Bara Dam",
         "fontan":"Fountain",
         "avtogara":"Main bus station",
         "staraKushta":"Old house"
@@ -65,12 +65,18 @@
         "registerHere":"Sign up.",
         "ime":"   Name",
         "parola":"   Password",
+        "parola2":"  Confirm password",
         "notConfirmed":"E-mail not confirmed.",
         "wrongCrd":"Wrong e-mail or password.",
         "notValidEmail":"Invalid e-mail address.",
         "emptyFields":"There are empty fields.",
         "resend":"Resend.",
-        "send":"Send"
+        "forgotenPassword":"Forgoten password? ",
+        "reset":"Change it.",
+        "reset2":"Change",
+        "send":"Send",
+        "errorReseting":"There was an error!",
+        "notMatching":"Missmatching passwords."
     },
     "profilePage": {
         "signout":"Sign out",
