@@ -105,9 +105,9 @@ export default function LocationViewer(){
             </div>
             <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{t(locationDesc)}</h1>
             <Suspense fallback={PanoramicSkeleton}>
-                <div className="m-5 h-[600px] bg-gray-400 relative">
+                <div className="m-5 h-[600px] bg-gray-400 relative rounded-md">
                     
-                    <div onClick={()=>{setIsUserTried3D(true)}} className={`text-white text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${
+                    <div onClick={()=>{setIsUserTried3D(true)}} className={`text-white rounded-md text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${
                     isUserTried3D ? "-z-50" : "z-50"}`}>
                         <div className="flex flex-row space-x-3 justify-center">
                             <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]"/>
