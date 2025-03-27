@@ -17,7 +17,7 @@ export default function ResetPasswordStep2(){
     useEffect(()=>{
         const token = searchParams.get('access_token')
         if(!token){
-            navigate('/signin')
+           // navigate('/signin')
         }
     },[])
 
@@ -45,22 +45,22 @@ export default function ResetPasswordStep2(){
 
     return (
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className="h-[400px] max-w-[570px] w-full mx-5 fixed mt-40 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
+            <div className="h-[400px] w-[90vw] max-w-[600px]  fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
 
             <div className={`text-lg font-semibold flex items-center pl-[10px] border rounded-md transition-all duration-300 ease-out ${
-                errorReseting ? "max-w-[400px] w-full h-[50px] border-red-950 text-red-800 bg-red-200": "max-w-[450px] w-full border-slate-900"}`}>
+                errorReseting ? "w-[80vw] max-w-[400px]  h-[50px] border-red-950 text-red-800 bg-red-200": "max-w-[450px] w-[80vw] border-slate-900"}`}>
                 {errorMsg}
             </div>
 
                 <input 
-                className="border border-gray-900 w-[400px] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105"
+                className="border border-gray-900 w-[80vw] max-w-[400px] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105"
                 type="password"
                 placeholder={t('profile.parola')}
                 onChange={(e)=>{setPassword(e.target.value)}}
                 />
 
                 <input 
-                className="border border-gray-900 w-[400px] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105"
+                className="border border-gray-900 w-[80vw] max-w-[400px] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105"
                 type="password"
                 placeholder={t('profile.parola2')}
                 onChange={(e)=>{setSecondPassword(e.target.value)}}
