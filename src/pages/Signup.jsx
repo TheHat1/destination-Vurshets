@@ -16,7 +16,7 @@ export default function Login(){
     async function signUp(){
         if(email != null && password != null && userName != null){
             if(emailRegex.test(email)){
-                if(password.lenght > 7){
+                if(true){
                     const {data, error} = await supabase.auth.signUp({
                         email: email,
                         password: password
