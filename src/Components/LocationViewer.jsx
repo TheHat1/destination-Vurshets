@@ -49,6 +49,7 @@ export default function LocationViewer(){
     const [desc, setDesc] =useState()
     const [userReview, setUserReview] = useState()
     const [isUserReviewed, setIsUserReviewed] = useState()
+    const [Refresh, setRefresh] = useState()
     const textareaRef = useRef()
     const navigate = useNavigate()
     const {t} = useTranslation()
@@ -88,7 +89,7 @@ export default function LocationViewer(){
             const {data, error} = await supabase.storage.from('destination-vurshets-bucket').createSignedUrl(imgPathConc, 60 * 60 * 24)
             
             if(error){
-            console.log("hmmm there was an error fetching img")
+            ("hmmm there was an error fetching img")
             }
 
             localStorage.setItem("img_cache_" + foundLocation.imagePath, JSON.stringify({
@@ -114,7 +115,11 @@ export default function LocationViewer(){
             }
 
             ))
-            setReviewAvg(sum/br)
+            if(!Number.isNaN(sum/br)){
+                setReviewAvg(sum/br)
+            }else{
+                setReviewAvg(0)
+            }
         }
 
     }
@@ -140,15 +145,23 @@ export default function LocationViewer(){
 
             if(errorReview){
                 setIsUserReviewed(false)
+                setUserReview(1)
+                setDesc('')
             }else{
-                setIsUserReviewed(true)
-                setDesc(review.review_desc)
-                setUserReview(review.review)
+                (review)
+                if(review.review_desc != null){
+                    setIsUserReviewed(true)
+                    setDesc(review.review_desc)
+                    setUserReview(review.review)
+                }else{
+                    setIsUserReviewed(false)
+                }
+
             }
         }
     }
 
-    async function PostOrEditReviewe(){
+    async function PostOrEditReview(){
             const {data, error} = await supabase.
                 from(id + '-reviews').
                 upsert({
@@ -156,6 +169,14 @@ export default function LocationViewer(){
                     review: userReview,
                     review_desc: desc
                 })
+
+            setRefresh(Math.random())
+    }
+
+    async function RemoveReview(){
+        const {data, error} = await supabase.from(id + '-reviews').delete().eq('email', email)
+
+        setRefresh(Math.random())
     }
 
     useEffect(()=>{
@@ -166,6 +187,10 @@ export default function LocationViewer(){
         }
     },[id])
 
+    useEffect(()=>{
+        fetchReviews()
+    },[Refresh])
+
     useEffect(() => {
         const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
             if (session != null) {
@@ -175,7 +200,7 @@ export default function LocationViewer(){
               setIsSignedIn(false)
             }
         })
-      }, [])
+      }, [id, Refresh])
 
     return(
         <div className="w-screen bg-white pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10"  style={{ "--side-panel-width": "500px", "--navbar-height": "110px"}}>
@@ -237,8 +262,15 @@ export default function LocationViewer(){
                                 <input
                                     className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
                                     placeholder="1-10"
-                                    onChange={e => {setUserReview(e.target.value)}}
-                                    
+                                    type="number"
+                                    min={1}
+                                    max={10}
+                                    onInput={e => {setUserReview(e.target.value)}}
+                                    value={userReview}
+                                    onBlur={()=>{
+                                        if(userReview <= 1) setUserReview(1)
+                                        if(userReview >= 10) setUserReview(10)
+                                    }}
                                 />
                             /10
                             </h1>
@@ -252,12 +284,16 @@ export default function LocationViewer(){
                             textareaRef.current.style.height = "auto"
                             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
                         }}
-                        value={isUserReviewed ? desc : null}
+                        value={desc}
                         placeholder={t('ui.type')}
                     />
-                    <div onClick={PostOrEditReviewe} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
-                        {isUserReviewed ? t('ui.edit'):t('ui.publish')}
+                    <div className="flex flex-row space-x-5">
+                        <div onClick={PostOrEditReview} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
+                            {isUserReviewed ? t('ui.edit'):t('ui.publish')}
+                        </div>
+                        <div onClick={RemoveReview} className="bg-red-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-red-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">{t('ui.delete')}</div>
                     </div>
+
                 </div>
             </div>
         </div>

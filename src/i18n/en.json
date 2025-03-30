@@ -60,7 +60,8 @@
         "notSignedIn":"You are not signed in.",
         "publish":"Post",
         "edit":"Edit",
-        "type":"  The place was..."
+        "type":"  The place was...",
+        "delete":"Delete"
     },
     "profile": {
         "register":"Sign up",
