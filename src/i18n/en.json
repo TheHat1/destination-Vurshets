@@ -54,7 +54,13 @@
         "search": "  Search...",
         "list": "Locations in town",
         "listNear": "Locations outside town",
-        "createdBy": "Created by Roberto Nikolov"
+        "createdBy": "Created by Roberto Nikolov",
+        "review":"Is the review of the users.",
+        "otceni":"Rated: ",
+        "notSignedIn":"You are not signed in.",
+        "publish":"Post",
+        "edit":"Edit",
+        "type":"  The place was..."
     },
     "profile": {
         "register":"Sign up",

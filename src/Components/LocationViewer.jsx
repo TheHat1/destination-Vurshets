@@ -7,6 +7,7 @@ import { OrbitControls } from "@react-three/drei"
 import { Suspense, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import supabase from "../backend/supabase"
+import ReviewCard from "./ReviewCard"
 
 function PanoramicViewer({texture}){
     const [loadedTexture, setLoadedTexture] = useState(null)
@@ -40,6 +41,14 @@ export default function LocationViewer(){
     const {id} = useParams()
     const ref = useRef(null)
     const [isUserTried3D, setIsUserTried3D] = useState(false)
+    const [reviews, setReviews] = useState()
+    const [reviewAvg, setReviewAvg] = useState()
+    const [isSignedIn, setIsSignedIn] = useState()
+    const [username, setUsername] = useState()
+    const [desc, setDesc] =useState()
+    const [userReview, setUserReview] = useState()
+    const [isUserReviewed, setIsUserReviewed] = useState()
+    const textareaRef = useRef()
     const navigate = useNavigate()
     const {t} = useTranslation()
     let imgPathConc = null
@@ -89,12 +98,72 @@ export default function LocationViewer(){
             setImg(data.signedUrl)
     }
 
+    async function fetchReviews(){
+        const {data, error} = await supabase.from(id + '-reviews').select()
+        let br = 0
+        let sum = 0
+        
+        if(data){
+            setReviews(data.slice().reverse().map( (row) => {
+                br++
+                sum += row.review
+                return(
+                    <ReviewCard email={row.email} desc={row.review_desc} date={row.created_at} review={row.review}/>
+                )
+            }
+
+            ))
+            setReviewAvg(sum/br)
+        }
+
+    }
+
+    async function getUser(){
+        const {data, error} = await supabase.auth.getSession()
+    
+        if(data){
+        const {data: userData, error: userError} = await supabase.
+            from('profiles').
+            select('*').
+            eq('email', data.session.user.email).
+            single()
+
+        setUsername(userData.username)
+
+        const {data: review, error: errorReview} = await supabase.
+            from(id + '-reviews').
+            select().
+            eq('email', data.session.user.email).
+            single()
+
+            if(errorReview){
+                setIsUserReviewed(false)
+            }else{
+                setIsUserReviewed(true)
+                setDesc(review.review_desc)
+                setUserReview(review.review)
+            }
+        }
+    }
+
     useEffect(()=>{
         ref.current.scrollTop = 0
         if(id != null){
             fetchImg()
+            fetchReviews()
         }
     },[id])
+
+    useEffect(() => {
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+            if (session != null) {
+                setIsSignedIn(true)
+                getUser()
+            } else{
+              setIsSignedIn(false)
+            }
+        })
+      }, [])
 
     return(
         <div className="w-screen bg-white pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10"  style={{ "--side-panel-width": "500px", "--navbar-height": "110px"}}>
@@ -138,6 +207,56 @@ export default function LocationViewer(){
                         {t('ui.takeMeThere')}
                     </div>
                 </a>
+            </div>
+            <div className="m-5 min-h-[300px] bg-gray-300 rounded-md shadow-lg flex relative">
+                
+                <div className={`min-h-[300px] w-full rounded-md p-5 absolute bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-5 ${isSignedIn ? "-z-50":"z-10"}`}>
+                    <h1 className="text-white text-xl">{t('ui.notSignedIn')}</h1>
+                    <div onClick={()=>{navigate('/signin')}} className="w-[100px] h-[45px] bg-slate-900 hover:bg-slate-700 hover:bg-opacity-100 rounded-lg cursor-pointer flex justify-center items-center text-white text-lg opacity-100 z-20 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
+                </div>
+                
+                <div className="w-full min-h-[250px] h-fit p-5 rounded-md shadow-lg bg-white m-5">
+                    <div className="flex flex-row space-x-5">
+                        <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-700 object-cover w-[100px] h-[100px] rounded-full"/>
+                    <div className="w-full">
+                        <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
+                        <div className="flex flex-row ml-2 text-gray-500">
+                            <h1 className="text-md font-robotoMono">{t('ui.otceni')}
+                                <input
+                                    className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
+                                    placeholder="1-10"
+                                    onChange={e => {setUserReview(e.target.value)}}
+                                    value={isUserReviewed ? userReview : ""}
+                                />
+                            /10
+                            </h1>
+                            <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png"/>   
+                        </div>
+                    <textarea 
+                        className="w-full min-h-[100px] border border-black rounded-md shadow-lg mt-3 overflow-hidden resize-none"
+                        ref={textareaRef}
+                        onInput={e => {
+                            setDesc(e.target.value)
+                            textareaRef.current.style.height = "auto"
+                            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+                        }}
+                        value={isUserReviewed ? desc : null}
+                        placeholder={t('ui.type')}
+                    />
+                    <div className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
+                        {isUserReviewed ? t('ui.edit'):t('ui.publish')}
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div className="m-5 p-5 h-[1000px] bg-gray-300 rounded-md shadow-lg flex flex-col space-y-5 overflow-y-auto">
+                <div className="w-full min-h-[75px] bg-white rounded-md shadow-sm flex sm:flex-row flex-col items-center p-5 space-x-1">
+                    <div className="text-3xl text-gray-600 font-robotoMono ">{reviewAvg}/10</div>
+                    <img className="w-[35px] h-[35px]" src="/assets/misc/star.png"/>
+                    <h1 className="pl-[15px] text-lg font-robotoMono text-center sm:text-left">{t('ui.review')}</h1>
+                </div>
+                {reviews}
             </div>
             <div className="bg-slate-900 w-full h-[110px] bottom-0 flex items-center pl-7 text-gray-400 text-md">
                 <h1>
