@@ -45,6 +45,7 @@ export default function LocationViewer(){
     const [reviewAvg, setReviewAvg] = useState()
     const [isSignedIn, setIsSignedIn] = useState()
     const [username, setUsername] = useState()
+    const [email, setEmail] = useState()
     const [desc, setDesc] =useState()
     const [userReview, setUserReview] = useState()
     const [isUserReviewed, setIsUserReviewed] = useState()
@@ -129,6 +130,7 @@ export default function LocationViewer(){
             single()
 
         setUsername(userData.username)
+        setEmail(userData.email)
 
         const {data: review, error: errorReview} = await supabase.
             from(id + '-reviews').
@@ -144,6 +146,16 @@ export default function LocationViewer(){
                 setUserReview(review.review)
             }
         }
+    }
+
+    async function PostOrEditReviewe(){
+            const {data, error} = await supabase.
+                from(id + '-reviews').
+                upsert({
+                    email: email,
+                    review: userReview,
+                    review_desc: desc
+                })
     }
 
     useEffect(()=>{
@@ -226,7 +238,7 @@ export default function LocationViewer(){
                                     className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
                                     placeholder="1-10"
                                     onChange={e => {setUserReview(e.target.value)}}
-                                    value={isUserReviewed ? userReview : ""}
+                                    
                                 />
                             /10
                             </h1>
@@ -243,7 +255,7 @@ export default function LocationViewer(){
                         value={isUserReviewed ? desc : null}
                         placeholder={t('ui.type')}
                     />
-                    <div className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
+                    <div onClick={PostOrEditReviewe} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
                         {isUserReviewed ? t('ui.edit'):t('ui.publish')}
                     </div>
                 </div>
