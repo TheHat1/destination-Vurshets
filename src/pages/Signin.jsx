@@ -19,8 +19,23 @@ export default function Signin(){
             password: password
         })
 
+        const {data: insert, } = await supabase.            
+            from('profiles').
+            select('*').
+            eq('email', data.user.email).
+            single()
+
         if(data.user != null){
-            navigate('/')
+            if(insert.user_id == data.user.id){
+                navigate('/')
+            }else{
+                const {data: insert2,} = await supabase.
+                    from('profiles').
+                    update({user_id: data.user.id}). 
+                    eq('user_id', insert.user_id)
+
+                    navigate('/')
+            }
             return
         }
 
