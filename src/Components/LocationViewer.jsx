@@ -46,6 +46,7 @@ export default function LocationViewer(){
     const [isSignedIn, setIsSignedIn] = useState()
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
+    const [userId, setUserId] = useState()
     const [desc, setDesc] =useState()
     const [userReview, setUserReview] = useState()
     const [isUserReviewed, setIsUserReviewed] = useState()
@@ -110,7 +111,7 @@ export default function LocationViewer(){
                 br++
                 sum += row.review
                 return(
-                    <ReviewCard email={row.email} desc={row.review_desc} date={row.created_at} review={row.review}/>
+                    <ReviewCard id={row.user_id} desc={row.review_desc} date={row.created_at} review={row.review}/>
                 )
             }
 
@@ -135,12 +136,12 @@ export default function LocationViewer(){
             single()
 
         setUsername(userData.username)
-        setEmail(userData.email)
+        setUserId(userData.user_id)
 
         const {data: review, error: errorReview} = await supabase.
             from(id + '-reviews').
             select().
-            eq('email', data.session.user.email).
+            eq('user_id', userId).
             single()
 
             if(errorReview){
@@ -165,16 +166,15 @@ export default function LocationViewer(){
             const {data, error} = await supabase.
                 from(id + '-reviews').
                 upsert({
-                    email: email,
+                    user_id: userId,
                     review: userReview,
                     review_desc: desc
                 })
-
             setRefresh(Math.random())
     }
 
     async function RemoveReview(){
-        const {data, error} = await supabase.from(id + '-reviews').delete().eq('email', email)
+        const {data, error} = await supabase.from(id + '-reviews').delete().eq('user_id', userId)
 
         setRefresh(Math.random())
     }

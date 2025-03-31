@@ -2,17 +2,17 @@ import { useState } from "react"
 import supabase from "../backend/supabase"
 import { useTranslation } from "react-i18next"
 
-export default function ReviewCard({email, review, desc, date}){
+export default function ReviewCard({id, review, desc, date}){
     const [username, setUsername] = useState()
-    const [pfId, setPfId] = useState()
+    const [userId, setUserId] = useState()
     const {t} = useTranslation()
     
     async function fetchUserInfo(){
-        const {data, error} = await supabase.from('profiles').select().eq('email', email).single()
+        const {data, error} = await supabase.from('profiles').select().eq('user_id', id).single()
 
         if(data){
             setUsername(data.username)
-            setPfId(data.pf_id)
+            setUserId(data.user_id)
         }
     }
 

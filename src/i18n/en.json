@@ -88,6 +88,9 @@
     },
     "profilePage": {
         "signout":"Sign out",
-        "createdAt":"Created at: "
+        "createdAt":"Created at: ",
+        "changeUser":"Change your username.",
+        "changeEmail":"Change your e-mail.",
+        "change":"Change"
     }
 }

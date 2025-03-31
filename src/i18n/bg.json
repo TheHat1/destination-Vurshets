@@ -88,6 +88,9 @@
     },
     "profilePage": {
         "signout":"Излез",
-        "createdAt":"Създаден на: "
+        "createdAt":"Създаден на: ",
+        "changeUser":"Промени потребителското си име.",
+        "changeEmail":"Промени e-mail.",
+        "change":"Промени"
     }
 }

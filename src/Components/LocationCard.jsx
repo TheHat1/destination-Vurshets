@@ -24,7 +24,7 @@ export default function LocationCard({id, imagePath, locationNameAndDesc}){
             const {data, error} = await supabase.storage.from('destination-vurshets-bucket').createSignedUrl(imgPathConc, 60 * 60 * 24)
             
             if(error){
-            console.log("hmmm there was an error fetching img")
+            console.log("hmmm there was an error fetching img: " + error)
             }
 
             localStorage.setItem("img_cache_" + imagePath, JSON.stringify({
