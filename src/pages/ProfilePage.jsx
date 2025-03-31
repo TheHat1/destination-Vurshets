@@ -10,10 +10,13 @@ export default function ProfilePage(){
     const [createdAt, setCreatedAt] = useState()
     const [Refresh, setRefresh] = useState()
     const [isChange, setIsChange] = useState(false)
+    const [errorChange, setErrorChange] = useState(false)
+    const [errorMsg, setErrorMsg] = useState()
     const [msg, setMsg] = useState()
     const [newData, setNewData] = useState()
     const divRef = useRef()
     const {t} = useTranslation()
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function getUser(){
         const {data, error} = await supabase.auth.getSession()
@@ -22,11 +25,11 @@ export default function ProfilePage(){
         const {data: userData, error: userError} = await supabase.
         from('profiles').
         select('*').
-        eq('email', data.session.user.email).
+        eq('user_id', data.session.user.id).
         single()
 
         setUsername(userData.username)
-        setUseremail(userData.email)
+        setUseremail(data.session.user.email)
         setCreatedAt(userData.date_created)
         }
     }
@@ -36,14 +39,42 @@ export default function ProfilePage(){
     }
 
     async function changeUser(){
+        setErrorMsg('')
+        
         if(msg == 'profilePage.changeUser'){
-            const {error} = await supabase.from('profiles').update({username: newData}).eq('email', useremail)
+            if(newData != undefined){
+                const {error} = await supabase.from('profiles').update({username: newData}).eq('email', useremail)
+
+                setRefresh(Math.random())
+                setIsChange(false)
+                setNewData('')
+                
+            }else{
+                setErrorChange(true)
+                setErrorMsg('prazno')
+            }
         }else{
 
-        }
+            if(emailRegex.test(newData)){
+                const {error} = await supabase.auth.updateUser({
+                    email: newData
+                })
 
-        setRefresh(Math.random())
-        setIsChange(false)
+                const {error: errorUpdate} = await supabase.
+                    from('profiles'). 
+                    update({email: newData}). 
+                    eq('username', username)
+                
+                setRefresh(Math.random())
+                setIsChange(false)
+                setNewData('')
+
+            }else{
+                setErrorChange(true)
+                setErrorMsg('profile.notValidEmail')
+            }
+
+        }
 
     }
 
@@ -63,16 +94,21 @@ export default function ProfilePage(){
         <div className="w-screen h-screen flex justify-center lg:justify-start">
             <div className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${isChange ? "opacity-100" : "opacity-0 pointer-events-none"}`}></div>
             <div className="absolute inset-0 flex justify-center">
-                <div ref={divRef} className={`absolute flex flex-col space-y-5 justify-center items-center overflow-hidden mx-auto max-w-[500px] w-[90vw] h-[200px] bg-white rounded-md z-30 transition-transform duration-300 ease-out ${
+                <div ref={divRef} className={`absolute flex flex-col space-y-5 justify-center items-center overflow-hidden mx-auto max-w-[500px] w-[90vw] min-h-[250px] h-fit bg-white rounded-md z-30 transition-transform duration-300 ease-out ${
                     isChange ? "translate-y-[200px] lg:translate-y-[300px]" : "-translate-y-[210px] pointer-events-none"}`}>
                     <h1 className="font-robotoMono text-lg px-5 text-center">
                        {t(msg)}
                     </h1>
+                    <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${
+                        errorChange ? "max-w-[400px] w-[80vw] h-[50px]": "max-w-[450px] w-[80vw] border-slate-900"}`}>
+                        {t(errorMsg)}
+                    </div>
                     <input
                         className="border border-gray-900 w-[80vw] max-w-[400px] h-[50px] rounded-lg transition-transform ease-out duration-150 hover:scale-105"
                         type="text"
                         placeholder=" ..."
                         onChange={e => {setNewData(e.target.value)}}
+                        value={newData}
                     />
                     <div onClick={changeUser} className="bg-slate-900 w-[100px] h-[40px] text-white text-xl rounded-lg text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">{t('profilePage.change')}</div>
                 </div>                
@@ -88,11 +124,11 @@ export default function ProfilePage(){
                     <div className="lg:pt-10 px-5 flex flex-col space-y-5 sm:space-y-1">
                         <div className="flex flex-row items-center">
                             <h1 className="max-w-[550px] w-[80vw] h-min max-h-[90px] text-5xl flex items-center font-robotoMono text-balance truncate">{username}</h1>
-                            <img onClick={()=>{setIsChange(!isChange); setMsg('profilePage.changeUser')}} className="w-[30px] h-[30px] z-10 cursor-pointer transition-transform ease-out duration-150 hover:scale-110" src="/assets/misc/edit.png"/>
+                            <img onClick={()=>{setIsChange(!isChange); setMsg('profilePage.changeUser'); setErrorChange(false); setErrorMsg('')}} className="w-[30px] h-[30px] z-10 cursor-pointer transition-transform ease-out duration-150 hover:scale-110" src="/assets/misc/edit.png"/>
                         </div>
                         <div className="flex flex-row items-start">
                             <h1 className="max-w-[545px] w-[80vw] h-[55px] font-robotoMono">{useremail}</h1>
-                            <img onClick={()=>{setIsChange(!isChange); setMsg('profilePage.changeEmail')}} className="w-[20px] h-[20px] z-10 cursor-pointer transition-transform ease-out duration-150 hover:scale-110" src="/assets/misc/edit.png"/>
+                            <img onClick={()=>{setIsChange(!isChange); setMsg('profilePage.changeEmail'); setErrorChange(false); setErrorMsg('')}} className="w-[20px] h-[20px] z-10 cursor-pointer transition-transform ease-out duration-150 hover:scale-110" src="/assets/misc/edit.png"/>
                         </div>
                     </div>
                 </div>

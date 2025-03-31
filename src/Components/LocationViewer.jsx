@@ -132,7 +132,7 @@ export default function LocationViewer(){
         const {data: userData, error: userError} = await supabase.
             from('profiles').
             select('*').
-            eq('email', data.session.user.email).
+            eq('user_id', data.session.user.id).
             single()
 
         setUsername(userData.username)
