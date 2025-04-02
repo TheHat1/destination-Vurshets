@@ -13,63 +13,82 @@ export default function Signin(){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const [resendEmail, setResendEmail] = useState(false)
 
-    async function SignIn(){
-        const {data, error} = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        })
-
-        const {data: insert, } = await supabase.            
-            from('profiles').
-            select('*').
-            eq('email', data.user.email).
-            single()
-
-        if(data.user != null){
-            if(insert.user_id == data.user.id){
-                navigate('/')
-            }else{
-                const {data: insert2,} = await supabase.
-                    from('profiles').
-                    update({user_id: data.user.id}). 
-                    eq('user_id', insert.user_id)
-
-                    navigate('/')
-            }
-            return
-        }
-
-        if(email != null && password != null){
-            if(emailRegex.test(email)){
-                
-                if(error.message.includes("Email not confirmed")){
+    async function SignIn() {
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            })
+    
+            if (error) {
+                if (email && password) {
+                    if (emailRegex.test(email)) {
+                        if (error.message.includes("Email not confirmed")) {
+                            setErrorSignIn(true)
+                            setErrorMsg(t('profile.notConfirmed'))
+                            setResendEmail(true)
+                            return
+                        }
+    
+                        if (error.message.includes("Invalid login credentials")) {
+                            setErrorSignIn(true)
+                            setErrorMsg(t('profile.wrongCrd'))
+                            setResendEmail(false)
+                            return
+                        }
+                    } else {
+                        setErrorSignIn(true)
+                        setErrorMsg(t('profile.notValidEmail'))
+                        setResendEmail(false)
+                        return
+                    }
+                } else {
                     setErrorSignIn(true)
-                    setErrorMsg(t('profile.notConfirmed'))
-                    setResendEmail(true)
-                    return
-                }
-        
-                if(error.message.includes("Invalid login credentials")){
-                    setErrorSignIn(true)
-                    setErrorMsg(t('profile.wrongCrd'))
+                    setErrorMsg(t('profile.emptyFields'))
                     setResendEmail(false)
                     return
                 }
-            }else{
-                setErrorSignIn(true)
-                setErrorMsg(t('profile.notValidEmail'))
-                setResendEmail(false)
+            }
+    
+            if (!data || !data.user) {
+                console.error("User data is missing.")
                 return
             }
     
-        }else{
-            setErrorSignIn(true)
-            setErrorMsg(t('profile.emptyFields'))
-            setResendEmail(false)
-            return
+            const { data: insert, error: profileError } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('email', data.user.email)
+                .single()
+    
+            if (profileError) {
+                console.error("Error fetching profile:", profileError.message);
+                return
+            }
+    
+            if (insert) {
+                if (insert.user_id === data.user.id) {
+                    navigate('/')
+                    return
+                } else {
+                    const { error: updateError } = await supabase
+                        .from('profiles')
+                        .update({ user_id: data.user.id })
+                        .eq('email', data.user.email);
+    
+                    if (updateError) {
+                        console.error("Error updating profile:", updateError.message)
+                        return
+                    }
+                    navigate('/')
+                    return
+                }
+            }
+        } catch (err) {
+            console.error("Unexpected error:", err)
         }
     }
-
+    
     return(
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
             <div className="h-[450px] w-[90vw] max-w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">

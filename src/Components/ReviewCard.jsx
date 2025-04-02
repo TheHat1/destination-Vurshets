@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 
 export default function ReviewCard({id, review, desc, date}){
     const [username, setUsername] = useState()
-    const [userId, setUserId] = useState()
+    const [pfp, setPfp] = useState()
     const {t} = useTranslation()
     
     async function fetchUserInfo(){
@@ -12,8 +12,40 @@ export default function ReviewCard({id, review, desc, date}){
 
         if(data){
             setUsername(data.username)
-            setUserId(data.user_id)
         }
+    }
+
+    async function fetchPFP(){
+        const cacheData = localStorage.getItem("img_cache_" + id)
+            
+        if(cacheData){
+            const {url, expiry} = JSON.parse(cacheData)
+            if(Date.now() < expiry){
+                setImg(url)
+                return
+            }
+        }
+        
+        const {data: PFPdata, error: PFPerror} = await supabase.
+            storage.
+            from('destination-vurshets-bucket').
+            createSignedUrl("userPFP/" + id + ".jpg", 60 * 60 * 24)
+                
+            if(PFPerror){
+                if(PFPerror == "StorageApiError: Object not found"){
+                    setPfp(null)
+                    return
+                }
+                console.log("error fetching pfp:  " + PFPerror)
+                return
+            }
+    
+        localStorage.setItem("img_cache_" + id, JSON.stringify({
+            url: PFPdata.signedUrl,
+            expiry: Date.now() + 60 * 60 * 24 * 1000
+        }))
+    
+        setPfp(PFPdata.signedUrl)
     }
 
     fetchUserInfo()
@@ -21,7 +53,7 @@ export default function ReviewCard({id, review, desc, date}){
     return(
         <div className="w-full min-h-[150px] h-fit p-5 rounded-md shadow-lg bg-white">
             <div className="flex flex-row space-x-5">
-                <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-700 object-cover w-[100px] h-[100px] rounded-full"/>
+                <img src={pfp} loading="lazy" className="bg-gray-700 object-cover w-[100px] h-[100px] rounded-full"/>
                 <div>
                     <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
                     <div className="flex flex-row ml-2 text-gray-500">

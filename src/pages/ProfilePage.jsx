@@ -8,6 +8,7 @@ export default function ProfilePage(){
     const [username, setUsername] = useState()
     const [useremail, setUseremail] = useState()
     const [createdAt, setCreatedAt] = useState()
+    const [img, setImg] = useState("")
     const [Refresh, setRefresh] = useState()
     const [isChange, setIsChange] = useState(false)
     const [errorChange, setErrorChange] = useState(false)
@@ -22,15 +23,56 @@ export default function ProfilePage(){
         const {data, error} = await supabase.auth.getSession()
     
         if(data){
-        const {data: userData, error: userError} = await supabase.
-        from('profiles').
-        select('*').
-        eq('user_id', data.session.user.id).
-        single()
+            const {data: userData, error: userError} = await supabase.
+                from('profiles').
+                select('*').
+                eq('user_id', data.session.user.id).
+                single()
 
-        setUsername(userData.username)
-        setUseremail(data.session.user.email)
-        setCreatedAt(userData.date_created)
+            setUsername(userData.username)
+            setUseremail(userData.email)
+            setCreatedAt(userData.date_created)
+
+            if(data.session.user.email !== useremail){
+                
+                const {data: insert2, error} = await supabase.
+                    from('profiles').
+                    update({email: data.session.user.email}). 
+                    eq('user_id', data.session.user.id)
+
+                setRefresh(Math.random())
+            }
+    
+                const cacheData = localStorage.getItem("img_cache_" + data.session.user.id)
+            
+                if(cacheData){
+                    const {url, expiry} = JSON.parse(cacheData)
+                    if(Date.now() < expiry){
+                        setImg(url)
+                        return
+                    }
+                }
+                
+                const {data: PFPdata, error: PFPerror} = await supabase.
+                    storage.
+                    from('destination-vurshets-bucket').
+                    createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+                        
+                    if(PFPerror){
+                        if(PFPerror == "StorageApiError: Object not found"){
+                            setImg(null)
+                            return
+                        }
+                        console.log("error fetching pfp:  " + PFPerror)
+                        return
+                    }
+            
+                localStorage.setItem("img_cache_" + data.session.user.id, JSON.stringify({
+                    url: PFPdata.signedUrl,
+                    expiry: Date.now() + 60 * 60 * 24 * 1000
+                }))
+            
+                setImg(PFPdata.signedUrl)
         }
     }
 
@@ -120,7 +162,13 @@ export default function ProfilePage(){
                     <div className="max-w-[500px] w-[80vw] h-min text-wrap text-center md:text-left bottom-5 left-5 font-robotoMono ">{t('profilePage.createdAt')}{createdAt}</div>
                 </div>
                 <div className="w-full h-full absolute flex flex-col space-y-5 items-center justify-start pb-5 lg:flex-row lg:items-start lg:justify-between p-5">
-                    <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-700 object-cover shadow-lg w-[250px] h-[250px] rounded-full"/>
+                    <div className="relative group">
+                        <img src={img} className="bg-gray-300 object-cover shadow-lg w-[250px] h-[250px] rounded-full"/> 
+                        <div className="w-[250px] h-[250px] flex justify-center items-center rounded-full absolute top-0 opacity-0 group-hover:opacity-75 bg-black z-10">
+                            <img src="/assets/misc/edit.png" className="w-[45px] h-[45px] opacity-100 invert transition-transform ease-out duration-150 hover:scale-110 cursor-pointer"/>    
+                        </div>  
+                    </div>
+
                     <div className="lg:pt-10 px-5 flex flex-col space-y-5 sm:space-y-1">
                         <div className="flex flex-row items-center">
                             <h1 className="max-w-[550px] w-[80vw] h-min max-h-[90px] text-5xl flex items-center font-robotoMono text-balance truncate">{username}</h1>
