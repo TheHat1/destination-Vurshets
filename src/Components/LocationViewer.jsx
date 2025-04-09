@@ -130,7 +130,7 @@ export default function LocationViewer(){
             const {data, error} = await supabase.auth.getSession()
 
             if (!data?.session?.user?.id){
-                console.log("no user")
+                setPfp('/assets/misc/default-user.png')
                 return
             }
                 const {data: userData, error: userError} = await supabase.
@@ -279,7 +279,7 @@ export default function LocationViewer(){
             </div>
             <div className="m-5 min-h-[300px] bg-gray-300 rounded-md shadow-lg flex relative">
                 
-                <div className={`min-h-[300px] w-full rounded-md p-5 absolute bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-5 ${isSignedIn ? "-z-50":"z-10"}`}>
+                <div className={`h-full w-full rounded-md p-5 absolute bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-5 ${isSignedIn ? "-z-50":"z-10"}`}>
                     <h1 className="text-white text-xl">{t('ui.notSignedIn')}</h1>
                     <div onClick={()=>{navigate('/signin')}} className="w-[100px] h-[45px] bg-slate-900 hover:bg-slate-700 hover:bg-opacity-100 rounded-lg cursor-pointer flex justify-center items-center text-white text-lg opacity-100 z-20 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
                 </div>
