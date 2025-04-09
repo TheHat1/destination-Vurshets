@@ -254,7 +254,7 @@ export default function LocationViewer(){
                 
                 <div className="w-full min-h-[250px] h-fit p-5 rounded-md shadow-lg bg-white m-5">
                     <div className="flex flex-row space-x-5">
-                        <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-700 object-cover w-[100px] h-[100px] rounded-full"/>
+                        <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full"/>
                     <div className="w-full">
                         <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
                         <div className="flex flex-row ml-2 text-gray-500">

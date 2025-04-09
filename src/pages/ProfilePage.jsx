@@ -42,7 +42,7 @@ export default function ProfilePage(){
 
                 setRefresh(Math.random())
             }
-    
+
                 const cacheData = localStorage.getItem("img_cache_" + data.session.user.id)
             
                 if(cacheData){
@@ -57,10 +57,10 @@ export default function ProfilePage(){
                     storage.
                     from('destination-vurshets-bucket').
                     createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
-                        
+
                     if(PFPerror){
                         if(PFPerror == "StorageApiError: Object not found"){
-                            setImg(null)
+                            setImg("/assets/misc/destination-vurshets-logo.png")
                             return
                         }
                         console.log("error fetching pfp:  " + PFPerror)
