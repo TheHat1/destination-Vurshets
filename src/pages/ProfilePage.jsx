@@ -20,59 +20,68 @@ export default function ProfilePage(){
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function getUser(){
-        const {data, error} = await supabase.auth.getSession()
-    
-        if(data){
-            const {data: userData, error: userError} = await supabase.
-                from('profiles').
-                select('*').
-                eq('user_id', data.session.user.id).
-                single()
+        try{
+            const {data, error} = await supabase.auth.getSession()
 
-            setUsername(userData.username)
-            setUseremail(userData.email)
-            setCreatedAt(userData.date_created)
-
-            if(data.session.user.email !== useremail){
-                
-                const {data: insert2, error} = await supabase.
-                    from('profiles').
-                    update({email: data.session.user.email}). 
-                    eq('user_id', data.session.user.id)
-
-                setRefresh(Math.random())
+            if (!data?.session){
+                navigate("/signin")
+                return
             }
+    
+            if(data?.session){
+                const {data: userData, error: userError} = await supabase.
+                    from('profiles').
+                    select('*').
+                    eq('user_id', data.session.user.id).
+                    single()
 
-                const cacheData = localStorage.getItem("img_cache_" + data.session.user.id)
-            
-                if(cacheData){
-                    const {url, expiry} = JSON.parse(cacheData)
-                    if(Date.now() < expiry){
-                        setImg(url)
-                        return
-                    }
-                }
+                setUsername(userData.username)
+                setUseremail(userData.email)
+                setCreatedAt(userData.date_created)
+
+                if(data.session.user.email !== userData.email){
                 
-                const {data: PFPdata, error: PFPerror} = await supabase.
-                    storage.
-                    from('destination-vurshets-bucket').
-                    createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+                    const {data: insert2, error: insertError} = await supabase.
+                        from('profiles').
+                        update({email: data.session.user.email}). 
+                        eq('user_id', data.session.user.id)
 
-                    if(PFPerror){
-                        if(PFPerror == "StorageApiError: Object not found"){
-                            setImg("/assets/misc/destination-vurshets-logo.png")
+                    setRefresh(Math.random())
+                }
+
+                    const cacheData = localStorage.getItem("img_cache_" + data.session.user.id)
+            
+                    if(cacheData){
+                        const {url, expiry} = JSON.parse(cacheData)
+                        if(Date.now() < expiry){
+                            setImg(url)
                             return
                         }
-                        console.log("error fetching pfp:  " + PFPerror)
-                        return
                     }
+                
+                    const {data: PFPdata, error: PFPerror} = await supabase.
+                        storage.
+                        from('destination-vurshets-bucket').
+                        createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+
+                        if(PFPerror){
+                            if(PFPerror == "StorageApiError: Object not found"){
+                                setImg('/assets/misc/default-user.png')
+                                return
+                            }
+                            console.log("error fetching pfp:  " + PFPerror)
+                            return
+                        }
             
-                localStorage.setItem("img_cache_" + data.session.user.id, JSON.stringify({
-                    url: PFPdata.signedUrl,
-                    expiry: Date.now() + 60 * 60 * 24 * 1000
-                }))
+                    localStorage.setItem("img_cache_" + data.session.user.id, JSON.stringify({
+                        url: PFPdata.signedUrl,
+                        expiry: Date.now() + 60 * 60 * 24 * 1000
+                    }))
             
-                setImg(PFPdata.signedUrl)
+                    setImg(PFPdata.signedUrl)
+            }  
+        }catch{
+            console.error("There was an error! :(")
         }
     }
 

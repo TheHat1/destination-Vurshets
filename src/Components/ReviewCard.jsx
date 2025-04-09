@@ -33,7 +33,7 @@ export default function ReviewCard({id, review, desc, date}){
                 
             if(PFPerror){
                 if(PFPerror == "StorageApiError: Object not found"){
-                    setPfp(null)
+                    setPfp('/assets/misc/default-user.png')
                     return
                 }
                 console.log("error fetching pfp:  " + PFPerror)
@@ -49,15 +49,16 @@ export default function ReviewCard({id, review, desc, date}){
     }
 
     fetchUserInfo()
+    fetchPFP()
 
     return(
         <div className="w-full min-h-[150px] h-fit p-5 rounded-md shadow-lg bg-white">
             <div className="flex flex-row space-x-5">
-                <img src={pfp} loading="lazy" className="bg-gray-700 object-cover w-[100px] h-[100px] rounded-full"/>
+                <img src={pfp} loading="lazy" className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full"/>
                 <div>
                     <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
                     <div className="flex flex-row ml-2 text-gray-500">
-                        <h1 className="text-md font-robotoMono">{t('ui.otceni')}{review}/10</h1>
+                        <h1 className="text-md font-robotoMono">{t('ui.otseni')}{review}/10</h1>
                         <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png"/>   
                     </div>
 

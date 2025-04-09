@@ -45,15 +45,15 @@ export default function LocationViewer(){
     const [reviewAvg, setReviewAvg] = useState()
     const [isSignedIn, setIsSignedIn] = useState()
     const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [userId, setUserId] = useState()
+    const [pfp, setPfp] = useState()
     const [desc, setDesc] =useState()
     const [userReview, setUserReview] = useState()
-    const [isUserReviewed, setIsUserReviewed] = useState()
+    const [isUserReviewed, setIsUserReviewed] = useState(false)
     const [Refresh, setRefresh] = useState()
     const textareaRef = useRef()
     const navigate = useNavigate()
     const {t} = useTranslation()
+    let userId
     let imgPathConc = null
     let locationName = null
     let locationDesc = null
@@ -126,39 +126,71 @@ export default function LocationViewer(){
     }
 
     async function getUser(){
-        const {data, error} = await supabase.auth.getSession()
-    
-        if(data){
-        const {data: userData, error: userError} = await supabase.
-            from('profiles').
-            select('*').
-            eq('user_id', data.session.user.id).
-            single()
+        try{
+            const {data, error} = await supabase.auth.getSession()
 
-        setUsername(userData.username)
-        setUserId(userData.user_id)
+            if (!data?.session?.user?.id){
+                console.log("no user")
+                return
+            }
+                const {data: userData, error: userError} = await supabase.
+                    from('profiles').
+                    select('*').
+                    eq('user_id', data.session.user.id).
+                    single()
 
-        const {data: review, error: errorReview} = await supabase.
-            from(id + '-reviews').
-            select().
-            eq('user_id', userId).
-            single()
+                const {data: review, error: errorReview} = await supabase.
+                    from(id + '-reviews').
+                    select().
+                    eq('user_id',  data.session.user.id).
+                    single()
 
-            if(errorReview){
-                setIsUserReviewed(false)
-                setUserReview(1)
-                setDesc('')
-            }else{
-                (review)
-                if(review.review_desc != null){
-                    setIsUserReviewed(true)
-                    setDesc(review.review_desc)
-                    setUserReview(review.review)
-                }else{
+                if(errorReview){
                     setIsUserReviewed(false)
+                    setUserReview(1)
+                    setDesc('')
+                }else{
+                        setIsUserReviewed(true)
+                        setDesc(review.review_desc)
+                        setUserReview(review.review)
                 }
 
-            }
+                setUsername(userData?.username)
+                userId = data.session.user.id
+
+                const cacheData = localStorage.getItem("img_cache_" + data.session.user.id)
+
+                if(cacheData){
+                    const {url, expiry} = JSON.parse(cacheData)
+                    if(Date.now() < expiry){
+                        setPfp(url)
+                        return
+                    }
+                }
+
+                    const {data: PFPdata, error: PFPerror} = await supabase.
+                        storage.
+                        from('destination-vurshets-bucket').
+                        createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+
+                    if(PFPerror){
+                        if(PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400){
+                            setPfp('/assets/misc/default-user.png')
+                            return
+                        }
+                        console.log("error fetching pfp:  " + PFPerror)
+                        return
+                    }
+        
+                    localStorage.setItem("img_cache_" + data.session.user.id, JSON.stringify({
+                        url: PFPdata.signedUrl,
+                        expiry: Date.now() + 60 * 60 * 24 * 1000
+                    }))
+
+                    setPfp(PFPdata.signedUrl)
+
+        }catch (err){
+            console.error("There was an error! :(   | " + err)
         }
     }
 
@@ -253,12 +285,12 @@ export default function LocationViewer(){
                 </div>
                 
                 <div className="w-full min-h-[250px] h-fit p-5 rounded-md shadow-lg bg-white m-5">
-                    <div className="flex flex-row space-x-5">
-                        <img src="/assets/misc/destination-vurshets-logo.png" className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full"/>
-                    <div className="w-full">
+                    <div className="flex flex-col sm:flex-row space-x-5 space-y-5 sm:space-y-0">
+                        <img src={pfp} className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full"/>
+                    <div className="w-full pr-5">
                         <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
                         <div className="flex flex-row ml-2 text-gray-500">
-                            <h1 className="text-md font-robotoMono">{t('ui.otceni')}
+                            <h1 className="text-md font-robotoMono">{t('ui.otseni')}
                                 <input
                                     className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
                                     placeholder="1-10"
@@ -287,7 +319,7 @@ export default function LocationViewer(){
                         value={desc}
                         placeholder={t('ui.type')}
                     />
-                    <div className="flex flex-row space-x-5">
+                    <div className="flex sm:flex-row sm:space-y-0  flex-col items-center justify-center sm:justify-start space-y-5 sm:space-x-5">
                         <div onClick={PostOrEditReview} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
                             {isUserReviewed ? t('ui.edit'):t('ui.publish')}
                         </div>

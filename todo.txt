@@ -1,5 +1,0 @@
--reset password email ne raboti
--proverka dali parolata e dostatchno dulga pri registraciq
--proverka dali veche ima profil sas sashtiq email pri registraciq
--promqna na username i email
--profilna snimka upload i promqna
