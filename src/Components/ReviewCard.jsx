@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import supabase from "../backend/supabase"
 import { useTranslation } from "react-i18next"
 
@@ -21,7 +21,7 @@ export default function ReviewCard({id, review, desc, date}){
         if(cacheData){
             const {url, expiry} = JSON.parse(cacheData)
             if(Date.now() < expiry){
-                setImg(url)
+                setPfp(url)
                 return
             }
         }
@@ -32,7 +32,7 @@ export default function ReviewCard({id, review, desc, date}){
             createSignedUrl("userPFP/" + id + ".jpg", 60 * 60 * 24)
                 
             if(PFPerror){
-                if(PFPerror == "StorageApiError: Object not found"){
+                if(PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400){
                     setPfp('/assets/misc/default-user.png')
                     return
                 }
@@ -47,9 +47,12 @@ export default function ReviewCard({id, review, desc, date}){
     
         setPfp(PFPdata.signedUrl)
     }
+    
+    useEffect(()=>{
+        fetchUserInfo()
+        fetchPFP()
+    },[])
 
-    fetchUserInfo()
-    fetchPFP()
 
     return(
         <div className="w-full min-h-[150px] h-fit p-5 rounded-md shadow-lg bg-white">

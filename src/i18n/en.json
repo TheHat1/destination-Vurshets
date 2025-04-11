@@ -91,6 +91,7 @@
         "createdAt":"Created at: ",
         "changeUser":"Change your username.",
         "changeEmail":"Change your e-mail.",
-        "change":"Change"
+        "change":"Change",
+        "prazno":"The field can not be empty"
     }
 }
