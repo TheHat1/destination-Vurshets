@@ -46,7 +46,7 @@ export default function LocationViewer() {
     const [isSignedIn, setIsSignedIn] = useState()
     const [username, setUsername] = useState()
     const [userId, setUserId] = useState()
-    const [pfp, setPfp] = useState()
+    const [pfp, setPfp] = useState("/assets/misc/default-user.png")
     const [desc, setDesc] = useState()
     const [userReview, setUserReview] = useState()
     const [isUserReviewed, setIsUserReviewed] = useState(false)
