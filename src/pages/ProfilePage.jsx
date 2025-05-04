@@ -8,7 +8,9 @@ export default function ProfilePage() {
     const [username, setUsername] = useState()
     const [useremail, setUseremail] = useState()
     const [createdAt, setCreatedAt] = useState()
+    const [userid, setUserid] = useState()
     const [img, setImg] = useState("")
+    const [file, setFile] = useState()
     const [Refresh, setRefresh] = useState()
     const [isChange, setIsChange] = useState(false)
     const [errorChange, setErrorChange] = useState(false)
@@ -16,6 +18,7 @@ export default function ProfilePage() {
     const [msg, setMsg] = useState()
     const [newData, setNewData] = useState()
     const divRef = useRef()
+    const inputRef = useRef()
     const { t } = useTranslation()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -38,6 +41,7 @@ export default function ProfilePage() {
                 setUsername(userData.username)
                 setUseremail(userData.email)
                 setCreatedAt(userData.date_created)
+                setUserid(data.session.user.id)
 
                 if (data.session.user.email !== userData.email) {
 
@@ -59,10 +63,13 @@ export default function ProfilePage() {
                     }
                 }
 
+                const {data: listData, error: listError} = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/${data.session.user.id}")
+                console.log(listData)
+
                 const { data: PFPdata, error: PFPerror } = await supabase.
                     storage.
                     from('destination-vurshets-bucket').
-                    createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+                    createSignedUrl("userPFP/" + data.session.user.id + "/" + listData, 60 * 60 * 24)
 
                 if (PFPerror) {
                     if (PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400) {
@@ -80,8 +87,8 @@ export default function ProfilePage() {
 
                 setImg(PFPdata.signedUrl)
             }
-        } catch {
-            console.error("There was an error! :(")
+        } catch(err) {
+            console.error("There was an error! :( " + err)
         }
     }
 
@@ -129,10 +136,39 @@ export default function ProfilePage() {
 
     }
 
+    async function uploadPFP(){
+        try{
+            const filePath = "userPFP/" + userid + '/' + file.name
+            
+            const {error: uploadError} = await supabase
+            .storage
+            .from('destination-vurshets-bucket')
+            .upload(filePath, file, {
+                upsert: true,
+                contentType: file.type
+            })
+
+            if(uploadError){
+                console.error("There was an error: " + JSON.stringify(uploadError, null, 2))
+                return
+            }
+
+            setFile()
+            setRefresh(Math.random())
+
+        }catch(err){
+            console.error("There was an error uploading PFP: " + err)
+        }
+    }
+
     function handleClickOutsideList(e) {
         if (divRef.current && !divRef.current.contains(e.target) && !divRef.current.contains(e.target)) {
             setIsChange(false)
         }
+    }
+
+    function handlePFPupload(){
+        inputRef.current.click()
     }
 
     document.addEventListener('mousedown', handleClickOutsideList)
@@ -140,6 +176,14 @@ export default function ProfilePage() {
     useEffect(() => {
         getUser()
     }, [Refresh])
+
+    useEffect(()=>{
+        if(file != undefined){
+            if(file.type.includes("image")){
+                uploadPFP()
+            }
+        }
+    },[file])
 
 
     return (
@@ -173,7 +217,8 @@ export default function ProfilePage() {
                     <div className="relative group">
                         <img src={img} className="bg-gray-300 object-cover shadow-lg w-[250px] h-[250px] rounded-full" />
                         <div className="w-[250px] h-[250px] flex justify-center items-center rounded-full absolute top-0 opacity-0 group-hover:opacity-75 bg-black z-10">
-                            <img src="/assets/misc/edit.png" className="w-[45px] h-[45px] opacity-100 invert transition-transform ease-out duration-150 hover:scale-110 cursor-pointer" />
+                            <img onClick={handlePFPupload} src="/assets/misc/edit.png" className="w-[45px] h-[45px] opacity-100 invert transition-transform ease-out duration-150 hover:scale-110 cursor-pointer" />
+                            <input ref={inputRef} type="file"  className="absolute hidden" onChange={(e)=>{setFile(e.target.files[0])}}/>
                         </div>
                     </div>
 
