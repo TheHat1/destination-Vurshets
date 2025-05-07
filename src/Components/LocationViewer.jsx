@@ -205,7 +205,7 @@ export default function LocationViewer() {
             setRefresh(Math.random())
 
             if (error) {
-                console.log("error upsurting:  " + JSON.stringify(error, null, 2))
+                console.log("error upserting:  " + JSON.stringify(error, null, 2))
             }
     }
 

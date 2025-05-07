@@ -92,6 +92,7 @@
         "changeUser":"Change your username.",
         "changeEmail":"Change your e-mail.",
         "change":"Change",
-        "prazno":"The field can not be empty"
+        "prazno":"The field can not be empty",
+        "reviews":"Your reviews: "
     }
 }
