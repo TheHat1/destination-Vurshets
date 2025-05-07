@@ -143,16 +143,16 @@ export default function LocationViewer() {
                 from(id + '-reviews').
                 select().
                 eq('user_id', data.session.user.id).
-                single()
+                maybeSingle()
 
-            if (errorReview) {
-                setIsUserReviewed(false)
-                setUserReview(1)
-                setDesc('')
-            } else {
+            if (review) {
                 setIsUserReviewed(true)
                 setDesc(review.review_desc)
                 setUserReview(review.review)
+            } else {
+                setIsUserReviewed(false)
+                setUserReview(1)
+                setDesc('')
             }
 
             setUsername(userData?.username)
@@ -195,18 +195,18 @@ export default function LocationViewer() {
     }
 
     async function PostOrEditReview() {
-            const { data, error } = await supabase.
-                from(id + '-reviews').
-                upsert({
-                    user_id: userId,
-                    review: userReview,
-                    review_desc: desc
-                })
-            setRefresh(Math.random())
+        const { data, error } = await supabase.
+            from(id + '-reviews').
+            upsert({
+                user_id: userId,
+                review: userReview,
+                review_desc: desc
+            })
+        setRefresh(Math.random())
 
-            if (error) {
-                console.log("error upserting:  " + JSON.stringify(error, null, 2))
-            }
+        if (error) {
+            console.log("error upserting:  " + JSON.stringify(error, null, 2))
+        }
     }
 
     async function RemoveReview() {

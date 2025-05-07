@@ -23,8 +23,16 @@ export default function Login(){
                         }
                     )
 
-                    const {dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
+                    const {data: dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
 
+                    if (dataInsert?.user) {
+                        const { data, error } = await supabase.functions.invoke('create-user-folder', {
+                          body: {
+                            user_id: signupData.user.id
+                          }
+                        })
+                    }
+                    
                     navigate('/signin')
                 }else{
                     setErrorSignUp(true)

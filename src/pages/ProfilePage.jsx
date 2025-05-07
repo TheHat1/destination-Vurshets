@@ -64,7 +64,6 @@ export default function ProfilePage() {
                             .select()
                             .eq('user_id', data.session.user.id)
                             .maybeSingle()
-                        console.log(review)
                         if (review) {
                             return (
                                 <div className="flex flex-col space-y-1 mt-6">
@@ -92,20 +91,19 @@ export default function ProfilePage() {
                     }
                 }
 
-                const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP")
-                console.log(listData)
+                const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + data.session.user.id)
 
                 const { data: PFPdata, error: PFPerror } = await supabase.
                     storage.
                     from('destination-vurshets-bucket').
-                    createSignedUrl("userPFP/" + data.session.user.id + "/" + listData, 60 * 60 * 24)
+                    createSignedUrl("userPFP/" + data.session.user.id + "/" + listData[0].name, 60 * 60 * 24)
 
                 if (PFPerror) {
                     if (PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400) {
                         setImg('/assets/misc/default-user.png')
                         return
                     }
-                    console.log("error fetching pfp:  " + PFPerror)
+                    console.log("error fetching pfp:  " + JSON.stringify(PFPerror))
                     return
                 }
 
