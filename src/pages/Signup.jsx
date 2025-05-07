@@ -25,14 +25,8 @@ export default function Login(){
 
                     const {data: dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
 
-                    if (dataInsert?.user) {
-                        const { data, error } = await supabase.functions.invoke('create-user-folder', {
-                          body: {
-                            user_id: signupData.user.id
-                          }
-                        })
-                    }
-                    
+                    const {} = await supabase.storage.from('destination-vurshets-bucket').upload('userPFP' + data.user.id + '/text.txt',new Blob([""], {type: "text/plain"}),{upsert: false} )
+
                     navigate('/signin')
                 }else{
                     setErrorSignUp(true)
