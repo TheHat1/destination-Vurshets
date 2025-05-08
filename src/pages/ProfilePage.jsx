@@ -21,6 +21,7 @@ export default function ProfilePage() {
     const [errorMsg, setErrorMsg] = useState()
     const [msg, setMsg] = useState()
     const [newData, setNewData] = useState()
+    const [signingout, setSigningout] = useState(false)
     const [divKey, setDivKey] = useState()
     const divRef = useRef()
     const inputRef = useRef()
@@ -122,8 +123,8 @@ export default function ProfilePage() {
     }
 
     async function signOut() {
-        setIsChange(true)
-        const { error } = await supabase.auth.signOut().then(() => { navigate('/') })
+        setSigningout(true)
+        const { } = await supabase.auth.signOut().then(() => { navigate('/') })
     }
 
     async function changeUser() {
@@ -242,7 +243,9 @@ export default function ProfilePage() {
 
     return (
         <div className="w-screen h-screen flex justify-center lg:justify-start ">
-            <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity duration-300 ${isChange ? "opacity-100" : "opacity-0 pointer-events-none"}`}></div>
+            <div className={`absolute flex justify-center items-center inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity duration-300 ${isChange || signingout ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                <img loading="lazy" className={`z-50 w-[180px] h-[180px] ${signingout ? "opacity-100" : "opacity-0"}`} src="assets/misc/loading.gif" />
+            </div>
             <div className="absolute inset-0 flex justify-center">
                 <div ref={divRef} className={`absolute flex flex-col space-y-5 justify-center items-center overflow-hidden mx-auto p-5 max-w-[500px] w-[90vw] min-h-[250px] h-fit bg-white rounded-md z-30 transition-transform duration-300 ease-out ${isChange ? "translate-y-[200px] lg:translate-y-[300px]" : "-translate-y-[210px] pointer-events-none"}`}>
                     <h1 className="font-robotoMono text-lg px-5 text-center">

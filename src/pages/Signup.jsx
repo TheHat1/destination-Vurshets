@@ -44,14 +44,18 @@ export default function Login() {
                 setErrorSignUp(true)
                 setErrorMsg(t('profile.emptyFields'))
             }
+
         } catch (err) {
             console.error("Error signingup: " + err)
+            setInProgress(false)
         }
     }
 
     return (
         <div className="w-screen h-screen bg-gray-300 flex justify-center overflow-y-auto">
-            <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${inProgress ? "opacity-100" : "opacity-0 pointer-events-none"}`}></div>
+            <div className={`absolute flex justify-center items-center inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${inProgress ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                <img className="z-50 w-[180px] h-[180px] " src="assets/misc/loading.gif" />
+            </div>
             <div className="h-[500px] w-[90vw] max-w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
 
                 <div className={`text-lg font-semibold text-red-800 bg-red-200 flex items-center pl-[10px] border border-red-950 rounded-md transition-all duration-300 ease-out ${errorSignUp ? "w-[90vw] max-w-[400px] h-[50px]" : "max-w-[450px] w-[80vw] border-slate-900"}`}>
