@@ -71,7 +71,6 @@ export default function ReviewCard({ id, review, desc, date }) {
                         <h1 className="text-md font-robotoMono">{t('ui.otseni')}{review}/10</h1>
                         <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png" />
                     </div>
-
                     <p className="font-robotoMono pl-5 text-wrap overflow-hidden break-all">{desc}</p>
                 </div>
             </div>

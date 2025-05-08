@@ -83,14 +83,14 @@ export default function HomePage() {
       setInTownLocationCards(searchResultTown.map(
         (locations) => {
           return (
-            <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc} />
+            <LocationCard key={locations.id} id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc} />
           )
         })
       )
       setOutsideTownLocations(serchResultOutsideTown.map(
         (locations) => {
           return (
-            <LocationCard id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc} />
+            <LocationCard key={locations.id} id={locations.id} imagePath={locations.imagePath} locationNameAndDesc={locations.locationNameAndDesc} />
           )
         })
       )

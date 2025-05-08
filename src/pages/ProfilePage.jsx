@@ -21,6 +21,7 @@ export default function ProfilePage() {
     const [errorMsg, setErrorMsg] = useState()
     const [msg, setMsg] = useState()
     const [newData, setNewData] = useState()
+    const [divKey, setDivKey] = useState()
     const divRef = useRef()
     const inputRef = useRef()
     const { i18n, t } = useTranslation()
@@ -173,9 +174,9 @@ export default function ProfilePage() {
                 const { } = await supabase.storage.from('destination-vurshets-bucket').remove(['userPFP/' + userid + '/' + listData[0].name])
             }
 
-            const filePath = "userPFP/" + userid + '/' + file.name.replaceAll(/[^\w.-]/g,"")
+            const filePath = "userPFP/" + userid + '/' + file.name.replaceAll(/[^\w.-]/g, "")
 
-            const { error: uploadError } = await supabase
+            const { data, error: uploadError } = await supabase
                 .storage
                 .from('destination-vurshets-bucket')
                 .upload(filePath, file, {
@@ -203,6 +204,7 @@ export default function ProfilePage() {
             setImg(PFPdata.signedUrl)
             setFile()
             setRefresh(Math.random())
+            setDivKey(Math.random())
 
         } catch (err) {
             console.error("There was an error uploading PFP: " + err)
@@ -295,7 +297,7 @@ export default function ProfilePage() {
 
                     <div className="bg-white max-w-[900px] w-[90vw] min-h-[500px] lg:mx-10 relative rounded-md shadow-lg flex flex-col">
                         <h1 className="font-robotoMono text-3xl pl-[20px] pt-5">{t('profilePage.reviews')}</h1>
-                        <div className="m-5 flex-1 p-5 bg-gray-300 rounded-md">
+                        <div key={divKey} className="m-5 flex-1 p-5 bg-gray-300 rounded-md">
                             {userReviews}
                         </div>
                     </div>
