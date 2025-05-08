@@ -28,7 +28,7 @@ export default function ReviewCard({ id, review, desc, date }) {
             }
 
             const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + id)
-            console.log(id)
+
             const { data: PFPdata, error: PFPerror } = await supabase.
                 storage.
                 from('destination-vurshets-bucket').

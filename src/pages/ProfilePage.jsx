@@ -23,7 +23,7 @@ export default function ProfilePage() {
     const [newData, setNewData] = useState()
     const divRef = useRef()
     const inputRef = useRef()
-    const { t } = useTranslation()
+    const { i18n,t } = useTranslation()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function getUser() {
@@ -57,29 +57,7 @@ export default function ProfilePage() {
                     setRefresh(Math.random())
                 }
 
-                const reviews = await Promise.all(
-                    locations.locations.map(async (loc) => {
-                        const { data: review, error: errorReview } = await supabase
-                            .from(loc.id + '-reviews')
-                            .select()
-                            .eq('user_id', data.session.user.id)
-                            .maybeSingle()
-                        if (review) {
-                            return (
-                                <div className="flex flex-col space-y-1 mt-6">
-                                    <div className="bg-slate-900 rounded-lg h-[35px] flex items-center font-bold px-5 text-white text-lg shadow-lg">
-                                        {t('locationNames.' + loc.locationNameAndDesc)}
-                                    </div>
-                                    <ReviewCard id={review.user_id} desc={review.review_desc} date={review.created_at} review={review.review}/>
-                                </div>
-
-                            )
-                        } else {
-                            return
-                        }
-                    })
-                )
-                setUserReviews(reviews)
+                getUserReview(data.session.user.id)
 
                 const cacheData = localStorage.getItem("img_cache_" + data?.session?.user?.id)
 
@@ -117,6 +95,33 @@ export default function ProfilePage() {
         } catch (err) {
             console.error("There was an error! :( " + err)
         }
+    }
+
+    async function getUserReview(id){
+        const reviews = await Promise.all(
+            locations.locations.map(async (loc) => {
+                const { data: review, error: errorReview } = await supabase
+                    .from(loc.id + '-reviews')
+                    .select()
+                    .eq('user_id', id)
+                    .maybeSingle()
+                
+                if (review) {
+                    return (
+                        <div className="flex flex-col space-y-1 mt-6">
+                            <div className="bg-slate-900 rounded-lg h-[35px] flex items-center font-bold px-5 text-white text-lg shadow-lg">
+                                {t('locationNames.' + loc.locationNameAndDesc)}
+                            </div>
+                            <ReviewCard id={review.user_id} desc={review.review_desc} date={review.created_at} review={review.review} />
+                        </div>
+
+                    )
+                } else {
+                    return
+                }
+            })
+        )
+        setUserReviews(reviews)
     }
 
     async function signOut() {
@@ -165,6 +170,12 @@ export default function ProfilePage() {
 
     async function uploadPFP() {
         try {
+            const { data: listData } = await supabase.storage.from('destination-vurshets-bucket').list('userPFP/' + userid)
+            
+            if (listData) {
+                const { } = await supabase.storage.from('destination-vurshets-bucket').remove(['userPFP/' + userid + '/' + listData[0].name])
+            }
+
             const filePath = "userPFP/" + userid + '/' + file.name
 
             const { error: uploadError } = await supabase
@@ -180,6 +191,19 @@ export default function ProfilePage() {
                 return
             }
 
+            const { data: listData1, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + userid)
+
+            const { data: PFPdata, error: PFPerror } = await supabase.
+                storage.
+                from('destination-vurshets-bucket').
+                createSignedUrl("userPFP/" + userid + "/" + listData1[0].name, 60 * 60 * 24)
+
+                localStorage.setItem("img_cache_" + userid, JSON.stringify({
+                    url: PFPdata.signedUrl,
+                    expiry: Date.now() + 60 * 60 * 24 * 1000
+                }))
+
+            setImg(PFPdata.signedUrl)
             setFile()
             setRefresh(Math.random())
 
@@ -202,7 +226,14 @@ export default function ProfilePage() {
 
     useEffect(() => {
         getUser()
+        setUserReviews(null)
+        getUserReview(userid)
     }, [Refresh])
+
+    useEffect(()=>{
+        setUserReviews(null)
+        getUserReview(userid)
+    },[i18n.language])
 
     useEffect(() => {
         if (file != undefined) {

@@ -11,36 +11,42 @@ export default function Login(){
     const {t} = useTranslation()
     const [errorSignUp, setErrorSignUp] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
+    const file = new File([""], 'example.txt', { type: 'text/plain' })
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function signUp(){
-        if(email != null && password != null && userName != null){
-            if(emailRegex.test(email)){
-                if(true){
-                    const {data, error} = await supabase.auth.signUp({
-                        email: email,
-                        password: password,
-                        }
-                    )
-
-                    const {data: dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email })
-
-                    const {} = await supabase.storage.from('destination-vurshets-bucket').upload('userPFP' + data.user.id + '/text.txt',new Blob([""], {type: "text/plain"}),{upsert: false} )
-
-                    navigate('/signin')
+        try{
+            if(email != null && password != null && userName != null){
+                if(emailRegex.test(email)){
+                    if(true){
+                        const {data, error} = await supabase.auth.signUp({
+                            email: email,
+                            password: password,
+                            }
+                        )
+    
+                        const {data: dataInsert, errorInsert} = await supabase.from("profiles").insert({ username: userName, email: email, user_id: data.user.id })
+    
+                        const {} = await supabase.storage.from('destination-vurshets-bucket').upload('userPFP/' + data.user.id + '/text.txt', file ,{upsert: false} )
+                        const {} = await supabase.storage.from('destination-vurshets-bucket').remove(['userPFP/' + data.user.id + '/text.txt'])
+    
+                        navigate('/signin')
+                    }else{
+                        setErrorSignUp(true)
+                        setErrorMsg(t('profile.short'))
+                    }
+    
                 }else{
                     setErrorSignUp(true)
-                    setErrorMsg(t('profile.short'))
+                    setErrorMsg(t('profile.notValidEmail'))
                 }
-
+    
             }else{
                 setErrorSignUp(true)
-                setErrorMsg(t('profile.notValidEmail'))
+                setErrorMsg(t('profile.emptyFields'))
             }
-
-        }else{
-            setErrorSignUp(true)
-            setErrorMsg(t('profile.emptyFields'))
+        }catch(err){
+            console.error("Error signingup: " + err)
         }
     }
 
