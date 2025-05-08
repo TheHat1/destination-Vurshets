@@ -65,7 +65,7 @@ export default function Signin() {
 
     return (
         <div className="w-screen h-screen bg-gray-300 flex justify-center">
-            <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${inProgress ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+            <div className={`absolute flex justify-center items-center inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${inProgress ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
                 <img className="z-50 w-[180px] h-[180px] " src="assets/misc/loading.gif"/>
             </div>
             <div className="h-[450px] w-[90vw] max-w-[600px] fixed mt-36 bg-white flex items-center justify-center flex-col space-y-5 shadow-lg rounded-md">
