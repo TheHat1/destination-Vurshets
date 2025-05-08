@@ -23,7 +23,7 @@ export default function ProfilePage() {
     const [newData, setNewData] = useState()
     const divRef = useRef()
     const inputRef = useRef()
-    const { i18n,t } = useTranslation()
+    const { i18n, t } = useTranslation()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     async function getUser() {
@@ -71,33 +71,29 @@ export default function ProfilePage() {
 
                 const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + data.session.user.id)
 
-                const { data: PFPdata, error: PFPerror } = await supabase.
-                    storage.
-                    from('destination-vurshets-bucket').
-                    createSignedUrl("userPFP/" + data.session.user.id + "/" + listData[0].name, 60 * 60 * 24)
+                if (listData.length != 0) {
+                    const { data: PFPdata, error: PFPerror } = await supabase.
+                        storage.
+                        from('destination-vurshets-bucket').
+                        createSignedUrl("userPFP/" + data.session.user.id + "/" + listData[0].name, 60 * 60 * 24)
 
-                if (PFPerror) {
-                    if (PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400) {
-                        setImg('/assets/misc/default-user.png')
-                        return
-                    }
-                    console.log("error fetching pfp:  " + JSON.stringify(PFPerror))
-                    return
+                    localStorage.setItem("img_cache_" + data?.session?.user?.id, JSON.stringify({
+                        url: PFPdata.signedUrl,
+                        expiry: Date.now() + 60 * 60 * 24 * 1000
+                    }))
+
+                    setImg(PFPdata.signedUrl)
+                    //setRefresh(Math.random())
+                } else {
+                    setImg('/assets/misc/default-user.png')
                 }
-
-                localStorage.setItem("img_cache_" + data?.session?.user?.id, JSON.stringify({
-                    url: PFPdata.signedUrl,
-                    expiry: Date.now() + 60 * 60 * 24 * 1000
-                }))
-
-                setImg(PFPdata.signedUrl)
             }
         } catch (err) {
             console.error("There was an error! :( " + err)
         }
     }
 
-    async function getUserReview(id){
+    async function getUserReview(id) {
         const reviews = await Promise.all(
             locations.locations.map(async (loc) => {
                 const { data: review, error: errorReview } = await supabase
@@ -105,14 +101,14 @@ export default function ProfilePage() {
                     .select()
                     .eq('user_id', id)
                     .maybeSingle()
-                
+
                 if (review) {
                     return (
                         <div className="flex flex-col space-y-1 mt-6">
                             <div className="bg-slate-900 rounded-lg h-[35px] flex items-center font-bold px-5 text-white text-lg shadow-lg">
                                 {t('locationNames.' + loc.locationNameAndDesc)}
                             </div>
-                            <ReviewCard id={review.user_id} desc={review.review_desc} date={review.created_at} review={review.review} />
+                            <ReviewCard key={review.user_id} id={review.user_id} desc={review.review_desc} date={review.created_at} review={review.review} />
                         </div>
 
                     )
@@ -171,8 +167,8 @@ export default function ProfilePage() {
     async function uploadPFP() {
         try {
             const { data: listData } = await supabase.storage.from('destination-vurshets-bucket').list('userPFP/' + userid)
-            
-            if (listData) {
+
+            if (listData.length != 0) {
                 const { } = await supabase.storage.from('destination-vurshets-bucket').remove(['userPFP/' + userid + '/' + listData[0].name])
             }
 
@@ -198,10 +194,10 @@ export default function ProfilePage() {
                 from('destination-vurshets-bucket').
                 createSignedUrl("userPFP/" + userid + "/" + listData1[0].name, 60 * 60 * 24)
 
-                localStorage.setItem("img_cache_" + userid, JSON.stringify({
-                    url: PFPdata.signedUrl,
-                    expiry: Date.now() + 60 * 60 * 24 * 1000
-                }))
+            localStorage.setItem("img_cache_" + userid, JSON.stringify({
+                url: PFPdata.signedUrl,
+                expiry: Date.now() + 60 * 60 * 24 * 1000
+            }))
 
             setImg(PFPdata.signedUrl)
             setFile()
@@ -226,14 +222,12 @@ export default function ProfilePage() {
 
     useEffect(() => {
         getUser()
-        setUserReviews(null)
         getUserReview(userid)
     }, [Refresh])
 
-    useEffect(()=>{
-        setUserReviews(null)
+    useEffect(() => {
         getUserReview(userid)
-    },[i18n.language])
+    }, [i18n.language])
 
     useEffect(() => {
         if (file != undefined) {

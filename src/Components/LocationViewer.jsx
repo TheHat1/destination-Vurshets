@@ -111,7 +111,7 @@ export default function LocationViewer() {
                 br++
                 sum += row.review
                 return (
-                    <ReviewCard id={row.user_id} desc={row.review_desc} date={row.created_at} review={row.review} />
+                    <ReviewCard key={row.user_id} id={row.user_id} desc={row.review_desc} date={row.created_at} review={row.review} />
                 )
             }
 
@@ -168,26 +168,24 @@ export default function LocationViewer() {
                 }
             }
 
-            const { data: PFPdata, error: PFPerror } = await supabase.
-                storage.
-                from('destination-vurshets-bucket').
-                createSignedUrl("userPFP/" + data.session.user.id + ".jpg", 60 * 60 * 24)
+            const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + data.session.user.id)
 
-            if (PFPerror) {
-                if (PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400) {
-                    setPfp('/assets/misc/default-user.png')
-                    return
-                }
-                console.log("error fetching pfp:  " + PFPerror)
-                return
+            if (listData.length != 0) {
+                const { data: PFPdata, error: PFPerror } = await supabase.
+                    storage.
+                    from('destination-vurshets-bucket').
+                    createSignedUrl("userPFP/" + data.session.user.id + "/" + listData[0].name, 60 * 60 * 24)
+
+                localStorage.setItem("img_cache_" + data?.session?.user?.id, JSON.stringify({
+                    url: PFPdata.signedUrl,
+                    expiry: Date.now() + 60 * 60 * 24 * 1000
+                }))
+
+                setPfp(PFPdata.signedUrl)
+
+            } else {
+                setPfp('/assets/misc/default-user.png')
             }
-
-            localStorage.setItem("img_cache_" + data.session.user.id, JSON.stringify({
-                url: PFPdata.signedUrl,
-                expiry: Date.now() + 60 * 60 * 24 * 1000
-            }))
-
-            setPfp(PFPdata.signedUrl)
 
         } catch (err) {
             console.error("There was an error! :(   | " + err)
@@ -202,6 +200,7 @@ export default function LocationViewer() {
                 review: userReview,
                 review_desc: desc
             })
+            
         setRefresh(Math.random())
 
         if (error) {
