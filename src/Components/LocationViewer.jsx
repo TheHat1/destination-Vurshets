@@ -8,6 +8,7 @@ import { Suspense, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import supabase from "../backend/supabase"
 import ReviewCard from "./ReviewCard"
+import { Helmet } from "react-helmet"
 
 function PanoramicViewer({ texture }) {
     const [loadedTexture, setLoadedTexture] = useState(null)
@@ -200,7 +201,7 @@ export default function LocationViewer() {
                 review: userReview,
                 review_desc: desc
             })
-            
+
         setRefresh(Math.random())
 
         if (error) {
@@ -238,123 +239,132 @@ export default function LocationViewer() {
     }, [id, Refresh])
 
     return (
-        <div className="w-screen bg-white pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10" style={{ "--side-panel-width": "500px", "--navbar-height": "110px" }}>
-            <div ref={ref} className="h-full w-full z-0 overflow-y-auto overflow-x-hidden relative">
-                <div className="w-full min-h-[300px] flex flex-col space-y-5 md:space-y-0 lg:flex-col lg:space-y-5 xl:flex-row xl:space-y-0 md:flex-row items-center shadow-lg bg-gray-100">
-                    <h1 className="w-full mt-[55px] md:mt-0 md:w-[calc(100vw-450px)] lg:w-full xl:w-[calc(100vw-var(--img-width))] line-clamp-4 font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden px-5" style={{ "--img-width": "950px" }}>{t(locationName)}</h1>
-                    <img src={img} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0" />
-                </div>
-                <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{t(locationDesc)}</h1>
-                <Suspense fallback={PanoramicSkeleton}>
-                    <div className="m-5 h-[600px] bg-gray-400 relative rounded-md shadow-lg">
-
-                        <div onClick={() => { setIsUserTried3D(true) }} className={`text-white rounded-md text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${isUserTried3D ? "-z-50" : "z-50"}`}>
-                            <div className="flex flex-row space-x-3 justify-center">
-                                <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]" />
-                                <h1>3D</h1>
-                                <img src="/assets/misc/double-small-arrow.png" className="w-[35px] h-[35px]" />
-                            </div>
-                            <div className="w-full mt-[25px] absolute text-center">
-                                <h1 className="text-lg text-gray-400">{t('ui.pressMe')}</h1>
-                            </div>
-
-                        </div>
-
-                        <Canvas className="rounded-md" camera={{ position: [0, 0, 0.1], fov: 45 }}>
-                            <OrbitControls reverseHorizontalOrbit reverseVerticalOrbit rotateSpeed={0.25} minPolarAngle={Math.PI / 2.095} maxPolarAngle={Math.PI / 1.915} enableZoom={false} />
-                            <PanoramicViewer texture={texturePath} />
-                        </Canvas>
-
+        <>
+            <Helmet>
+                <title>Destination Vurshets | Дестинация Вършец</title>
+                <meta name="description" content={t(locationDesc)}/>
+                <meta property="og:title" content={t(locationName)}/>
+                <meta property="og:description" content={t(locationDesc)}/>
+                <meta property="og:image" content={img} />
+            </Helmet>
+            <div className="w-screen bg-white pt-[50px] pb-[150px] lg:pt-0 lg:pb-0 h-[calc(100vh-var(--navbar-height))] lg:w-[calc(100vw-var(--side-panel-width))] fixed right-0 bottom-0 flex justify-center -z-10" style={{ "--side-panel-width": "500px", "--navbar-height": "110px" }}>
+                <div ref={ref} className="h-full w-full z-0 overflow-y-auto overflow-x-hidden relative">
+                    <div className="w-full min-h-[300px] flex flex-col space-y-5 md:space-y-0 lg:flex-col lg:space-y-5 xl:flex-row xl:space-y-0 md:flex-row items-center shadow-lg bg-gray-100">
+                        <h1 className="w-full mt-[55px] md:mt-0 md:w-[calc(100vw-450px)] lg:w-full xl:w-[calc(100vw-var(--img-width))] line-clamp-4 font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden px-5" style={{ "--img-width": "950px" }}>{t(locationName)}</h1>
+                        <img src={img} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0" />
                     </div>
-                </Suspense>
-                <div className="h-fit flex items-center justify-center gap-5 p-10">
-                    <div onClick={() => { navigate('/') }} className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                        <img src="/assets/misc/home.png" className="w-[25px] h-[25px] mx-[8px]" />
-                        {t('ui.homePg')}
-                    </div>
-                    <a href={locationLink} target="_blank" rel="noopener noreferrer">
-                        <div className="transition-transform ease-out duration-150 hover:scale-105 min-w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
-                            <img src="/assets/misc/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]" />
-                            {t('ui.takeMeThere')}
-                        </div>
-                    </a>
-                </div>
-                <div className="m-5 min-h-[300px] bg-gray-300 rounded-md shadow-lg flex relative">
+                    <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{t(locationDesc)}</h1>
+                    <Suspense fallback={PanoramicSkeleton}>
+                        <div className="m-5 h-[600px] bg-gray-400 relative rounded-md shadow-lg">
 
-                    <div className={`h-full w-full rounded-md p-5 absolute bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-5 ${isSignedIn ? "-z-50" : "z-10"}`}>
-                        <h1 className="text-white text-xl">{t('ui.notSignedIn')}</h1>
-                        <div onClick={() => { navigate('/signin') }} className="w-[100px] h-[45px] bg-slate-900 hover:bg-slate-700 hover:bg-opacity-100 rounded-lg cursor-pointer flex justify-center items-center text-white text-lg opacity-100 z-20 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
-                    </div>
-
-                    <div className="w-full min-h-[250px] h-fit p-5 rounded-md shadow-lg bg-white m-5">
-                        <div className="flex flex-col sm:flex-row space-x-5 space-y-5 sm:space-y-0">
-                            <img src={pfp} className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full" />
-                            <div className="w-full pr-5">
-                                <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
-                                <div className="flex flex-row ml-2 text-gray-500">
-                                    <h1 className="text-md font-robotoMono">{t('ui.otseni')}
-                                        <input
-                                            className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
-                                            placeholder="1-10"
-                                            type="number"
-                                            min={1}
-                                            max={10}
-                                            onInput={e => { setUserReview(e.target.value) }}
-                                            value={userReview}
-                                            onBlur={() => {
-                                                if (userReview <= 1) setUserReview(1)
-                                                if (userReview >= 10) setUserReview(10)
-                                            }}
-                                        />
-                                        /10
-                                    </h1>
-                                    <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png" />
+                            <div onClick={() => { setIsUserTried3D(true) }} className={`text-white rounded-md text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${isUserTried3D ? "-z-50" : "z-50"}`}>
+                                <div className="flex flex-row space-x-3 justify-center">
+                                    <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]" />
+                                    <h1>3D</h1>
+                                    <img src="/assets/misc/double-small-arrow.png" className="w-[35px] h-[35px]" />
                                 </div>
-                                <textarea
-                                    className="w-full min-h-[100px] border border-black rounded-md shadow-lg mt-3 overflow-hidden resize-none"
-                                    ref={textareaRef}
-                                    onInput={e => {
-                                        setDesc(e.target.value)
-                                        textareaRef.current.style.height = "auto"
-                                        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
-                                    }}
-                                    value={desc}
-                                    placeholder={t('ui.type')}
-                                />
-                                <div className="flex sm:flex-row sm:space-y-0  flex-col items-center justify-center sm:justify-start space-y-5 sm:space-x-5">
-                                    <div onClick={PostOrEditReview} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
-                                        {isUserReviewed ? t('ui.edit') : t('ui.publish')}
+                                <div className="w-full mt-[25px] absolute text-center">
+                                    <h1 className="text-lg text-gray-400">{t('ui.pressMe')}</h1>
+                                </div>
+
+                            </div>
+
+                            <Canvas className="rounded-md" camera={{ position: [0, 0, 0.1], fov: 45 }}>
+                                <OrbitControls reverseHorizontalOrbit reverseVerticalOrbit rotateSpeed={0.25} minPolarAngle={Math.PI / 2.095} maxPolarAngle={Math.PI / 1.915} enableZoom={false} />
+                                <PanoramicViewer texture={texturePath} />
+                            </Canvas>
+
+                        </div>
+                    </Suspense>
+                    <div className="h-fit flex items-center justify-center gap-5 p-10">
+                        <div onClick={() => { navigate('/') }} className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white text-center flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                            <img src="/assets/misc/home.png" className="w-[25px] h-[25px] mx-[8px]" />
+                            {t('ui.homePg')}
+                        </div>
+                        <a href={locationLink} target="_blank" rel="noopener noreferrer">
+                            <div className="transition-transform ease-out duration-150 hover:scale-105 min-w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center bg-slate-900 pr-5 hover:bg-slate-700">
+                                <img src="/assets/misc/map-with-marker.png" className="w-[25px] h-[25px] mx-[8px]" />
+                                {t('ui.takeMeThere')}
+                            </div>
+                        </a>
+                    </div>
+                    <div className="m-5 min-h-[300px] bg-gray-300 rounded-md shadow-lg flex relative">
+
+                        <div className={`h-full w-full rounded-md p-5 absolute bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-5 ${isSignedIn ? "-z-50" : "z-10"}`}>
+                            <h1 className="text-white text-xl">{t('ui.notSignedIn')}</h1>
+                            <div onClick={() => { navigate('/signin') }} className="w-[100px] h-[45px] bg-slate-900 hover:bg-slate-700 hover:bg-opacity-100 rounded-lg cursor-pointer flex justify-center items-center text-white text-lg opacity-100 z-20 transition-transform ease-out duration-150 hover:scale-105">{t('profile.vlezVprofil')}</div>
+                        </div>
+
+                        <div className="w-full min-h-[250px] h-fit p-5 rounded-md shadow-lg bg-white m-5">
+                            <div className="flex flex-col sm:flex-row space-x-5 space-y-5 sm:space-y-0">
+                                <img src={pfp} className="bg-gray-300 object-cover w-[100px] h-[100px] rounded-full" />
+                                <div className="w-full pr-5">
+                                    <h1 className="font-bold font-robotoMono text-lg">{username}</h1>
+                                    <div className="flex flex-row ml-2 text-gray-500">
+                                        <h1 className="text-md font-robotoMono">{t('ui.otseni')}
+                                            <input
+                                                className="w-[50px] h-[25px] border shadow-lg rounded-md border-black text-center"
+                                                placeholder="1-10"
+                                                type="number"
+                                                min={1}
+                                                max={10}
+                                                onInput={e => { setUserReview(e.target.value) }}
+                                                value={userReview}
+                                                onBlur={() => {
+                                                    if (userReview <= 1) setUserReview(1)
+                                                    if (userReview >= 10) setUserReview(10)
+                                                }}
+                                            />
+                                            /10
+                                        </h1>
+                                        <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png" />
                                     </div>
-                                    <div onClick={RemoveReview} className="bg-red-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-red-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">{t('ui.delete')}</div>
-                                </div>
+                                    <textarea
+                                        className="w-full min-h-[100px] border border-black rounded-md shadow-lg mt-3 overflow-hidden resize-none"
+                                        ref={textareaRef}
+                                        onInput={e => {
+                                            setDesc(e.target.value)
+                                            textareaRef.current.style.height = "auto"
+                                            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+                                        }}
+                                        value={desc}
+                                        placeholder={t('ui.type')}
+                                    />
+                                    <div className="flex sm:flex-row sm:space-y-0  flex-col items-center justify-center sm:justify-start space-y-5 sm:space-x-5">
+                                        <div onClick={PostOrEditReview} className="bg-slate-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">
+                                            {isUserReviewed ? t('ui.edit') : t('ui.publish')}
+                                        </div>
+                                        <div onClick={RemoveReview} className="bg-red-900 w-[130px] h-[40px] text-white text-xl rounded-md text-center flex items-center justify-center hover:bg-red-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">{t('ui.delete')}</div>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="m-5 p-5 h-[1000px] bg-gray-300 rounded-md shadow-lg flex flex-col space-y-5 overflow-y-auto">
-                    <div className="w-full min-h-[75px] bg-white rounded-md shadow-sm flex sm:flex-row flex-col items-center p-5 space-x-1">
-                        <div className="text-3xl text-gray-600 font-robotoMono ">{reviewAvg}/10</div>
-                        <img className="w-[35px] h-[35px]" src="/assets/misc/star.png" />
-                        <h1 className="pl-[15px] text-lg font-robotoMono text-center sm:text-left">{t('ui.review')}</h1>
-                    </div>
-                    {reviews}
-                </div>
-                <div className="bg-slate-900 w-full h-[110px] bottom-0 flex items-center pl-7 text-gray-400 text-md">
-                    <h1>
-                        {t('ui.createdBy')}
-                    </h1>
-                    <a href="https://github.com/TheHat1?tab=overview&from=2025-02-01&to=2025-02-26" target="_blank" rel="noopener noreferrer">
-                        <div className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
-                            <img src="/assets/misc/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]" />
-                            TheHat1
+                    <div className="m-5 p-5 h-[1000px] bg-gray-300 rounded-md shadow-lg flex flex-col space-y-5 overflow-y-auto">
+                        <div className="w-full min-h-[75px] bg-white rounded-md shadow-sm flex sm:flex-row flex-col items-center p-5 space-x-1">
+                            <div className="text-3xl text-gray-600 font-robotoMono ">{reviewAvg}/10</div>
+                            <img className="w-[35px] h-[35px]" src="/assets/misc/star.png" />
+                            <h1 className="pl-[15px] text-lg font-robotoMono text-center sm:text-left">{t('ui.review')}</h1>
                         </div>
-                    </a>
-                    <a href={authLink} target="_blank" rel="noopener noreferrer">
-                        Линк към автор на снимката
-                    </a>
+                        {reviews}
+                    </div>
+                    <div className="bg-slate-900 w-full h-[110px] bottom-0 flex items-center pl-7 text-gray-400 text-md">
+                        <h1>
+                            {t('ui.createdBy')}
+                        </h1>
+                        <a href="https://github.com/TheHat1?tab=overview&from=2025-02-01&to=2025-02-26" target="_blank" rel="noopener noreferrer">
+                            <div className="transition-transform ease-out duration-150 hover:scale-105 w-[140px] h-[45px] cursor-pointer rounded-lg text-white flex items-center justify-center pr-5 brightness-75 hover:brightness-50">
+                                <img src="/assets/misc/githubLogo.png" className="w-[25px] h-[25px] mx-[8px]" />
+                                TheHat1
+                            </div>
+                        </a>
+                        <a href={authLink} target="_blank" rel="noopener noreferrer">
+                            Линк към автор на снимката
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

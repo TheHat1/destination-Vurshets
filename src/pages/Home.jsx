@@ -6,6 +6,7 @@ import LocationCard from "../Components/LocationCard"
 import LocationViewer from "../Components/LocationViewer"
 import { useParams } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet"
 
 export default function HomePage() {
   const locations = cardsInfo.locations
@@ -104,6 +105,12 @@ export default function HomePage() {
 
   return (
     <>
+    <Helmet>
+      <title>Destination Vurshets | Дестинация Вършец</title>
+      <meta property="og:title" content="Home page | Начална страница"/>
+      <meta property="og:description" content="Home page of Destination vurshets, a turist site focused to give the tourist of Vurshets an easy way to tour the town."/>
+      <meta property="og:Description" content="Началната страница на Дестинация Вършец, туристически сайт, който има за цел да улесни туристите на града с техните обиколки."/>
+    </Helmet>
       <div className="mt-[110px] w-screen lg:w-[500px] h-[50px] border border-gray-900 fixed z-50">
         <input className="border-none w-full h-full pl-5" type="text" onChange={value1 => { setInputValue(value1.target.value) }} placeholder={t('ui.search')} />
       </div>
