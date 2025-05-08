@@ -15,7 +15,7 @@ export default function ProfilePage() {
     const [img, setImg] = useState("")
     const [file, setFile] = useState()
     const [userReviews, setUserReviews] = useState()
-    const [Refresh, setRefresh] = useState()
+    const [Refresh, setRefresh] = useState(0)
     const [isChange, setIsChange] = useState(false)
     const [errorChange, setErrorChange] = useState(false)
     const [errorMsg, setErrorMsg] = useState()
@@ -83,7 +83,7 @@ export default function ProfilePage() {
                     }))
 
                     setImg(PFPdata.signedUrl)
-                    //setRefresh(Math.random())
+
                 } else {
                     setImg('/assets/misc/default-user.png')
                 }
@@ -121,6 +121,7 @@ export default function ProfilePage() {
     }
 
     async function signOut() {
+        setIsChange(true)
         const { error } = await supabase.auth.signOut().then(() => { navigate('/') })
     }
 
@@ -129,7 +130,7 @@ export default function ProfilePage() {
 
         if (msg == 'profilePage.changeUser') {
             if (newData != null) {
-                const { error } = await supabase.from('profiles').update({ username: newData }).eq('email', useremail)
+                const { error } = await supabase.from('profiles').update({ username: newData }).eq('user_id', userid)
 
                 setRefresh(Math.random())
                 setIsChange(false)
@@ -149,7 +150,7 @@ export default function ProfilePage() {
                 const { error: errorUpdate } = await supabase.
                     from('profiles').
                     update({ email: newData }).
-                    eq('username', username)
+                    eq('user_id', userid)
 
                 setRefresh(Math.random())
                 setIsChange(false)
@@ -172,7 +173,7 @@ export default function ProfilePage() {
                 const { } = await supabase.storage.from('destination-vurshets-bucket').remove(['userPFP/' + userid + '/' + listData[0].name])
             }
 
-            const filePath = "userPFP/" + userid + '/' + file.name
+            const filePath = "userPFP/" + userid + '/' + file.name.replaceAll(/[^\w.-]/g,"")
 
             const { error: uploadError } = await supabase
                 .storage
@@ -222,12 +223,11 @@ export default function ProfilePage() {
 
     useEffect(() => {
         getUser()
-        getUserReview(userid)
     }, [Refresh])
 
     useEffect(() => {
         getUserReview(userid)
-    }, [i18n.language])
+    }, [i18n.language, Refresh])
 
     useEffect(() => {
         if (file != undefined) {
@@ -240,7 +240,7 @@ export default function ProfilePage() {
 
     return (
         <div className="w-screen h-screen flex justify-center lg:justify-start ">
-            <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-20 transition-opacity duration-300 ${isChange ? "opacity-100" : "opacity-0 pointer-events-none"}`}></div>
+            <div className={`absolute inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity duration-300 ${isChange ? "opacity-100" : "opacity-0 pointer-events-none"}`}></div>
             <div className="absolute inset-0 flex justify-center">
                 <div ref={divRef} className={`absolute flex flex-col space-y-5 justify-center items-center overflow-hidden mx-auto p-5 max-w-[500px] w-[90vw] min-h-[250px] h-fit bg-white rounded-md z-30 transition-transform duration-300 ease-out ${isChange ? "translate-y-[200px] lg:translate-y-[300px]" : "-translate-y-[210px] pointer-events-none"}`}>
                     <h1 className="font-robotoMono text-lg px-5 text-center">
@@ -250,9 +250,9 @@ export default function ProfilePage() {
                         {t(errorMsg)}
                     </div>
                     <input
-                        className="border border-gray-900 w-[80vw] max-w-[400px] h-[50px] rounded-lg transition-transform ease-out duration-150 hover:scale-105"
+                        className="border border-gray-900 w-[80vw] max-w-[400px] h-[50px] rounded-lg transition-transform ease-out duration-150 hover:scale-105 pl-5"
                         type="text"
-                        placeholder=" ..."
+                        placeholder="..."
                         onChange={e => { setNewData(e.target.value) }}
                         value={newData}
                     />
