@@ -341,7 +341,7 @@ export default function LocationViewer() {
                             </div>
                         </div>
                     </div>
-                    <div className="m-5 p-5 h-[1000px] bg-gray-300 rounded-md shadow-lg flex flex-col space-y-5 overflow-y-auto">
+                    <div className="m-5 p-5 min-h-[1000px] h-fit bg-gray-300 rounded-md shadow-lg flex flex-col space-y-5 overflow-y-auto">
                         <div className="w-full min-h-[75px] bg-white rounded-md shadow-sm flex sm:flex-row flex-col items-center p-5 space-x-1">
                             <div className="text-3xl text-gray-600 font-robotoMono ">{reviewAvg}/10</div>
                             <img className="w-[35px] h-[35px]" src="/assets/misc/star.png" />
