@@ -251,19 +251,19 @@ export default function LocationViewer() {
                 <div ref={ref} className="h-full w-full z-0 overflow-y-auto overflow-x-hidden relative">
                     <div className="w-full min-h-[300px] flex flex-col space-y-5 md:space-y-0 lg:flex-col lg:space-y-5 xl:flex-row xl:space-y-0 md:flex-row items-center shadow-lg bg-gray-100">
                         <h1 className="w-full mt-[55px] md:mt-0 md:w-[calc(100vw-450px)] lg:w-full xl:w-[calc(100vw-var(--img-width))] line-clamp-4 font-oswald truncate text-5xl font-bold text-left text-wrap overflow-hidden px-5" style={{ "--img-width": "950px" }}>{t(locationName)}</h1>
-                        <img src={img} className="w-[450px] h-[300px] right-0 object-cover flex-shrink-0" />
+                        <img src={img} className="w-[450px] h-[450px] right-0 object-cover flex-shrink-0" />
                     </div>
                     <h1 className="p-10 text-xl text-pretty indent-7 font-robotoMono">{t(locationDesc)}</h1>
                     <Suspense fallback={PanoramicSkeleton}>
                         <div className="m-5 h-[600px] bg-gray-400 relative rounded-md shadow-lg">
 
                             <div onClick={() => { setIsUserTried3D(true) }} className={`text-white rounded-md text-3xl bg-black opacity-75 pt-[40px] cursor-pointer absolute h-[600px] w-full ${isUserTried3D ? "-z-50" : "z-50"}`}>
-                                <div className="flex flex-row space-x-3 justify-center">
-                                    <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]" />
+                                <div className="flex flex-row space-x-3 justify-center animate-bounce duration-300">
+                                    <img src="/assets/misc/double-small-arrow.png" className="rotate-180 w-[35px] h-[35px]"/>
                                     <h1>3D</h1>
                                     <img src="/assets/misc/double-small-arrow.png" className="w-[35px] h-[35px]" />
                                 </div>
-                                <div className="w-full mt-[25px] absolute text-center">
+                                <div className="w-full mt-[25px] absolute text-center animate-pulse duration-300">
                                     <h1 className="text-lg text-gray-400">{t('ui.pressMe')}</h1>
                                 </div>
 
@@ -320,7 +320,7 @@ export default function LocationViewer() {
                                         <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png" />
                                     </div>
                                     <textarea
-                                        className="w-full min-h-[100px] border border-black rounded-md shadow-lg mt-3 overflow-hidden resize-none"
+                                        className="w-full min-h-[100px] pl-5 pt-1 border border-black rounded-md shadow-lg mt-3 overflow-hidden resize-none"
                                         ref={textareaRef}
                                         onInput={e => {
                                             setDesc(e.target.value)

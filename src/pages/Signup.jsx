@@ -16,9 +16,10 @@ export default function Login() {
 
     async function signUp() {
         try {
-            if (email != null && password != null && userName != null) {
+            if (email != undefined && password != undefined && userName != undefined) {
+
                 if (emailRegex.test(email)) {
-                    if (password.lenght > 7) {
+                    if (true) {
                         setInProgress(true)
 
                         const { data, error } = await supabase.auth.signUp({
@@ -65,6 +66,7 @@ export default function Login() {
                 <input
                     className="border border-gray-900 max-w-[400px] w-[80vw] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105 pl-5"
                     type="text"
+                    value={undefined}
                     placeholder={t('profile.ime')}
                     onChange={(e) => { setUserName(e.target.value) }}
                 />
@@ -72,6 +74,7 @@ export default function Login() {
                 <input
                     className="border border-gray-900 max-w-[400px] w-[80vw] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105 pl-5"
                     type="text"
+                    value={undefined}
                     placeholder="E-mail"
                     onChange={(e) => { setEmail(e.target.value) }}
                 />
@@ -79,6 +82,7 @@ export default function Login() {
                 <input
                     className="border border-gray-900 max-w-[400px] w-[80vw] h-[50px] rounded-md transition-transform ease-out duration-150 hover:scale-105 pl-5"
                     type="password"
+                    value={undefined}
                     placeholder={t('profile.parola')}
                     onChange={(e) => { setPassword(e.target.value) }}
                 />
