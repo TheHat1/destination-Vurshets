@@ -36,17 +36,17 @@ export default function ReviewCard({ id, review, desc, date }) {
                     from('destination-vurshets-bucket').
                     createSignedUrl("userPFP/" + id + "/" + listData[0].name, 60 * 60 * 24)
 
+                localStorage.setItem("img_cache_" + id, JSON.stringify({
+                    url: PFPdata.signedUrl,
+                    expiry: Date.now() + 60 * 60 * 24 * 1000
+                }))
+
+                setPfp(PFPdata.signedUrl)
+
             } else {
                 setPfp('/assets/misc/default-user.png')
                 return
             }
-
-            localStorage.setItem("img_cache_" + id, JSON.stringify({
-                url: PFPdata.signedUrl,
-                expiry: Date.now() + 60 * 60 * 24 * 1000
-            }))
-
-            setPfp(PFPdata.signedUrl)
         }
         catch (err) {
             console.error("Error getting pfp at review card: " + err)
