@@ -169,6 +169,8 @@ export default function ProfilePage() {
 
     async function uploadPFP() {
         try {
+            setSigningout(true)
+
             const { data: listData } = await supabase.storage.from('destination-vurshets-bucket').list('userPFP/' + userid)
 
             if (listData.length != 0) {
@@ -185,6 +187,8 @@ export default function ProfilePage() {
                     contentType: file.type
                 })
 
+            setSigningout(false)
+            
             if (uploadError) {
                 console.error("There was an error: " + JSON.stringify(uploadError, null, 2))
                 return
@@ -243,7 +247,7 @@ export default function ProfilePage() {
 
     return (
         <div className="w-screen h-screen flex justify-center lg:justify-start ">
-            <div className={`absolute flex justify-center items-center inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity duration-300 ${isChange || signingout ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+            <div className={`absolute flex justify-center items-center inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${isChange || signingout ? "opacity-100 z-30" : "opacity-0 pointer-events-none -z-50"}`}>
                 <img loading="lazy" className={`z-50 w-[180px] h-[180px] ${signingout ? "opacity-100" : "opacity-0"}`} src="assets/misc/loading.gif" />
             </div>
             <div className="absolute inset-0 flex justify-center">
@@ -266,7 +270,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="min-h-screen flex flex-col overflow-x-hidden space-y-5">
-                <main className="flex-grow w-screen flex flex-col space-y-5 items-center lg:items-start z-20 mt-[110px] relative">
+                <main className="flex-grow w-screen flex flex-col space-y-5 items-center lg:items-start z-0 mt-[110px] relative">
                     <div className="bg-white mt-[20px] max-w-[900px] w-[90vw] min-h-[570px] lg:min-h-[450px] lg:mx-10 relative rounded-md shadow-lg">
                         <div className="z-10 w-full h-full absolute flex flex-col space-y-5 items-center justify-end pb-5 md:flex-row-reverse md:items-end md:justify-between px-5">
                             <div onClick={signOut} className="bg-slate-900 w-[100px] h-[40px] text-white text-xl rounded-lg text-center flex items-center justify-center hover:bg-slate-700 cursor-pointer transition-transform ease-out duration-150 hover:scale-105">

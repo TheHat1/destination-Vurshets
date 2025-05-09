@@ -118,7 +118,7 @@ export default function LocationViewer() {
 
             ))
             if (!Number.isNaN(sum / br)) {
-                setReviewAvg(sum / br)
+                setReviewAvg((sum / br).toFixed(2))
             } else {
                 setReviewAvg(0)
             }

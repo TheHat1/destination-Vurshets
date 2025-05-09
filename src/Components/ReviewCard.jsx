@@ -29,16 +29,14 @@ export default function ReviewCard({ id, review, desc, date }) {
 
             const { data: listData, error: listError } = await supabase.storage.from('destination-vurshets-bucket').list("userPFP/" + id)
 
-            const { data: PFPdata, error: PFPerror } = await supabase.
-                storage.
-                from('destination-vurshets-bucket').
-                createSignedUrl("userPFP/" + id + "/" + listData[0].name, 60 * 60 * 24)
+            if (listData.length != 0) {
 
-            if (PFPerror) {
-                if (PFPerror?.message?.includes("Object not found") || PFPerror.statusCode === 400) {
-                    setPfp('/assets/misc/default-user.png')
-                    return
-                }
+                const { data: PFPdata, error: PFPerror } = await supabase.
+                    storage.
+                    from('destination-vurshets-bucket').
+                    createSignedUrl("userPFP/" + id + "/" + listData[0].name, 60 * 60 * 24)
+
+            } else {
                 setPfp('/assets/misc/default-user.png')
                 return
             }
@@ -71,7 +69,7 @@ export default function ReviewCard({ id, review, desc, date }) {
                         <h1 className="text-md font-robotoMono">{t('ui.otseni')}{review}/10</h1>
                         <img className="w-[25px] h-[25px] brightness-90 ml-[3px]" src="/assets/misc/star.png" />
                     </div>
-                    <p className="font-robotoMono pl-5 text-wrap overflow-hidden break-all">{desc}</p>
+                    <p className="font-robotoMono pl-5 text-wrap overflow-hidden break-before-auto">{desc}</p>
                 </div>
             </div>
             <div className="mt-2 font-robotoMono text-right text-sm text-gray-500">{t('profilePage.createdAt')}{date}</div>
